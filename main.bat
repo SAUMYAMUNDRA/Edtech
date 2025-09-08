@@ -12,12 +12,6 @@ REM Start server (in a new window)
 cd /d "%ROOT_DIR%\server"
 start cmd /k "node index.js"
 
-REM Start XAMPP services (MySQL and Apache)
-cd /d "C:\xampp"
-start "" xampp_start.exe
-
-xampp-control.exe --startapache
-xampp-control.exe --startmysql
 
 ENDLOCAL
 pause
