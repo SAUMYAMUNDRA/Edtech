@@ -148,12 +148,8 @@ export default function HomePage() {
             Get Started Today
           </a>
         </div>
-
-      </section>
-
       </div>
     </section>
- main
       <Footer/>
     </div>
   );
