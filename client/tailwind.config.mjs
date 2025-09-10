@@ -10,7 +10,10 @@ const config = {
             // here we add in custom colors which we gonna need for our project.
             // TO ALL -> you all can pick the name of color mentioned below from tailwindcss itself.
             colors: {
-                'custom-color': '#123456',      // name the colors accordingly this is demo color.
+                'footer-bg': 'bg-[#0a1a2f]',  
+                'button-bg':'bg-yellow-400',
+                'main-bg':'bg-[#fcf6f1]',
+
             },
         },
     },
