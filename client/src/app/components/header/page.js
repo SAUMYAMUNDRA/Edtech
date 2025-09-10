@@ -14,10 +14,10 @@ export default function Header() {
 
       {/* Nav Links */}
       <nav className="flex gap-6 text-gray-700">
-        {["About", "Testimonials", "Mentorship", "University"].map((item, idx) => (
+        {["about", "testimonials", "mentorship", "university"].map((item, idx) => (
           <a
             key={idx}
-            href={item === "Mentorship" ? "/Mentorship" : "#"}
+             href={item === "mentorship" ? "/mentorship" : "#"}
             className="relative px-3 py-1 rounded-md hover:text-black hover:bg-yellow-400 transition-colors duration-200
               after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 hover:after:w-full"
           >

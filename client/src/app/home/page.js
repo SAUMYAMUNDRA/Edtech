@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import Footer from "../components/footer/page";
 import Header from "../components/header/page";
+import Card from "../components/card/page";
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
@@ -150,6 +151,7 @@ export default function HomePage() {
         </div>
       </div>
     </section>
+    <Card/>
       <Footer/>
     </div>
   );
