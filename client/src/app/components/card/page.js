@@ -40,3 +40,4 @@ export default function Card({ name, title, imageUrl, expertise, linkedinUrl = "
         </div>
     );
 }
+
