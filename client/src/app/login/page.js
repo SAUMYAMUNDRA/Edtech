@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import Header from "../header/page";
-import Footer from "../footer/page";
+import Header from "../components/header/page";
+import Footer from "../components/footer/page";
 
 export default function Login() {
   return (
