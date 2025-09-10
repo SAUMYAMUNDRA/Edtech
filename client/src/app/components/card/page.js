@@ -41,17 +41,3 @@ export default function Card({ name, title, imageUrl, expertise, linkedinUrl = "
     );
 }
 
-
-// to use do
-
-
-// import Card from "../components/card/page";
-
-
-// <Card
-//     name="Dr. Ram Singh"
-//     title="Principal Data Scientist, Google"
-//     imageUrl="imageURL.jpg"
-//     expertise={["Machine Learning", "Python"]}
-//     linkedinUrl="https://www.linkedin.com/Ram-Singh"
-// />
