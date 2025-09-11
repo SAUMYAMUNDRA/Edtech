@@ -13,6 +13,7 @@ export default function MentorshipPage() {
   ];
   const [paused, setPaused] = useState(false);
   const sliderRef = useRef(null);
+  
   const trackRef = useRef(null);
   const speedRef = useRef(0.6);
   const [activeMentor, setActiveMentor] = useState(null);
