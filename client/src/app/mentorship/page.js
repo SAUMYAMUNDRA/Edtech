@@ -234,7 +234,7 @@ export default function MentorshipPage() {
                   <div className="w-10 h-10 rounded-md bg-yellow-400/30 flex items-center justify-center font-semibold text-gray-900">
                     {idx + 1}
                   </div>
-                  <div className="text-sm text-gray-500">Step {idx + 1}</div>
+                  <div className="text-sm text-gray-500">Step {idx + 1}</div> 
                 </div>
                 <div className="font-semibold text-lg mb-1">{step.title}</div>
                 <div className="text-gray-600">{step.desc}</div>
@@ -521,3 +521,4 @@ export default function MentorshipPage() {
     </div>
   );
 }
+// helllo
