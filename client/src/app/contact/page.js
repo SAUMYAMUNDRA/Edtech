@@ -14,6 +14,7 @@ export default function ContactUs() {
           {/* Left Section */}
           <motion.div
             className="flex-1 space-y-10"
+            
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
