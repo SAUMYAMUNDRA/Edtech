@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/header/page";
 import Footer from "../components/footer/page";
 
+
 export default function MentorshipPage() {
   const mentors = [
     { name: "Amit Kumar", role: "SWE, Google", tags: ["DSA", "System Design"], photo: "", linkedin: "" },
@@ -110,6 +111,7 @@ export default function MentorshipPage() {
     return () => window.removeEventListener('resize', normalize);
   }, []);
 
+  
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
       <Header />
@@ -130,29 +132,31 @@ export default function MentorshipPage() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a href="#apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md hover:opacity-95">
-                  Apply for Mentorship
+                <a href="#apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
+                  <span className="relative z-10">Apply for Mentorship</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
-                <a href="#become-mentor" className="border border-gray-300 px-6 py-3 rounded-md font-medium text-gray-700 hover:bg-gray-200">
-                  Become a Mentor
+                <a href="#become-mentor" className="border border-gray-300 px-6 py-3 rounded-md font-medium text-gray-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden group">
+                  <span className="relative z-10">Become a Mentor</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-100 to-orange-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
               </div>
 
               {/* Trust badges */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-                <div className="bg-white rounded-lg shadow p-4">
+                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">150+</div>
                   <div className="text-gray-600 text-sm">Industry Mentors</div>
                 </div>
-                <div className="bg-white rounded-lg shadow p-4">
+                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">7.5 yrs</div>
                   <div className="text-gray-600 text-sm">Avg Mentor Experience</div>
                 </div>
-                <div className="bg-white rounded-lg shadow p-4">
+                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">40+</div>
                   <div className="text-gray-600 text-sm">Partner Universities</div>
                 </div>
-                <div className="bg-white rounded-lg shadow p-4">
+                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">3k+</div>
                   <div className="text-gray-600 text-sm">Student Placements</div>
                 </div>
@@ -222,7 +226,10 @@ export default function MentorshipPage() {
                 desc: "Portfolio, referrals, and interview prep.",
               },
             ].map((step, idx) => (
-              <div key={idx} className="bg-white rounded-xl shadow p-6 border border-gray-100">
+              <div
+                key={idx}
+                className="bg-white rounded-xl shadow p-6 border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
+              >
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-10 h-10 rounded-md bg-yellow-400/30 flex items-center justify-center font-semibold text-gray-900">
                     {idx + 1}
@@ -276,7 +283,10 @@ export default function MentorshipPage() {
                 points: ["Live Q&A", "Debugging support", "Contest upsolving guidance"],
               },
             ].map((card, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl shadow hover:shadow-md transition border border-gray-100">
+              <div
+                key={i}
+                className="bg-white p-6 rounded-xl shadow transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg border border-gray-100"
+              >
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="font-semibold text-xl">{card.title}</h3>
                   <span className="px-2 py-1 text-xs rounded bg-yellow-400 text-black font-medium">Included</span>
@@ -439,7 +449,7 @@ export default function MentorshipPage() {
                 </a>
                 <div className="flex gap-3">
                   <button onClick={closeModal} className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100">Close</button>
-                  <a href="#" className="px-4 py-2 rounded-md bg-gray-900 text-white hover:bg-black">Request Session</a>
+                  <a href="#" className="px-4 py-2 rounded-md bg-gray-900 text-white hover:bg-black transition-all duration-200 transform hover:scale-105 hover:shadow-lg">Request Session</a>
                 </div>
               </div>
             </div>
@@ -457,10 +467,11 @@ export default function MentorshipPage() {
                 </p>
               </div>
               <div className="flex gap-4 md:justify-end">
-                <a href="#" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md hover:opacity-95">
-                  Apply Now
+                <a href="#" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
+                  <span className="relative z-10">Apply Now</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
-                <a id="become-mentor" href="#" className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium shadow-md hover:bg-yellow-300">
+                <a id="become-mentor" href="#" className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                   Become a Mentor
                 </a>
               </div>
@@ -493,7 +504,10 @@ export default function MentorshipPage() {
                 a: "Yes. We run interview prep, mock interviews, referrals, and hiring challenges with partners.",
               },
             ].map((f, i) => (
-              <div key={i} className="bg-white rounded-xl shadow p-5 border border-gray-100">
+              <div
+                key={i}
+                className="bg-white rounded-xl shadow p-5 border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+              >
                 <div className="font-semibold mb-1">{f.q}</div>
                 <div className="text-gray-700">{f.a}</div>
               </div>
