@@ -224,52 +224,7 @@ export default function MentorshipPage() {
           </div>
         </section>
 
-        {/* UNIVERSITY COLLAB */}
-        <section className="max-w-7xl mx-auto px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-3">For Universities & Departments</h2>
-              <p className="text-gray-700 mb-6">
-                Bring industry‑grade curriculum, capstone projects, and mentors to your classrooms.
-                We integrate with academic schedules while keeping hiring outcomes front‑and‑center.
-              </p>
-              <ul className="space-y-2 text-gray-700">
-                {[
-                  "Curriculum mapping to credits",
-                  "Capstone projects with live reviews",
-                  "Faculty development & TA support",
-                  "Placement prep bootcamps",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-1 w-2.5 h-2.5 bg-yellow-400 rounded-full" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-white rounded-xl shadow p-6 border border-gray-100">
-              <div className="border-l-4 border-yellow-400 pl-4">
-                <h3 className="font-semibold text-xl mb-2">Program Outcomes</h3>
-                <p className="text-gray-700">
-                  Measurable improvement in problem‑solving, project quality, and placement readiness, tracked via weekly reports and assessments.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                {[
-                  { k: "+45%", v: "DSA proficiency" },
-                  { k: "3x", v: "Contest ratings" },
-                  { k: "2 capstones", v: "per student" },
-                  { k: "8 weeks", v: "to interview‑ready" },
-                ].map((s, i) => (
-                  <div key={i} className="bg-[#fcf6f1] rounded-lg p-4 text-center border border-yellow-400/40">
-                    <div className="text-2xl font-bold">{s.k}</div>
-                    <div className="text-sm text-gray-600">{s.v}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+     
 
         {/* APPLY / BECOME MENTOR */}
         <section id="apply" className="max-w-7xl mx-auto px-8 py-14">
