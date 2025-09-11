@@ -10,10 +10,20 @@ const config = {
             // here we add in custom colors which we gonna need for our project.
             // TO ALL -> you all can pick the name of color mentioned below from tailwindcss itself.
             colors: {
-                'footer-bg': 'bg-[#0a1a2f]',  
-                'button-bg':'bg-yellow-400',
-                'main-bg':'bg-[#fcf6f1]',
+                // 'footer-bg': 'bg-[#0a1a2f]',
+                // 'button-bg':'bg-yellow-400',
+                // 'main-bg':'bg-[#fcf6f1]',
+                'my-green': '#000000',
 
+            },
+            animation: {
+                scroll: 'scroll 40s linear infinite',
+            },
+            keyframes: {
+                scroll: {
+                    '0%': {transform: 'translateX(0)'},
+                    '100%': {transform: 'translateX(-50%)'},
+                },
             },
         },
     },

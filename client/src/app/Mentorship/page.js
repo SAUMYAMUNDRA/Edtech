@@ -2,6 +2,9 @@
 import React from "react";
 import Header from "../components/header/page";
 import Footer from "../components/footer/page";
+import Card from "../components/card/page";
+import Scroller from "../components/scroller/page";
+import {allTeachers} from "../data/teachers";
 
 export default function MentorshipPage() {
   return (
@@ -129,6 +132,37 @@ export default function MentorshipPage() {
             ))}
           </div>
         </section>
+
+
+          <div>
+              <Card
+                  name="Dr. Evelyn Reed"
+                  title="Principal Data Scientist, Google"
+                  imageUrl="imageURL.jpg"
+                  expertise={["Machine Learning", "Python"]}
+                  linkedinUrl="https://www.linkedin.com/in/example-evelyn"
+              />
+          </div>
+
+
+          {/* 3. Add the scroller section */}
+          <section className="py-20">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+                  <h2 className="text-4xl font-bold text-primary-text">
+                      Learn from Industry Experts
+                  </h2>
+                  <p className="mt-4 text-lg text-gray-700">
+                      Our mentors are leading professionals from top tech companies.
+                  </p>
+              </div>
+
+              <Scroller
+                  items={allTeachers}
+                  renderItem={(teacher, index) => (
+                      <Card key={index} {...teacher} />
+                  )}
+              />
+          </section>
 
         {/* BENEFITS */}
         <section className="max-w-7xl mx-auto px-8 py-6">
