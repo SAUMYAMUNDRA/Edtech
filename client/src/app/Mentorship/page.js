@@ -519,6 +519,7 @@ export default function MentorshipPage() {
       <Footer />
     </div>
   );
+<<<<<<< HEAD
 }"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/header/page";
@@ -1561,4 +1562,6 @@ export default function MentorshipPage() {
       <Footer />
     </div>
   );
+=======
+>>>>>>> main
 }
