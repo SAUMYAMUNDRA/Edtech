@@ -342,6 +342,7 @@ export default function MentorshipPage() {
                         className="absolute bottom-2 right-2 h-8 w-8 rounded-full bg-[#0A66C2] text-white flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#0957a3] transition transform hover:scale-110 active:scale-95 ring-0 hover:ring-4 ring-[#0A66C2]/20 focus:outline-none focus:ring-4 focus:ring-[#0A66C2]/30"
                       >
                         <svg
+                        
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           className="h-4 w-4"
