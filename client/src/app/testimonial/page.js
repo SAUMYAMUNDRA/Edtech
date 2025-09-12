@@ -44,7 +44,7 @@ function ScrollProgressBar() {
 // Reveal-on-scroll wrapper (fade + slight upward motion)
 function Reveal({ children, delay = 0, y = 24, className = "" }) {
   const ref = useRef(null)
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     if (!ref.current) return
