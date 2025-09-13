@@ -132,7 +132,7 @@ export default function MentorshipPage() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a href="#apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
+                <a href="/mentorship/apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
                   <span className="relative z-10">Apply for Mentorship</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
@@ -468,7 +468,7 @@ export default function MentorshipPage() {
                 </p>
               </div>
               <div className="flex gap-4 md:justify-end">
-                <a href="#" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
+                <a href="/mentorship/apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
                   <span className="relative z-10">Apply Now</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
