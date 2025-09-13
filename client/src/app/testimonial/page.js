@@ -514,192 +514,250 @@ const mentorshipStages = [
   "Final Placement"
 ]
 
-function MentorshipImpactCard() {
+function MentorshipImpactCard({ trackKey }) {
   const [active, setActive] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const cardRef = useRef(null)
   const prefersReduced =
     typeof window !== "undefined" &&
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
-  // Horizontal spacing & positions:
-  const H = 128
-  const DOWN = 70
-  // Stage positions (center points for path lines):
-  const stagePositions = [
-    { x: 0,    y: 0 },
-    { x: H,    y: 0 },
-    { x: 2*H,  y: 0 },
-    { x: 2*H,  y: DOWN },
-    { x: 3*H,  y: DOWN },
-    { x: 4*H,  y: DOWN }
-  ]
-
-  // Compute overall svg dimensions with padding
-  const PAD_X = 32
-  const PAD_Y = 26
-  const svgWidth  = stagePositions[stagePositions.length - 1].x + PAD_X * 2
-  const svgHeight = DOWN + PAD_Y * 2
-
-  // Build path string (move to first, then line through each)
-  const pathD = stagePositions
-    .map((p, i) =>
-      `${i === 0 ? 'M' : 'L'} ${p.x + PAD_X} ${p.y + PAD_Y}`
-    ).join(' ')
-
-  // Fixed TypeScript issue - removed type annotation
-  const pathRef = useRef(null)
-  const [pathLength, setPathLength] = useState(0)
-
-  useEffect(() => {
-    if (prefersReduced) return
-    if (pathRef.current) {
-      const len = pathRef.current.getTotalLength()
-      setPathLength(len)
+  // Different mentorship stages for each track
+  const trackMentorshipData = {
+    aiml: {
+      bullets: [
+        "Data exploration → production ML pipelines",
+        "Model experimentation → business impact measurement"
+      ],
+      journeyLabel: "ML Engineering Path",
+      stages: [
+        { id: "stats-basics", label: "Statistics & Python", short: "STAT", color: "from-blue-500 to-blue-600" },
+        { id: "ml-fundamentals", label: "ML Fundamentals", short: "ML", color: "from-indigo-500 to-indigo-600" },
+        { id: "feature-engineering", label: "Feature Engineering", short: "FE", color: "from-purple-500 to-purple-600" },
+        { id: "model-deployment", label: "Model Deployment", short: "DEP", color: "from-green-500 to-green-600" },
+        { id: "portfolio-projects", label: "Portfolio & Case Studies", short: "PORT", color: "from-orange-500 to-orange-600" },
+        { id: "ml-interviews", label: "ML Interviews & Offers", short: "INT", color: "from-red-500 to-red-600" }
+      ]
+    },
+    fullstack: {
+      bullets: [
+        "Frontend basics → full-stack architecture mastery",
+        "Code snippets → production-ready applications"
+      ],
+      journeyLabel: "Full-Stack Development Path",
+      stages: [
+        { id: "frontend-basics", label: "Frontend Basics", short: "FE", color: "from-blue-500 to-blue-600" },
+        { id: "backend-apis", label: "Backend & APIs", short: "BE", color: "from-indigo-500 to-indigo-600" },
+        { id: "database-design", label: "Database Design", short: "DB", color: "from-purple-500 to-purple-600" },
+        { id: "system-architecture", label: "System Architecture", short: "SYS", color: "from-green-500 to-green-600" },
+        { id: "deployment-devops", label: "Deployment & DevOps", short: "OPS", color: "from-orange-500 to-orange-600" },
+        { id: "fullstack-interviews", label: "Technical Interviews", short: "INT", color: "from-red-500 to-red-600" }
+      ]
+    },
+    dsa: {
+      bullets: [
+        "Basic arrays → complex algorithmic thinking",
+        "Brute force solutions → optimized time complexity"
+      ],
+      journeyLabel: "DSA Mastery Path",
+      stages: [
+        { id: "arrays-strings", label: "Arrays & Strings", short: "ARR", color: "from-blue-500 to-blue-600" },
+        { id: "linked-lists", label: "Linked Lists", short: "LL", color: "from-indigo-500 to-indigo-600" },
+        { id: "trees-graphs", label: "Trees & Graphs", short: "TG", color: "from-purple-500 to-purple-600" },
+        { id: "dynamic-programming", label: "Dynamic Programming", short: "DP", color: "from-green-500 to-green-600" },
+        { id: "advanced-topics", label: "Advanced Topics", short: "ADV", color: "from-orange-500 to-orange-600" },
+        { id: "coding-interviews", label: "Coding Interviews", short: "INT", color: "from-red-500 to-red-600" }
+      ]
+    },
+    cp: {
+      bullets: [
+        "Contest participation → rating improvement strategies",
+        "Problem solving → competitive programming excellence"
+      ],
+      journeyLabel: "Competitive Programming Path",
+      stages: [
+        { id: "contest-basics", label: "Contest Basics", short: "CB", color: "from-blue-500 to-blue-600" },
+        { id: "algorithms-study", label: "Algorithm Study", short: "ALG", color: "from-indigo-500 to-indigo-600" },
+        { id: "practice-strategy", label: "Practice Strategy", short: "PRAC", color: "from-purple-500 to-purple-600" },
+        { id: "contest-tactics", label: "Contest Tactics", short: "TAC", color: "from-green-500 to-green-600" },
+        { id: "rating-climb", label: "Rating Climb", short: "RATE", color: "from-orange-500 to-orange-600" },
+        { id: "expert-level", label: "Expert Level", short: "EXP", color: "from-red-500 to-red-600" }
+      ]
     }
-  }, [prefersReduced, svgWidth, svgHeight])
+  }
 
+  const currentTrackData = trackMentorshipData[trackKey] || trackMentorshipData.aiml
+  const mentorshipStages = currentTrackData.stages
+
+  // Visibility observer to start animation when card comes into view
   useEffect(() => {
     if (prefersReduced) return
-    const id = setInterval(() => {
-      setActive(a => (a + 1) % mentorshipStages.length)
-    }, 1400)
-    return () => clearInterval(id)
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current)
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current)
+      }
+    }
   }, [prefersReduced])
 
+  // Fast animation - runs when visible
+  useEffect(() => {
+    if (prefersReduced || !isVisible) return
+    
+    // Start immediately when visible
+    const id = setInterval(() => {
+      setActive(a => (a + 1) % mentorshipStages.length)
+    }, 800) // Fast animation speed
+    
+    return () => clearInterval(id)
+  }, [prefersReduced, isVisible, mentorshipStages.length])
+
+  // Reset animation when card becomes visible again
+  useEffect(() => {
+    if (isVisible) {
+      setActive(0) // Start from beginning
+    }
+  }, [isVisible])
+
   return (
-    <TrackCard title="Mentorship Impact" icon={<IconMentor />}>
-      {/* Two concise bullets */}
-      <ul className="text-[13px] text-gray-700 space-y-2 mb-3">
-        <li className="flex gap-2">
-          <span className="mt-1 w-1.5 h-1.5 rounded-full bg-yellow-500" />
-          Guided mastery: fundamentals → applied engineering
-        </li>
-        <li className="flex gap-2">
-          <span className="mt-1 w-1.5 h-1.5 rounded-full bg-yellow-500" />
-          Career conversion: project proof → CV & interviews → offers
-        </li>
-      </ul>
+    <div ref={cardRef}>
+      <TrackCard title="Mentorship Impact" icon={<IconMentor />}>
+        {/* Dynamic bullets based on track */}
+        <ul className="text-[13px] text-gray-700 space-y-2 mb-4">
+          {currentTrackData.bullets.map((bullet, idx) => (
+            <li key={idx} className="flex gap-2">
+              <span className="mt-1 w-1.5 h-1.5 rounded-full bg-yellow-500 flex-shrink-0" />
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
 
-      <p className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 mb-2">
-        Structured Journey
-      </p>
+        <p className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 mb-3">
+          {currentTrackData.journeyLabel}
+        </p>
 
-      {/* Diagram wrapper */}
-      <div className="relative">
-        <div
-          className="relative mx-auto"
-          style={{
-            width: svgWidth,
-            height: svgHeight
-          }}
-        >
-          {/* Static base path */}
-          <svg
-            width={svgWidth}
-            height={svgHeight}
-            className="overflow-visible"
-          >
-            <path
-              d={pathD}
-              stroke="rgba(234,179,8,0.25)"
-              strokeWidth={10}
-              strokeLinecap="round"
-              fill="none"
+        {/* Enhanced Step Flow Animation */}
+        <div className="space-y-3">
+          {/* Steps Flow */}
+          <div className="relative">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-[10px] text-gray-500 font-medium">Progress Flow</span>
+              <span className="text-[10px] text-yellow-600 font-semibold">
+                {active + 1}/{mentorshipStages.length}
+              </span>
+            </div>
+
+            {/* Progress Track Background */}
+            <div className="absolute top-12 left-4 right-4 h-0.5 bg-gray-200 rounded-full" />
+            <div 
+              className="absolute top-12 left-4 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full transition-all duration-500 ease-in-out"
+              style={{ width: `calc(${((active + 1) / mentorshipStages.length) * 100}% - 16px)` }}
             />
-            {!prefersReduced && pathLength > 0 && (
-              <path
-                ref={pathRef}
-                d={pathD}
-                stroke="url(#mentorship-flow-gradient)"
-                strokeWidth={10}
-                strokeLinecap="round"
-                fill="none"
-                style={{
-                  strokeDasharray: pathLength,
-                  strokeDashoffset:
-                    pathLength - pathLength * ((active + 1) / mentorshipStages.length),
-                  transition: "stroke-dashoffset 900ms cubic-bezier(.6,.2,.2,1)"
-                }}
-              />
-            )}
-            <defs>
-              <linearGradient id="mentorship-flow-gradient" x1="0" y1="0" x2={svgWidth} y2="0" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#FACC15" />
-                <stop offset="55%" stopColor="#D4A017" />
-                <stop offset="100%" stopColor="#FACC15" />
-              </linearGradient>
-            </defs>
-          </svg>
 
-          {/* Nodes (absolute pills) */}
-          {stagePositions.map((pos, idx) => {
-            const isActive = idx === active
-            const passed = active > idx
-            return (
-              <div
-                key={idx}
-                style={{
-                  position: 'absolute',
-                  top: pos.y + PAD_Y - 18,
-                  left: pos.x + PAD_X - 50, // center offset for pill width (~100px)
-                  width: 100,
-                  textAlign: 'center'
-                }}
-                aria-current={isActive ? "step" : undefined}
-              >
-                <div
-                  className={`px-2.5 py-1.5 rounded-md text-[10px] font-semibold tracking-wide
-                    transition-all duration-500
-                    ${isActive
-                      ? 'bg-yellow-500 text-white shadow-lg scale-[1.06] ring-2 ring-yellow-400/60'
-                      : passed
-                        ? 'bg-yellow-100 text-yellow-800 ring-1 ring-yellow-300'
-                        : 'bg-gray-100 text-gray-600 ring-1 ring-gray-200'}
-                  `}
-                  style={{
-                    boxShadow: isActive
-                      ? '0 4px 14px -2px rgba(234,179,8,0.55)'
-                      : undefined
-                  }}
-                >
-                  {mentorshipStages[idx]}
+            <div className="grid grid-cols-6 gap-1">
+              {mentorshipStages.map((stage, idx) => (
+                <div key={idx} className="relative flex flex-col items-center">
+                  {/* Step */}
+                  <div
+                    className={`relative w-8 h-8 rounded-xl border-2 transition-all duration-400 flex items-center justify-center text-[9px] font-bold tracking-wide overflow-hidden ${
+                      idx <= active
+                        ? 'border-yellow-400 text-white shadow-lg'
+                        : 'bg-white border-gray-200 text-gray-400 shadow-sm'
+                    } ${idx === active ? 'scale-110 ring-2 ring-yellow-300/50' : ''}`}
+                  >
+                    {/* Gradient Background for Active/Completed Steps */}
+                    {idx <= active && (
+                      <div className={`absolute inset-0 bg-gradient-to-br ${
+                        idx === active ? 'from-yellow-400 to-yellow-500' : stage.color
+                      } opacity-90`} />
+                    )}
+                    
+                    {/* Step Content */}
+                    <span className="relative z-10">
+                      {stage.short}
+                    </span>
+                    
+                    {/* Enhanced Pulse Animation for Active Step */}
+                    {idx === active && (
+                      <>
+                        <div className="absolute inset-0 bg-yellow-500 rounded-xl animate-pulse opacity-20" />
+                        <div className="absolute inset-0 bg-yellow-400 rounded-xl animate-ping opacity-30" />
+                      </>
+                    )}
+                    
+                    {/* Completion Check with Animation */}
+                    {idx < active && (
+                      <div className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full transform translate-x-0.5 -translate-y-0.5 animate-bounce">
+                        <div className="absolute inset-0 flex items-center justify-center text-white text-[6px]">✓</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Enhanced Current Stage Display */}
+          <div className="relative bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 rounded-lg p-3 border border-yellow-100 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-yellow-500 to-transparent transform skew-x-12" />
+            </div>
+            
+            <div className="relative flex items-center gap-3">
+              {/* Current Stage Icon with enhanced animation */}
+              <div className={`w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center text-white font-bold text-sm shadow-sm transition-all duration-300 ${
+                isVisible ? 'animate-pulse' : ''
+              }`}>
+                {active + 1}
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-gray-800 mb-1 transition-all duration-300">
+                  {mentorshipStages[active]?.label}
+                </p>
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 transition-all duration-500 ease-out"
+                      style={{ width: `${((active + 1) / mentorshipStages.length) * 100}%` }}
+                    />
+                  </div>
+                  <span className="text-xs font-bold text-yellow-600 transition-all duration-300">
+                    {Math.round(((active + 1) / mentorshipStages.length) * 100)}%
+                  </span>
                 </div>
               </div>
-            )
-          })}
+              
+              {/* Enhanced Status Indicator */}
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-semibold text-gray-600 uppercase tracking-wide">
+                  {isVisible ? 'Active' : 'Ready'}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Mobile fallback: simple wrapped list (no complex path) */}
-        <div className="md:hidden mt-4 flex flex-wrap gap-2">
-          {mentorshipStages.map((s, idx) => {
-            const isActive = idx === active
-            const passed = active > idx
-            return (
-              <span
-                key={s}
-                className={`px-2.5 py-1 rounded-md text-[10px] font-semibold tracking-wide transition
-                  ${isActive
-                    ? 'bg-yellow-500 text-white'
-                    : passed
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-gray-100 text-gray-600'}`}
-              >
-                {s}
-              </span>
-            )
-          })}
-        </div>
-      </div>
-
-      <p className="text-[10px] mt-3 text-gray-500 font-medium">
-        Current Focus: <span className="text-gray-800 font-semibold">{mentorshipStages[active]}</span>
-      </p>
-      <p className="text-[10px] uppercase tracking-wide font-semibold text-gray-500">
-        Skills → Proof → Confidence → Offers
-      </p>
-    </TrackCard>
+      </TrackCard>
+    </div>
   )
 }
-
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
       <style jsx global>{`
@@ -920,7 +978,7 @@ function MentorshipImpactCard() {
                           </TrackCard>
 
                           {/* NEW: Mentorship Impact */}
-                          <MentorshipImpactCard />
+                          <MentorshipImpactCard trackKey={activeTrackKey} />
 
                           {/* KEY PROJECT */}
                           <TrackCard title="Key Project" icon={<IconRocket />} variant="dark">
