@@ -2,41 +2,8 @@
 import { useState, useEffect, useRef } from 'react'
 import Header from "../components/header/page"
 import Footer from "../components/footer/page"
+import ScrollFeatures from '../components/scroll_feature/ScrollFeatures' ;
 
-/* =======================
-   Inline Scroll Utilities
-   ======================= */
-
-function ScrollProgressBar() {
-  const [progress, setProgress] = useState(0)
-  useEffect(() => {
-    let rafId = null
-    const onScroll = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        const total = document.documentElement.scrollHeight - window.innerHeight
-        const y = window.scrollY
-        setProgress(total > 0 ? Math.min(1, y / total) : 0)
-        rafId = null
-      })
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
-  }, [])
-  return (
-    <div
-      style={{ transform: `scaleX(${progress})` }}
-      className="fixed left-0 top-0 h-1 w-full origin-left bg-yellow-500 z-[9999] transition-transform duration-150 ease-out"
-      aria-hidden
-    />
-  )
-}
 
 // Reveal wrapper
 function Reveal({ children, delay = 0, y = 24, className = "" }) {
@@ -136,28 +103,6 @@ function ShinyButton({ children, className = "", onClick }) {
       <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <span className="absolute -inset-y-8 -left-1/2 w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-shine" />
       </span>
-    </button>
-  )
-}
-
-// Scroll to top
-function ScrollToTop() {
-  const [show, setShow] = useState(false)
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 400)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-  return (
-    <button
-      aria-label="Scroll to top"
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`fixed bottom-6 right-6 z-50 rounded-full shadow-xl bg-yellow-500 text-white w-12 h-12 flex items-center justify-center transition-all duration-300 ${
-        show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-      } hover:bg-yellow-400`}
-    >
-      ↑
     </button>
   )
 }
@@ -788,11 +733,8 @@ function MentorshipImpactCard({ trackKey }) {
         }
         .card-outline:hover:before { opacity:1; }
       `}</style>
-
-      <ScrollProgressBar />
-      <ScrollToTop />
       <Header />
-
+<ScrollFeatures/>
       {/* HERO */}
       <section className="bg-[#fcf6f1] relative overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute -top-20 -left-10 w-80 h-80 rounded-full blur-3xl"

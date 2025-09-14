@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Footer from "../app/components/footer/page"
 import Header from "../../src/app/components/header/page"
-
+import ScrollFeatures from "./components/scroll_feature/ScrollFeatures";
 // Scroll Animation Hook
 const useScrollAnimation = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -87,7 +87,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
       {/* HEADER */}
       <Header/>
-
+<ScrollFeatures/>
       {/* HERO SECTION */}
       <section className="bg-[#fcf6f1] text-gray-900">
         <div className="max-w-7xl mx-auto px-8 py-20 space-y-20">

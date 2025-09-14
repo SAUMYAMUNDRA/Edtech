@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/header/page";
 import Footer from "../components/footer/page";
-
+import ScrollFeatures from "../components/scroll_feature/ScrollFeatures";
 
 export default function MentorshipPage() {
   const mentors = [
@@ -114,8 +114,8 @@ export default function MentorshipPage() {
   
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
-      <Header />
-
+      <Header /> 
+<ScrollFeatures/>
       <main className="bg-[#fcf6f1]">
         {/* HERO */}
         <section className="max-w-7xl mx-auto px-8 pt-16 pb-6">
