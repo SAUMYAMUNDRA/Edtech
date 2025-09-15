@@ -3,18 +3,87 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/header/page";
 import Footer from "../components/footer/page";
 import ScrollFeatures from "../components/scroll_feature/ScrollFeatures";
+import LinkedInButton from "../components/buttons/LinkedInButton";
 
 export default function MentorshipPage() {
   const mentors = [
-    { name: "Amit Kumar", role: "SWE, Google", tags: ["DSA", "System Design"], photo: "", linkedin: "" },
-    { name: "Sneha Verma", role: "Backend, Amazon", tags: ["Java", "Databases"], photo: "", linkedin: "" },
-    { name: "Ravi Singh", role: "Full‑Stack, Microsoft", tags: ["React", "Node"], photo: "", linkedin: "" },
-    { name: "Priya Sharma", role: "Data Scientist, Meta", tags: ["Python", "ML"], photo: "", linkedin: "" },
+    {
+      name: "Amit Kumar",
+      role: "SWE, Google",
+      tags: ["DSA", "System Design"],
+      photo: "",
+      linkedin: "",
+      description: "Amit specializes in data structures, algorithms, and large-scale system architecture. His mentoring focuses on problem solving & interview mastery.",
+      expertise: [
+        "Advanced DSA & System Design",
+        "Scalable architectures",
+        "Competitive coding guidance"
+      ],
+      whatYouGet: [
+        "1:1 Interview prep",
+        "Project-based feedback",
+        "Doubt solving and live sessions"
+      ]
+    },
+    {
+      name: "Sneha Verma",
+      role: "Backend, Amazon",
+      tags: ["Java", "Databases"],
+      photo: "",
+      linkedin: "",
+      description: "Sneha's expertise lies in scalable backend services and database engineering. She helps mentees master backend technologies and effective coding.",
+      expertise: [
+        "Java and backend architecture",
+        "Database design & optimization",
+        "Microservices and REST APIs"
+      ],
+      whatYouGet: [
+        "Career mentorship",
+        "Weekly backend walkthroughs",
+        "Resume & code reviews"
+      ]
+    },
+    {
+      name: "Ravi Singh",
+      role: "Full‑Stack, Microsoft",
+      tags: ["React", "Node"],
+      photo: "",
+      linkedin: "",
+      description: "Ravi guides learners through building robust web applications, with hands-on focus on full-stack project delivery and interview prep.",
+      expertise: [
+        "Web app architecture",
+        "Frontend (React) and backend (Node)",
+        "Agile project development"
+      ],
+      whatYouGet: [
+        "Portfolio-ready projects",
+        "1:1 weekly sessions",
+        "Feedback and problem-solving"
+      ]
+    },
+    {
+      name: "Priya Sharma",
+      role: "Data Scientist, Meta",
+      tags: ["Python", "ML"],
+      photo: "",
+      linkedin: "",
+      description: "Priya mentors on applied machine learning and analytics, from fundamentals to real-world deployment and data-driven decision making.",
+      expertise: [
+        "Machine Learning & Analytics",
+        "Python data stack",
+        "Stats & business applications"
+      ],
+      whatYouGet: [
+        "End-to-end ML project help",
+        "Weekly analytics labs",
+        "Interview and career guidance"
+      ]
+    },
   ];
   const [paused, setPaused] = useState(false);
   const sliderRef = useRef(null);
   const trackRef = useRef(null);
-  const speedRef = useRef(0.6);
+  const speedRef = useRef(1.0);
   const [activeMentor, setActiveMentor] = useState(null);
   const [modalReady, setModalReady] = useState(false);
 
@@ -200,119 +269,42 @@ export default function MentorshipPage() {
           </div>
         </section>
 
-        {/* HOW IT WORKS */}
-        <section className="max-w-7xl mx-auto px-8 py-14">
-          <div className="mb-10">
-            <h2 className="text-3xl font-bold">How it works</h2>
-            <p className="text-gray-600 mt-2">A simple, effective path from learning to hiring.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Apply",
-                desc: "Tell us your goals and current level.",
-              },
-              {
-                title: "Match",
-                desc: "We match you with a mentor in your domain.",
-              },
-              {
-                title: "Build",
-                desc: "Follow a structured plan with weekly 1:1s.",
-              },
-              {
-                title: "Get Hired",
-                desc: "Portfolio, referrals, and interview prep.",
-              },
-            ].map((step, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-xl shadow p-6 border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-md bg-yellow-400/30 flex items-center justify-center font-semibold text-gray-900">
-                    {idx + 1}
-                  </div>
-                  <div className="text-sm text-gray-500">Step {idx + 1}</div> 
-                </div>
-                <div className="font-semibold text-lg mb-1">{step.title}</div>
-                <div className="text-gray-600">{step.desc}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* BENEFITS */}
-        <section className="max-w-7xl mx-auto px-8 py-6">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold">Mentor Benefits</h2>
-            <p className="text-gray-600 mt-2">What you get with BridgeLabs mentorship.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "1:1 Mentorship",
-                desc: "Weekly personalized sessions tailored to your goals.",
-                points: ["Custom learning plan", "Progress tracking", "Accountability check-ins"],
-              },
-              {
-                title: "Mock Interviews",
-                desc: "Simulated interviews with actionable feedback.",
-                points: ["DSA & system design", "HR & behavioral rounds", "Scorecards and tips"],
-              },
-              {
-                title: "Code Reviews",
-                desc: "Deep reviews on assignments and projects.",
-                points: ["Clean code practices", "Optimization guidance", "Best-practice patterns"],
-              },
-              {
-                title: "Career Roadmap",
-                desc: "Plan your path from learner to hire-ready.",
-                points: ["Skill gap analysis", "Project portfolio plan", "Referral readiness"],
-              },
-              {
-                title: "Resume & LinkedIn",
-                desc: "Position yourself for better callbacks.",
-                points: ["ATS-friendly resume", "LinkedIn profile polish", "Project storytelling"],
-              },
-              {
-                title: "Live Doubt Solving",
-                desc: "Get unstuck faster with mentor office hours.",
-                points: ["Live Q&A", "Debugging support", "Contest upsolving guidance"],
-              },
-            ].map((card, i) => (
-              <div
-                key={i}
-                className="bg-white p-6 rounded-xl shadow transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg border border-gray-100"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-xl">{card.title}</h3>
-                  <span className="px-2 py-1 text-xs rounded bg-yellow-400 text-black font-medium">Included</span>
-                </div>
-                <p className="text-gray-600 mb-4">{card.desc}</p>
-                <ul className="space-y-2 text-gray-700">
-                  {card.points.map((p, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="mt-1 w-2 h-2 bg-yellow-400 rounded-full" />
-                      <span>{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* MENTOR SPOTLIGHT */}
+         {/* MENTOR SPOTLIGHT */}
         <section className="max-w-7xl mx-auto px-8 py-14">
           <div className="mb-8">
             <h2 className="text-3xl font-bold">Mentor Spotlight</h2>
             <p className="text-gray-600 mt-2">Top engineers guiding you at every step.</p>
           </div>
-
+        
           <div className="relative">
+            {/* Left arrow button */}
+            <button
+              type="button"
+              aria-label="Scroll left"
+              onClick={() => {
+                if (sliderRef.current) sliderRef.current.scrollBy({ left: -320, behavior: "smooth" });
+              }}
+              // className="absolute top-1/2 -translate-y-1/2 left-0 z-20 bg-white shadow-lg rounded-full h-11 w-11 flex items-center justify-center border border-gray-200 hover:bg-yellow-100 transition active:scale-95"
+              // style={{ transform: 'translateY(-50%) translateX(-30%)', opacity: 0.95 }}
+            >
+              {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray-800">
+                <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg> */}
+            </button>
+            {/* Right arrow button */}
+            <button
+              type="button"
+              aria-label="Scroll right"
+              onClick={() => {
+                if (sliderRef.current) sliderRef.current.scrollBy({ left: 320, behavior: "smooth" });
+              }}
+              // className="absolute top-1/2 -translate-y-1/2 right-0 z-20 bg-white shadow-lg rounded-full h-11 w-11 flex items-center justify-center border border-gray-200 hover:bg-yellow-100 transition active:scale-95"
+              // style={{ transform: 'translateY(-50%) translateX(30%)', opacity: 0.95 }}
+            >
+              {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray-800">
+                <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+              </svg> */}
+            </button>
             <div
               ref={sliderRef}
               className="overflow-hidden cursor-grab select-none"
@@ -321,15 +313,17 @@ export default function MentorshipPage() {
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
+              style={{ maxWidth: '1200px', margin: '0 auto' }}
             >
-              <div ref={trackRef} className="flex items-stretch gap-3 w-max">
-                {[...mentors, ...mentors].map((m, i) => (
+              <div ref={trackRef} className="flex items-stretch gap-6 w-max transition-transform duration-700 ease-in-out" style={{ willChange: 'transform' }}>
+                {[...mentors, ...mentors].map((m, idx) => (
                   <div
-                    key={`${i}-${m.name}`}
+                    key={m.name + '-' + idx}
                     onClick={() => openMentor(m)}
-                    className="select-none bg-white p-5 rounded-xl shadow-md border border-gray-100 flex flex-col w-[260px] sm:w-[280px] shrink-0 cursor-pointer"
+                    className="select-none bg-white p-7 rounded-2xl shadow-xl border border-gray-200 flex flex-col w-[290px] md:w-[300px] shrink-0 cursor-pointer group hover:scale-105 transition-transform duration-300"
+                    style={{ minHeight: '340px' }}
                   >
-                    <div className="w-full h-40 bg-gray-200 rounded-lg mb-3 overflow-hidden flex items-center justify-center relative">
+                    <div className="w-full h-50 bg-gray-200 rounded-xl mb-5 overflow-hidden flex items-center justify-center relative">
                       {m.photo ? (
                         <img src={m.photo} alt={`${m.name} photo`} className="w-full h-full object-cover" />
                       ) : null}
@@ -339,13 +333,13 @@ export default function MentorshipPage() {
                         rel="noopener noreferrer"
                         aria-label="LinkedIn profile"
                         onClick={(e) => e.stopPropagation()}
-                        className="absolute bottom-2 right-2 h-8 w-8 rounded-full bg-[#0A66C2] text-white flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#0957a3] transition transform hover:scale-110 active:scale-95 ring-0 hover:ring-4 ring-[#0A66C2]/20 focus:outline-none focus:ring-4 focus:ring-[#0A66C2]/30"
+                        className="absolute bottom-2 right-2 h-9 w-9 rounded-full bg-[#0A66C2] text-white flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#0957a3] transition transform hover:scale-110 active:scale-95 ring-0 hover:ring-4 ring-[#0A66C2]/20 focus:outline-none focus:ring-4 focus:ring-[#0A66C2]/30"
                       >
                         <svg
                         
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
-                          className="h-4 w-4"
+                          className="h-5 w-5"
                           fill="currentColor"
                           aria-hidden="true"
                         >
@@ -353,18 +347,11 @@ export default function MentorshipPage() {
                         </svg>
                       </a>
                     </div>
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-5">
                       <div>
-                        <div className="font-semibold text-base">{m.name}</div>
-                        <div className="text-sm text-gray-600">{m.role}</div>
+                        <div className="font-semibold text-lg">{m.name}</div>
+                        <div className="text-md text-gray-600">{m.role}</div>
                       </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {m.tags.map((t, idx) => (
-                        <span key={idx} className="px-2 py-0.5 text-xs bg-yellow-400/30 text-gray-900 rounded">
-                          {t}
-                        </span>
-                      ))}
                     </div>
                   </div>
                 ))}
@@ -372,9 +359,6 @@ export default function MentorshipPage() {
             </div>
           </div>
         </section>
-
-     
-
         {activeMentor && (
           <div
             className={`fixed inset-0 z-50 flex items-center justify-center px-4 transition-opacity duration-300 ${modalReady ? "opacity-100" : "opacity-0"}`}
@@ -398,15 +382,21 @@ export default function MentorshipPage() {
                 </svg>
               </button>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-start justify-between">
                 <div className="w-20 h-20 rounded-lg bg-gray-200 overflow-hidden flex items-center justify-center">
                   {activeMentor.photo ? (
                     <img src={activeMentor.photo} alt={`${activeMentor.name} photo`} className="w-full h-full object-cover" />
                   ) : null}
                 </div>
                 <div className="flex-1">
-                  <h3 id="mentor-modal-title" className="text-xl font-semibold">{activeMentor.name}</h3>
+                  <div className="flex items-center justify-between">
+                    <h3 id="mentor-modal-title" className="text-xl font-semibold">{activeMentor.name}</h3>
+                    <LinkedInButton href={activeMentor?.linkedin || "#"} ariaLabel={`View ${activeMentor?.name}'s LinkedIn`} className="mt-6" />
+                  </div>
                   <p className="text-gray-600">{activeMentor.role}</p>
+                  <div className="mt-2 text-gray-700 text-sm">
+                    {activeMentor.description}
+                  </div>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {activeMentor.tags?.map((t, idx) => (
                       <span key={idx} className="px-2 py-0.5 text-xs bg-yellow-400/30 text-gray-900 rounded">
@@ -421,64 +411,89 @@ export default function MentorshipPage() {
                 <div className="p-4 bg-[#fcf6f1] rounded-lg border border-yellow-400/30">
                   <div className="font-medium">Expertise</div>
                   <ul className="mt-2 text-sm text-gray-700 list-disc list-inside">
-                    <li>DSA & System Design</li>
-                    <li>Code Reviews</li>
-                    <li>Interview Prep</li>
+                    {activeMentor.expertise && activeMentor.expertise.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="p-4 bg-[#fcf6f1] rounded-lg border border-yellow-400/30">
                   <div className="font-medium">What you get</div>
                   <ul className="mt-2 text-sm text-gray-700 list-disc list-inside">
-                    <li>1:1 weekly sessions</li>
-                    <li>Project feedback</li>
-                    <li>Career guidance</li>
+                    {activeMentor.whatYouGet && activeMentor.whatYouGet.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center justify-between">
-                <a
-                  href={activeMentor.linkedin || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[#0A66C2] hover:underline"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-                    <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003zM6.9 20.452H3.771V9H6.9v11.452zM5.337 7.433c-1.144 0-2.069-.927-2.069-2.07 0-1.144.925-2.069 2.069-2.069 1.144 0 2.07.925 2.07 2.069 0 1.143-.926 2.07-2.07 2.07zM20.447 20.452h-3.554V14.8c0-1.345-.027-3.078-1.879-3.078-1.88 0-2.168 1.464-2.168 2.976v5.754H9.293V9h3.414v1.561h.049c.476-.9 1.637-1.848 3.37-1.848 3.604 0 4.268 2.371 4.268 5.455v6.284z" />
-                  </svg>
-                  View LinkedIn
-                </a>
-                <div className="flex gap-3">
-                  <button onClick={closeModal} className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100">Close</button>
-                  <a href="#" className="px-4 py-2 rounded-md bg-gray-900 text-white hover:bg-black transition-all duration-200 transform hover:scale-105 hover:shadow-lg">Request Session</a>
-                </div>
-              </div>
+              {/* Modal actions removed as requested */}
             </div>
           </div>
         )}
 
-        {/* APPLY / BECOME MENTOR */}
-        <section id="apply" className="max-w-7xl mx-auto px-8 py-14">
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              <div className="md:col-span-2">
-                <h3 className="text-2xl font-bold mb-2">Start your mentorship journey</h3>
-                <p className="text-gray-700">
-                  Tell us about your background and goals. We’ll recommend a track and match you with the right mentor.
-                </p>
+        {/* BENEFITS */}
+        <section className="max-w-7xl mx-auto px-8 py-6">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold">Mentor Benefits</h2>
+            <p className="text-gray-600 mt-2">What you get with BridgeLabs mentorship.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "1:1 Mentorship",
+                desc: "Weekly personalized sessions tailored to your goals.",
+                points: ["Custom learning plan", "Progress tracking", "Accountability check-ins"],
+              },
+              {
+                title: "Mock Interviews",
+                desc: "Simulated interviews with actionable feedback.",
+                points: ["DSA & system design", "HR & behavioral rounds", "Scorecards and tips"],
+              },
+              {
+                title: "Career Roadmap",
+                desc: "Plan your path from learner to hire-ready.",
+                points: ["Skill gap analysis", "Project portfolio plan", "Referral readiness"],
+              },
+              {
+                title: "Resume & LinkedIn",
+                desc: "Position yourself for better callbacks.",
+                points: ["ATS-friendly resume", "LinkedIn profile polish", "Project storytelling"],
+              },
+              {
+  title: "Communication skills enhancement",
+  desc: "Improve how you express ideas and build confidence in speaking.",
+  points: ["Feedback on speaking", "Mock interviews", "Clear communication"],
+},
+{
+  title: "Career choice guidance",
+  desc: "Get clarity and direction for your next career move.",
+  points: ["Find strengths", "Industry insights", "Upskilling advice"],
+},
+            ].map((card, i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-xl shadow transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg border border-gray-100"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="font-semibold text-xl">{card.title}</h3>
+                  {/* <span className="px-2 py-1 text-xs rounded bg-yellow-400 text-black font-medium">Included</span> */}
+                </div>
+                <p className="text-gray-600 mb-4">{card.desc}</p>
+                <ul className="space-y-2 text-gray-700">
+                  {card.points.map((p, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="mt-1 w-2 h-2 bg-yellow-400 rounded-full" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="flex gap-4 md:justify-end">
-                <a href="/mentorship/apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
-                  <span className="relative z-10">Apply Now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                </a>
-                <a id="become-mentor" href="#" className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                  Become a Mentor
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
+
+      
 
         {/* FAQ */}
         <section className="max-w-7xl mx-auto px-8 pb-20">
@@ -493,12 +508,12 @@ export default function MentorshipPage() {
                 a: "Every mentor is vetted for domain depth, teaching ability, and outcomes from previous cohorts.",
               },
               {
-                q: "What is the time commitment?",
-                a: "Typically 4–6 hours per week including live sessions, assignments, and reviews.",
+               q: "What happens during a session?",
+a: "Mentors provide personalized guidance, answer questions, review your work, and help you with communication skills, problem-solving, or career planning.",
               },
               {
-                q: "Is there a certificate?",
-                a: "Yes. You receive a verified certificate along with a portfolio of projects and reviews.",
+                q: "Who can book a session?",
+a: "Students, professionals, or anyone looking to improve skills, career choices, or personal development",
               },
               {
                 q: "Do you help with placements?",
