@@ -133,7 +133,7 @@ export default function MentorshipPage() {
 
               <div className="flex flex-wrap gap-4">
                 <a href="/mentorship/apply" className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group">
-                  <span className="relative z-10">Apply for Mentorship</span>
+                  <span className="relative z-10">Schedule Mentorship session</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
                 <a href="#become-mentor" className="border border-gray-300 px-6 py-3 rounded-md font-medium text-gray-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden group">
