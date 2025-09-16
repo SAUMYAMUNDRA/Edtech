@@ -4,6 +4,84 @@ import Header from "../components/header/page";
 import Footer from "../components/footer/page";
 import ScrollFeatures from "../components/scroll_feature/ScrollFeatures";
 import LinkedInButton from "../components/buttons/LinkedInButton";
+import DocumentsButton from "../components/buttons/DocumentsButton";
+
+const mentorCompanies = [
+  "Google",
+  "Microsoft",
+  "Amazon",
+  "Meta",
+  "Apple",
+  "Netflix",
+  "Adobe",
+  "Uber",
+  "Flipkart",
+  "Oracle",
+  "Salesforce",
+  "IBM",
+  "Intel",
+  "NVIDIA",
+  "Qualcomm",
+  "AMD",
+  "SAP",
+  "Cisco",
+  "Atlassian",
+  "Shopify",
+  "Stripe",
+  "Square",
+  "PayPal",
+  "Airbnb",
+  "Spotify",
+  "Dropbox",
+  "Zoom",
+  "Slack",
+  "LinkedIn",
+  "ByteDance",
+  "TikTok",
+  "Zomato",
+  "Swiggy",
+  "Ola",
+  "Paytm",
+  "Razorpay",
+  "CRED",
+  "Freshworks",
+  "Zoho",
+  "TCS",
+  "Infosys",
+  "Wipro",
+  "HCL",
+];
+const mentorDesignations = [
+  "Software Engineer",
+  "Senior Software Engineer",
+  "Frontend Engineer",
+  "Backend Engineer",
+  "Full Stack Engineer",
+  "Mobile Engineer",
+  "Data Scientist",
+  "Senior Data Scientist",
+  "Machine Learning Engineer",
+  "DevOps Engineer",
+  "Site Reliability Engineer",
+  "Security Engineer",
+  "Tech Lead",
+  "Staff Engineer",
+  "Principal Engineer",
+  "Architect",
+  "Cloud Architect",
+  "Solutions Architect",
+  "Engineering Manager",
+  "Senior Engineering Manager",
+  "Director of Engineering",
+  "VP Engineering",
+  "Product Manager",
+  "Senior Product Manager",
+  "Program Manager",
+  "Technical Program Manager",
+  "QA Engineer",
+  "Test Automation Engineer",
+  "CTO",
+];
 
 export default function MentorshipPage() {
   const mentors = [
@@ -86,6 +164,23 @@ export default function MentorshipPage() {
   const speedRef = useRef(1.0);
   const [activeMentor, setActiveMentor] = useState(null);
   const [modalReady, setModalReady] = useState(false);
+
+  // Become a mentor modal state
+  const [mentorModalOpen, setMentorModalOpen] = useState(false);
+  const [mentorStage, setMentorStage] = useState(0); // 0: welcome, 1: info1, 2: info2, 3: submitted
+  const [mentorForm, setMentorForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    designation: "",
+    linkedin: "",
+    resume: null,
+  });
+  const [mentorSubmitting, setMentorSubmitting] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+  const [designationOpen, setDesignationOpen] = useState(false);
+  const [resumeInputKey, setResumeInputKey] = useState(0);
 
   const closeModal = () => {
     setActiveMentor(null);
@@ -205,10 +300,10 @@ export default function MentorshipPage() {
                   <span className="relative z-10">Schedule Mentorship session</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
-                <a href="#become-mentor" className="border border-gray-300 px-6 py-3 rounded-md font-medium text-gray-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden group">
+                <button type="button" className="border border-gray-300 px-6 py-3 rounded-md font-medium text-gray-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden group" onClick={() => setMentorModalOpen(true)}>
                   <span className="relative z-10">Become a Mentor</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-100 to-orange-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                </a>
+                </button>
               </div>
 
               {/* Trust badges */}
@@ -426,7 +521,7 @@ export default function MentorshipPage() {
                 </div>
               </div>
 
-              {/* Modal actions removed as requested */}
+            
             </div>
           </div>
         )}
@@ -531,6 +626,211 @@ a: "Students, professionals, or anyone looking to improve skills, career choices
           </div>
         </section>
       </main>
+
+      {mentorModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Only blur bg, no dark overlay */}
+          <div className="absolute inset-0 backdrop-blur-lg" onClick={() => { setMentorModalOpen(false); setMentorStage(0); }} />
+          <style jsx global>{`
+            @keyframes modalMentorPopIn { 0%{ opacity:0; transform: scale(.87) translateY(30px);} 60%{ opacity:.99; transform: scale(1.04) translateY(-12px);} 100%{ opacity:1; transform: scale(1) translateY(0);} }
+            .mentor-modal-anim { animation: modalMentorPopIn 0.45s cubic-bezier(.4,1.5,.52,1) both; }
+
+            @keyframes mentorButtonPop {0%{opacity:.3;transform: scale(.8);} 50%{opacity:.95;transform: scale(1.10);} 100%{opacity:1;transform:scale(1);} }
+            .mentor-animated-pop { animation: mentorButtonPop .5s cubic-bezier(.35,1.56,.64,1) .04s both; }
+          `}</style>
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl p-0 flex relative overflow-hidden z-10 mentor-modal-anim">
+            {/* Left: Info, Right: Image + floating */}
+            <div className="w-full md:w-1/2 p-8 flex flex-col min-h-[500px] justify-center">
+              {/* Welcome Flow */}
+              {mentorStage === 0 && (
+                <div>
+                  <h2 className="text-2xl font-bold mb-6">Ready to inspire and support others?</h2>
+                  <p className="mb-8 text-gray-700">Join our mentor community. Motivate, guide, and grow with us!</p>
+                                    <button
+                    className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden groupd mentor-animated-pop"
+                    onClick={() => setMentorStage(1)}
+                  >Apply Now</button>
+                </div>
+              )}
+              {/* Section 1: Personal Info*/}
+              {mentorStage === 1 && (
+                <form onSubmit={e => { e.preventDefault(); setMentorStage(2); }} className="space-y-6">
+                  <h3 className="text-xl font-bold mb-2">Personal Information</h3>
+                  <div>
+                    <label className="block font-medium mb-1">First Name</label>
+                    <input type="text" name="firstName" required autoFocus value={mentorForm.firstName} onChange={e => setMentorForm(f => ({ ...f, firstName: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">Last Name</label>
+                    <input type="text" name="lastName" required value={mentorForm.lastName} onChange={e => setMentorForm(f => ({ ...f, lastName: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">Email</label>
+                    <input type="email" name="email" required value={mentorForm.email} onChange={e => setMentorForm(f => ({ ...f, email: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all w-full py-3 rounded font-semibold mt-2"
+                  >Next</button>
+                </form>
+              )}
+              {/* Section 2: Company/Designation/LinkedIn/Resume*/}
+              {mentorStage === 2 && (
+                <form onSubmit={e => {
+                  e.preventDefault();
+                  setMentorSubmitting(true);
+                  setTimeout(() => {
+                    setMentorSubmitting(false);
+                    setMentorStage(3);
+                  }, 1200);
+                }} className="space-y-5">
+                  <h3 className="text-xl font-bold mb-2">Professional Information</h3>
+                  <div>
+                    <label className="block font-medium mb-1">Company Name</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="company"
+                        required
+                        placeholder="Start typing company name"
+                        autoComplete="off"
+                        value={mentorForm.company}
+                        onChange={e => {
+                          const v = e.target.value;
+                          setMentorForm(f => ({ ...f, company: v }));
+                          setCompanyOpen(true);
+                        }}
+                        onFocus={() => setCompanyOpen(true)}
+                        onBlur={() => setTimeout(() => setCompanyOpen(false), 100)}
+                        className="border px-4 py-2 rounded w-full"
+                      />
+                      {companyOpen && mentorForm.company.trim().length >= 1 && (
+                        <ul className="absolute z-20 mt-1 w-full bg-white border border-gray-200 rounded shadow max-h-48 overflow-auto">
+                          {mentorCompanies
+                            .filter(co => co.toLowerCase().startsWith(mentorForm.company.toLowerCase()))
+                            .slice(0, 20)
+                            .map(co => (
+                              <li
+                                key={co}
+                                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                onMouseDown={() => {
+                                  setMentorForm(f => ({ ...f, company: co }));
+                                  setCompanyOpen(false);
+                                }}
+                              >
+                                {co}
+                              </li>
+                            ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">Designation</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="designation"
+                        required
+                        placeholder="Start typing designation"
+                        autoComplete="off"
+                        value={mentorForm.designation}
+                        onChange={e => {
+                          const v = e.target.value;
+                          setMentorForm(f => ({ ...f, designation: v }));
+                          setDesignationOpen(true);
+                        }}
+                        onFocus={() => setDesignationOpen(true)}
+                        onBlur={() => setTimeout(() => setDesignationOpen(false), 100)}
+                        className="border px-4 py-2 rounded w-full"
+                      />
+                      {designationOpen && mentorForm.designation.trim().length >= 1 && (
+                        <ul className="absolute z-20 mt-1 w-full bg-white border border-gray-200 rounded shadow max-h-48 overflow-auto">
+                          {mentorDesignations
+                            .filter(des => des.toLowerCase().startsWith(mentorForm.designation.toLowerCase()))
+                            .slice(0, 20)
+                            .map(des => (
+                              <li
+                                key={des}
+                                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                onMouseDown={() => {
+                                  setMentorForm(f => ({ ...f, designation: des }));
+                                  setDesignationOpen(false);
+                                }}
+                              >
+                                {des}
+                              </li>
+                            ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">LinkedIn URL</label>
+                    <input type="url" name="linkedin" required value={mentorForm.linkedin} onChange={e => setMentorForm(f => ({ ...f, linkedin: e.target.value }))} className="border px-4 py-2 rounded w-full"/>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">Upload Resume</label>
+                    <div className="flex items-center gap-3 mt-1">
+                      <DocumentsButton
+                        key={resumeInputKey}
+                        label={mentorForm.resume ? `Selected: ${mentorForm.resume.name}` : "Upload Resume"}
+                        accept=".pdf,.doc,.docx"
+                        onFileSelected={(file) => setMentorForm(f => ({ ...f, resume: file }))}
+                      />
+                      {mentorForm.resume && (
+                        <button
+                          type="button"
+                          className="text-sm text-red-600 hover:text-red-700 underline"
+                          onClick={() => { setMentorForm(f => ({ ...f, resume: null })); setResumeInputKey(k => k + 1); }}
+                        >
+                          Remove file
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className={`bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all w-full py-3 rounded font-semibold mt-2 ${mentorSubmitting ? 'opacity-50' : ''}`}
+                    disabled={mentorSubmitting}
+                  >{mentorSubmitting ? 'Submitting...' : 'Submit'}</button>
+                </form>
+              )}
+              {mentorStage === 3 && (
+                <div className="flex flex-col items-center justify-center h-full text-center py-10">
+                  <div className="text-3xl text-green-600 mb-3">✔</div>
+                  <h4 className="text-lg font-bold mb-2">Thank you for filling out the form.</h4>
+                  <p className="mb-2">Our team will reach out to you soon.<br/>We appreciate your interest!</p>
+                  <button className="mt-3 text-blue-700 underline font-medium" onClick={() => {
+                    setMentorForm({firstName:'',lastName:'',email:'',company:'',designation:'',linkedin:'',resume:null});
+                    setMentorStage(0);
+                    setMentorModalOpen(false);
+                  }}>Close</button>
+                </div>
+              )}
+            </div>
+            {/* Right side: image & floating texts (hide on mobile for spacing) */}
+            <div className="hidden md:flex w-1/2 bg-blue-50 flex-col items-center justify-center relative">
+              <div className="w-48 h-48 bg-gray-200 rounded-full mt-8 mb-6" />
+              <div className="absolute top-8 left-2 bg-white rounded-xl shadow px-4 py-2 text-xs font-semibold flex items-center">
+                Empowering learners with cutting-edge <span className="ml-1 font-bold">EdTech</span>Solutions
+              </div>
+              <div className="absolute right-6 top-24 bg-white rounded-xl shadow px-3 py-2 text-xs font-semibold">
+                Free access to <span className="font-bold text-blue-700">exclusive content</span>
+              </div>
+              <div className="absolute bottom-16 left-8 bg-white rounded-xl shadow px-4 py-2 text-xs font-semibold flex items-center">
+                🧑‍🤝‍🧑 Build a <span className="ml-1 font-bold">network</span>
+              </div>
+            </div>
+            {/* Close Button */}
+            <button
+              className="absolute top-3 right-4 text-gray-400 hover:text-red-500 text-xl font-bold"
+              onClick={() => { setMentorModalOpen(false); setMentorStage(0); }}
+              aria-label="Close"
+            >×</button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
