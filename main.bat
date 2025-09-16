@@ -10,7 +10,7 @@ start cmd /k "npm run dev"
 
 REM Start server (in a new window)
 cd /d "%ROOT_DIR%\server"
-start cmd /k "node index.js"
+start cmd /k "npx nodemon index.js"
 
 
 ENDLOCAL
