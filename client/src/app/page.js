@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../app/components/footer/page"
 import Header from "../../src/app/components/header/page"
 import ScrollFeatures from "./components/scroll_feature/ScrollFeatures";
+
 // Scroll Animation Hook
 const useScrollAnimation = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -87,7 +88,8 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
       {/* HEADER */}
       <Header/>
-<ScrollFeatures/>
+      <ScrollFeatures/>
+      
       {/* HERO SECTION */}
       <section className="bg-[#fcf6f1] text-gray-900">
         <div className="max-w-7xl mx-auto px-8 py-20 space-y-20">
@@ -260,6 +262,18 @@ export default function HomePage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* VIEW ALL TESTIMONIALS BUTTON */}
+            <div className="mt-12">
+              <a
+                href="/testimonial"
+                className="bg-yellow-500 text-black px-8 py-3 rounded-md font-medium hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/25 active:scale-95 relative overflow-hidden group inline-flex items-center"
+              >
+                <span className="relative z-10 mr-2">View All Success Stories</span>
+                <span className="relative z-10 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </a>
             </div>
           </div>
 
