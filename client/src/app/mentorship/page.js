@@ -6,6 +6,35 @@ import ScrollFeatures from "../components/scroll_feature/ScrollFeatures";
 import LinkedInButton from "../components/buttons/LinkedInButton";
 import DocumentsButton from "../components/buttons/DocumentsButton";
 
+// Scroll Animation Hook (mirrors homepage behavior)
+const useScrollAnimation = () => {
+  const [isVisible, setIsVisible] = useState({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible((prev) => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting,
+          }));
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      }
+    );
+
+    const elements = document.querySelectorAll("[data-scroll-animate]");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return isVisible;
+};
+
 const mentorCompanies = [
   "Google",
   "Microsoft",
@@ -86,15 +115,15 @@ const mentorDesignations = [
 export default function MentorshipPage() {
   const mentors = [
     {
-      name: "Amit Kumar",
-      role: "SWE, Google",
-      tags: ["DSA", "System Design"],
+      name: "Arish Rehman Khan",
+      role: "Software Engineer Systems, Ciena",
+      tags: ["Embedded Systems", "Project Management","Computer Networking"],
       photo: "",
-      linkedin: "",
-      description: "Amit specializes in data structures, algorithms, and large-scale system architecture. His mentoring focuses on problem solving & interview mastery.",
+      linkedin: "https://www.linkedin.com/in/arishrehmankhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      description: "",
       expertise: [
-        "Advanced DSA & System Design",
-        "Scalable architectures",
+        "Representational State Transfer(REST)",
+        "Android Development",
         "Competitive coding guidance"
       ],
       whatYouGet: [
@@ -104,56 +133,163 @@ export default function MentorshipPage() {
       ]
     },
     {
-      name: "Sneha Verma",
-      role: "Backend, Amazon",
-      tags: ["Java", "Databases"],
+      name: "Dheeraj Yadav",
+      role: "Software Engineer, Cohesity",
+      tags: ["Golang", "Django","MongoDB"],
       photo: "",
-      linkedin: "",
-      description: "Sneha's expertise lies in scalable backend services and database engineering. She helps mentees master backend technologies and effective coding.",
+      linkedin: "https://www.linkedin.com/in/dheeraj-yadav-8b6917276/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      description: "",
       expertise: [
-        "Java and backend architecture",
-        "Database design & optimization",
-        "Microservices and REST APIs"
+        "Swagger API",
+        "Ginkgo",
+        "Competitive Programming"
       ],
       whatYouGet: [
         "Career mentorship",
-        "Weekly backend walkthroughs",
+        "backend walkthroughs",
         "Resume & code reviews"
       ]
     },
     {
-      name: "Ravi Singh",
-      role: "Full‑Stack, Microsoft",
-      tags: ["React", "Node"],
+      name: "Ruchira Naskar",
+      role: "SWE, Microsoft",
+      tags: ["Unit Testing", "Generative AI","Protocol Buffers"],
       photo: "",
-      linkedin: "",
-      description: "Ravi guides learners through building robust web applications, with hands-on focus on full-stack project delivery and interview prep.",
+      linkedin: "https://www.linkedin.com/in/ruchira-naskar-18b86522a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      description: "",
       expertise: [
-        "Web app architecture",
-        "Frontend (React) and backend (Node)",
-        "Agile project development"
+        "Dependency Injection",
+        "Remote Procedure Call(RPC)",
+        "Competitive Programming"
       ],
       whatYouGet: [
         "Portfolio-ready projects",
-        "1:1 weekly sessions",
+        "1:1 sessions",
         "Feedback and problem-solving"
       ]
     },
     {
-      name: "Priya Sharma",
-      role: "Data Scientist, Meta",
-      tags: ["Python", "ML"],
+      name: "Sachin Gupta",
+      role: "Software Engineer, Uber",
+      tags: ["Software Development", "Go","OOP"],
       photo: "",
-      linkedin: "",
-      description: "Priya mentors on applied machine learning and analytics, from fundamentals to real-world deployment and data-driven decision making.",
+      linkedin: "https://www.linkedin.com/in/sachin-k-gupta/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      description: "",
       expertise: [
-        "Machine Learning & Analytics",
-        "Python data stack",
-        "Stats & business applications"
+        "Competitive Programming",
+        "TypeScript",
+        "Grafana"
       ],
       whatYouGet: [
-        "End-to-end ML project help",
-        "Weekly analytics labs",
+        "End-to-end project help",
+        "Analytics labs",
+        "Interview and career guidance"
+      ]
+    },
+    {
+      name: "Ekta Dhusia",
+      role: "Software Architect, Amdocs",
+      tags: ["Data Architecture", "Data Engineering","AWS"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/ekta-dhusia/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      description: "",
+      expertise: [
+        "PySpark",
+        "Apache Pig",
+        "Hadoop"
+      ],
+      whatYouGet: [
+        "End-to-end project help",
+        "Analytics labs",
+        "Interview and career guidance"
+      ]
+    },
+    {
+      name: "Manmeet Chauhan",
+      role: "AVP Software Development, SitusAMC",
+      tags: ["Data Mapping", "Solution Architecture","Model-View-Controller(MVC)"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/manmeetchauhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      description: "",
+      expertise: [
+        "Agile and Waterfall Methodologies",
+        "XSLT",
+        "AngularJS"
+      ],
+      whatYouGet: [
+        "End-to-end project help",
+        "Analytics labs",
+        "Interview and career guidance"
+      ]
+    },
+    {
+      name: "Kartar R.",
+      role: "Database Services Manager, Rackspace Technology",
+      tags: ["Microsoft SQL Server", "Database Administration","SQL"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/kartar-r-89b50546/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      description: "",
+      expertise: [
+        "Microsoft Technologies",
+        "SQL Server Management Studio",
+        "Oracle Enterprise Manager"
+      ],
+      whatYouGet: [
+        "End-to-end project help",
+        "Analytics labs",
+        "Interview and career guidance"
+      ]
+    },
+    {
+      name: "Lov Vashist",
+      role: "Senior Sales Engineer, ColorTokens",
+      tags: ["Sales Engineer", "Keynote Delivery","Network Security"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/lov-vashist-8901811b/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      description: "",
+      expertise: [
+        "Technical Writing",
+        "Public Speaking",
+        "Cyber Resilience"
+      ],
+      whatYouGet: [
+        "End-to-end project help",
+        "Analytics labs",
+        "Interview and career guidance"
+      ]
+    },
+     {
+      name: "Harmanjot Singh",
+      role: "Software Engineer,Uber",
+      tags: ["SpringBoot", "Java","JUnit"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/harmanjot-singh-53aa38229/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      description: "",
+      expertise: [
+        "Software Engineering",
+        "Competetive Programming"
+      ],
+      whatYouGet: [
+        "End-to-end project help",
+        "Analytics labs",
+        "Interview and career guidance"
+      ]
+    },
+     {
+      name: "Mohammad Inamul Haq",
+      role: "Senior Data Analyst, GrowthJockey",
+      tags: ["Business Intelligence", "Analytical Solutions","Web Analytics"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/mohammad-inamul-haq-741901192/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      description: "",
+      expertise: [
+        "Decision Making",
+        "Soft Skills",
+        "Business Analysis"
+      ],
+      whatYouGet: [
+        "End-to-end project help",
+        "Analytics labs",
         "Interview and career guidance"
       ]
     },
@@ -164,6 +300,7 @@ export default function MentorshipPage() {
   const speedRef = useRef(1.0);
   const [activeMentor, setActiveMentor] = useState(null);
   const [modalReady, setModalReady] = useState(false);
+  const visibleElements = useScrollAnimation();
 
   // Become a mentor modal state
   const [mentorModalOpen, setMentorModalOpen] = useState(false);
@@ -283,8 +420,8 @@ export default function MentorshipPage() {
       <main className="bg-[#fcf6f1]">
         {/* HERO */}
         <section className="max-w-7xl mx-auto px-8 pt-16 pb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-            <div>
+          <div id="mentor_hero" data-scroll-animate className={`grid grid-cols-1 md:grid-cols-2 items-center gap-10 transition-all duration-1000 ease-out ${visibleElements.mentor_hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`transition-all duration-1000 delay-300 ease-out ${visibleElements.mentor_hero ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <p className="text-sm text-gray-600 mb-3">Industry Mentors • 1:1 Guidance • Outcome-Focused</p>
               <h1 className="text-5xl font-bold leading-tight mb-5">
                 Mentorship that accelerates<br /> learning and careers
@@ -327,7 +464,7 @@ export default function MentorshipPage() {
               </div>
             </div>
 
-            <div className="md:pl-6">
+            <div className={`md:pl-6 transition-all duration-1000 delay-500 ease-out ${visibleElements.mentor_hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <div className="relative bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-full bg-yellow-400/30 flex items-center justify-center">
@@ -365,7 +502,7 @@ export default function MentorshipPage() {
         </section>
 
          {/* MENTOR SPOTLIGHT */}
-        <section className="max-w-7xl mx-auto px-8 py-14">
+        <section id="mentor_spotlight" data-scroll-animate className={`max-w-7xl mx-auto px-8 py-14 transition-all duration-1000 ease-out ${visibleElements.mentor_spotlight ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="mb-8">
             <h2 className="text-3xl font-bold">Mentor Spotlight</h2>
             <p className="text-gray-600 mt-2">Top engineers guiding you at every step.</p>
@@ -415,8 +552,8 @@ export default function MentorshipPage() {
                   <div
                     key={m.name + '-' + idx}
                     onClick={() => openMentor(m)}
-                    className="select-none bg-white p-7 rounded-2xl shadow-xl border border-gray-200 flex flex-col w-[290px] md:w-[300px] shrink-0 cursor-pointer group hover:scale-105 transition-transform duration-300"
-                    style={{ minHeight: '340px' }}
+                    className={`select-none bg-white p-7 rounded-2xl shadow-xl border border-gray-200 flex flex-col w-[290px] md:w-[300px] shrink-0 cursor-pointer group hover:scale-105 transition-all duration-700 ease-out ${visibleElements.mentor_spotlight ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                    style={{ minHeight: '340px', transitionDelay: `${idx * 150 + 600}ms` }}
                   >
                     <div className="w-full h-50 bg-gray-200 rounded-xl mb-5 overflow-hidden flex items-center justify-center relative">
                       {m.photo ? (
@@ -527,7 +664,7 @@ export default function MentorshipPage() {
         )}
 
         {/* BENEFITS */}
-        <section className="max-w-7xl mx-auto px-8 py-6">
+        <section id="mentor_benefits" data-scroll-animate className={`max-w-7xl mx-auto px-8 py-6 transition-all duration-1000 ease-out ${visibleElements.mentor_benefits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="mb-8">
             <h2 className="text-3xl font-bold">Mentor Benefits</h2>
             <p className="text-gray-600 mt-2">What you get with BridgeLabs mentorship.</p>
@@ -568,7 +705,8 @@ export default function MentorshipPage() {
             ].map((card, i) => (
               <div
                 key={i}
-                className="bg-white p-6 rounded-xl shadow transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg border border-gray-100"
+                className={`bg-white p-6 rounded-xl shadow transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg border border-gray-100 ${visibleElements.mentor_benefits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 200 + 600}ms` }}
               >
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="font-semibold text-xl">{card.title}</h3>
@@ -591,7 +729,7 @@ export default function MentorshipPage() {
       
 
         {/* FAQ */}
-        <section className="max-w-7xl mx-auto px-8 pb-20">
+        <section id="mentor_faq" data-scroll-animate className={`max-w-7xl mx-auto px-8 pb-20 transition-all duration-1000 ease-out ${visibleElements.mentor_faq ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="mb-8">
             <h2 className="text-3xl font-bold">Frequently asked questions</h2>
             <p className="text-gray-600 mt-2">Everything you need to know about the program.</p>
@@ -617,7 +755,8 @@ a: "Students, professionals, or anyone looking to improve skills, career choices
             ].map((f, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl shadow p-5 border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className={`bg-white rounded-xl shadow p-5 border border-gray-100 transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-lg ${visibleElements.mentor_faq ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 200 + 600}ms` }}
               >
                 <div className="font-semibold mb-1">{f.q}</div>
                 <div className="text-gray-700">{f.a}</div>
