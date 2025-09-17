@@ -276,13 +276,13 @@ export default function MentorshipPage() {
                   <div className="text-2xl font-bold">7.5 yrs</div>
                   <div className="text-gray-600 text-sm">Avg Mentor Experience</div>
                 </div>
-                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
+                {/* <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">40+</div>
                   <div className="text-gray-600 text-sm">Partner Universities</div>
-                </div>
+                </div> */}
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">3k+</div>
-                  <div className="text-gray-600 text-sm">Student Placements</div>
+                  <div className="text-gray-600 text-sm">Student Sessions</div>
                 </div>
               </div>
             </div>
@@ -301,7 +301,7 @@ export default function MentorshipPage() {
 
                 <ul className="space-y-3 text-gray-700">
                   {[
-                    "Weekly live mentor sessions",
+                    "1:1 live mentor sessions",
                     "Curated problem sets and reviews",
                     "Project-based learning with feedback",
                     "Interview prep and mock interviews",
@@ -314,10 +314,6 @@ export default function MentorshipPage() {
                 </ul>
 
                 <div className="mt-6 p-4 bg-[#fcf6f1] border border-yellow-400/40 rounded-lg">
-                  <p className="text-sm text-gray-700">
-                    "This program helped me convert multiple interviews. The feedback loop was
-                    incredible." — <span className="font-medium">Sneha V.</span>
-                  </p>
                 </div>
               </div>
             </div>
@@ -405,7 +401,14 @@ export default function MentorshipPage() {
                     <div className="flex items-start justify-between mb-5">
                       <div>
                         <div className="font-semibold text-lg">{m.name}</div>
-                        <div className="text-md text-gray-600">{m.role}</div>
+                        <div className="text-md text-gray-600">
+                          {m.name === "Ruchira Naskar" ? (
+                            <>
+                              SWE, Microsoft
+                              <div className="text-xs text-gray-500">Ex-Google Intern</div>
+                            </>
+                          ) : m.role}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -497,7 +500,7 @@ export default function MentorshipPage() {
             {[
               {
                 title: "1:1 Mentorship",
-                desc: "Weekly personalized sessions tailored to your goals.",
+                desc: "personalized sessions tailored to your goals.",
                 points: ["Custom learning plan", "Progress tracking", "Accountability check-ins"],
               },
               {
@@ -515,10 +518,14 @@ export default function MentorshipPage() {
                 desc: "Position yourself for better callbacks.",
                 points: ["ATS-friendly resume", "LinkedIn profile polish", "Project storytelling"],
               },
-              {
-  title: "Communication skills enhancement",
-  desc: "Improve how you express ideas and build confidence in speaking.",
-  points: ["Feedback on speaking", "Mock interviews", "Clear communication"],
+          {
+  title: "Real-World Projects",
+  desc: "Gain practical, hands-on experience with projects that strengthen your portfolio.",
+  points: [
+    "End-to-end project guidance ",
+    "Github ready repositories",
+    "Project showcase prep for interviews"
+  ],
 },
 {
   title: "Career choice guidance",
@@ -630,10 +637,17 @@ a: "Students, professionals, or anyone looking to improve skills, career choices
                     <label className="block font-medium mb-1">Email</label>
                     <input type="email" name="email" required value={mentorForm.email} onChange={e => setMentorForm(f => ({ ...f, email: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
                   </div>
-                  <button
-                    type="submit"
-                    className="bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all w-full py-3 rounded font-semibold mt-2"
-                  >Next</button>
+                  <div className="flex gap-3 mt-3">
+                    <button
+                      type="button"
+                      className="px-4 py-2 bg-gray-100 text-gray-800 rounded shadow hover:bg-gray-200 border border-gray-300"
+                      onClick={() => setMentorStage(0)}
+                    >Back</button>
+                    <button
+                      type="submit"
+                      className="bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all py-2 px-6 rounded font-semibold"
+                    >Next</button>
+                  </div>
                 </form>
               )}
               {/* Section 2: Company/Designation/LinkedIn/Resume*/}
@@ -751,11 +765,19 @@ a: "Students, professionals, or anyone looking to improve skills, career choices
                       )}
                     </div>
                   </div>
-                  <button
-                    type="submit"
-                    className={`bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all w-full py-3 rounded font-semibold mt-2 ${mentorSubmitting ? 'opacity-50' : ''}`}
-                    disabled={mentorSubmitting}
-                  >{mentorSubmitting ? 'Submitting...' : 'Submit'}</button>
+                  <div className="flex gap-3 mt-3">
+                    <button
+                      type="button"
+                      className="px-4 py-2 bg-gray-100 text-gray-800 rounded shadow hover:bg-gray-200 border border-gray-300"
+                      onClick={() => setMentorStage(1)}
+                      disabled={mentorSubmitting}
+                    >Back</button>
+                    <button
+                      type="submit"
+                      className={`bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all py-2 px-6 rounded font-semibold ${mentorSubmitting ? 'opacity-50' : ''}`}
+                      disabled={mentorSubmitting}
+                    >{mentorSubmitting ? 'Submitting...' : 'Submit'}</button>
+                  </div>
                 </form>
               )}
               {mentorStage === 3 && (
@@ -778,7 +800,7 @@ a: "Students, professionals, or anyone looking to improve skills, career choices
                 Empowering learners with cutting-edge <span className="ml-1 font-bold">EdTech</span>Solutions
               </div>
               <div className="absolute right-6 top-24 bg-white rounded-xl shadow px-3 py-2 text-xs font-semibold">
-                Free access to <span className="font-bold text-blue-700">exclusive content</span>
+                we bridge the gap between <span className="font-bold text-blue-700">knowledge and opportunity</span>
               </div>
               <div className="absolute bottom-16 left-8 bg-white rounded-xl shadow px-4 py-2 text-xs font-semibold flex items-center">
                 🧑‍🤝‍🧑 Build a <span className="ml-1 font-bold">network</span>

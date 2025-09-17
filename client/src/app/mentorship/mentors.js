@@ -365,7 +365,12 @@ export function MentorSpotlight() {
                 <div className="flex items-start justify-between mb-5">
                   <div>
                     <div className="font-semibold text-lg">{m.name}</div>
-                    <div className="text-md text-gray-600">{m.role}</div>
+                    <div className="text-md text-gray-600">{m.name === "Ruchira Naskar" ? (
+                      <>
+                        SWE, Microsoft
+                        <div className="text-xs text-gray-500">ex-Google Intern</div>
+                      </>
+                    ) : m.role}</div>
                   </div>
                 </div>
               </div>
