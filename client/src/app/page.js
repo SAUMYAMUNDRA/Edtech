@@ -127,7 +127,7 @@ export default function HomePage() {
                   Get Started
                 </a>
                 <a
-                  href="/mentorship"
+                  href="/mentorship/apply"
                   className="border-2 border-gray-300 px-6 py-3 rounded-md font-medium text-gray-700 hover:bg-gray-200 hover:border-gray-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 relative overflow-hidden group"
                 >
                   <span className="relative z-10">Request a Mentor</span>
