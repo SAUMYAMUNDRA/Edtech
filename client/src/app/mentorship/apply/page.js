@@ -18,7 +18,7 @@ const MENTORS = [
     sessions: 320,
     expYears: 3,
     linkedin: "https://www.linkedin.com/in/arishrehmankhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://ui-avatars.com/api/?name=Amit+Kumar&background=fde68a&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1758082537/eoya4vvog1ilshljsyan.jpg",
     bio: "",
     experiences: [
       { org: "Ciena", role: "Software Engineer Systems", year: "2022–now" },
@@ -39,7 +39,7 @@ const MENTORS = [
     sessions: 280,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/dheeraj-yadav-8b6917276/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://ui-avatars.com/api/?name=Dheeraj+Yadav&background=bbf7d0&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/D4D03AQHvg1N8dbPPUg/profile-displayphoto-shrink_400_400/B4DZdA9ODIHkAk-/0/1749141482198?e=1761177600&v=beta&t=QGcuuPxzu6K88uGzBnnf9d6B4xrUuhfORuUH5Rh7D84",
     bio: "",
     experiences: [
       { org: "Cohesity", role: "Software Engineer", year: "Jul 2025-now" },
@@ -59,7 +59,7 @@ const MENTORS = [
     sessions: 245,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/ruchira-naskar-18b86522a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://ui-avatars.com/api/?name=Ravi+Singh&background=bae6fd&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/D5603AQHvgU3u33Li5g/profile-displayphoto-scale_400_400/B56Zkwqrw9I8Ag-/0/1757458121313?e=1761177600&v=beta&t=MFnEg7FPalyA415D1wRD1HOBOTiAZZTgs3irvz_V7B4",
     bio: "",
     experiences: [
       { org: "Microsoft", role: "SWE", year: "Jun 2025–now" },
@@ -79,7 +79,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/sachin-k-gupta/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://ui-avatars.com/api/?name=Sachin+Gupta&background=fbcfe8&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/D5603AQHNdG66BHt4GA/profile-displayphoto-scale_400_400/B56Zh2GhmcHMAk-/0/1754328082991?e=1761177600&v=beta&t=8O-BmqHKw201RNS3lz9HC81eNEqg7IlGophEDL74sF4",
     bio: "",
     experiences: [
       { org: "Uber", role: "Software Engineer", year: "Aug 2025–now" },
@@ -99,7 +99,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 12,
     linkedin: "https://www.linkedin.com/in/ekta-dhusia/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://ui-avatars.com/api/?name=Ekta+Dhusia&background=dfa699&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/C4E03AQE-LEU3g5F9tg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1609785350202?e=1761177600&v=beta&t=0V1ImoF4S4yGoEIhKXxx-lt66bYIBhOh0THFLjJQ1z8",
     bio: "",
     experiences: [
       { org: "Amdocs", role: "Software Architect", year: "May 2025–now" },
@@ -120,7 +120,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 19,
     linkedin: "https://www.linkedin.com/in/manmeetchauhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://ui-avatars.com/api/?name=Manmeet+Chauhan&background=fbcfe8&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/C4D03AQGBTSRZb_1BAA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516626173865?e=1761177600&v=beta&t=t_cjmDmUXvbtQAfzSNPvhNO0GrAWX5oBMIYbYMxUFwA",
     bio: "",
     experiences: [
       { org: "SitusAMC", role: "AVP Software Development", year: "Apr 2025–now" },
@@ -141,7 +141,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 7,
     linkedin: "https://www.linkedin.com/in/kartar-r-89b50546/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://ui-avatars.com/api/?name=Kartar+R&background=f4f6af&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/C5603AQEj6CmSlJ754Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1517431664746?e=1761177600&v=beta&t=xGVb5p0hTAcOmhYblTc9kcu6CsTHxqK2l6dri4XaBlE",
     bio: "",
     experiences: [
       { org: "Rackspace Technology", role: "Database Services Manager", year: "Apr 2025–now" },
@@ -164,7 +164,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 9,
     linkedin: "https://www.linkedin.com/in/lov-vashist-8901811b/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://ui-avatars.com/api/?name=Lov+Vashist&background=7fa67e&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/D5603AQEAKt7f6woxAw/profile-displayphoto-scale_400_400/B56ZhQlgThHUAo-/0/1753698667456?e=1761177600&v=beta&t=p2EQxEk-RVC1NqHwHdf9PuYfOTDpipI5kP8p-aoJtuo",
     bio: "",
     experiences: [
       { org: "ColorTokens", role: "Senior Sales Engineer", year: "Jun 2024–now" },
@@ -187,7 +187,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/harmanjot-singh-53aa38229/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://ui-avatars.com/api/?name=Harmanjot+Singh&background=d3bccf&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/D5603AQFHBbV5hzydLg/profile-displayphoto-scale_400_400/B56ZjCcE_5HcAk-/0/1755608804267?e=1761177600&v=beta&t=d6FsibMZKHE8zgcqChWXEDjMR1hRLZyC5sOIk8_GRcY",
     bio: "",
     experiences: [
       { org: "Uber", role: "Software Engineer", year: "Aug 2025–now" },
@@ -209,7 +209,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/mohammad-inamul-haq-741901192/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://ui-avatars.com/api/?name=Mohammad+ Inamul Haq&background=9ac6c5&color=111827&bold=true&rounded=true&size=256",
+      photo: "https://media.licdn.com/dms/image/v2/D5603AQHBSAtxyEi3yw/profile-displayphoto-shrink_400_400/B56ZgnBkweG4As-/0/1753001382636?e=1761177600&v=beta&t=MCU85en6hdAXwaLuWCkCh0eBRQ7ZbOuzo5GD-pcgneY",
     bio: "",
     experiences: [
       { org: "GrowthJockey", role: "Senior Data Analyst", year: "Mar 2023–Now" },
