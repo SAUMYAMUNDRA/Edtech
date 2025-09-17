@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, useEffect, useRef } from "react"
 import Header from "../components/header/page"
 import Footer from "../components/footer/page"
@@ -101,319 +102,982 @@ function ScrollToTop() {
   )
 }
 
-// --- New Modern CTA Section (professional hero placed ABOVE everything) ---
-function ShowcaseCTASection() {
-  const gallery = [
-    { url: "/images/university1.jpg", alt: "Career launch event", badge: "Career Fair", floatClass: "card-float-slow", rotate: "-rotate-2" },
-    { url: "/images/university2.jpg", alt: "Faculty collaboration", badge: "Faculty Summit", floatClass: "card-float-med", rotate: "rotate-1" },
-    { url: "/images/university3.jpg", alt: "Mentorship in action", badge: "Mentor Pods", floatClass: "card-float-fast", rotate: "-rotate-1" }
+/* -----------------------------------------------------------------------------
+   Left hero visual: Auto-rotating 2x2 color cards
+----------------------------------------------------------------------------- */
+function ColorCardsGrid() {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const cards = [
+    { title: "Dreams to Reality", note: "turning aspirations into tangible achievements.", g1: "#fef3c7", g2: "#fcd34d", icon: "🎯" },
+    { title: "Personal Transformation", note: "students walk away more self-assured, adaptable, and future-ready.", g1: "#fbcfe8", g2: "#ec4899", icon: "🧑‍🏫" },
+    { title: "Opportunities Unlocked", note: "access to jobs, internships, and roles they never imagined possible.", g1: "#ddd6fe", g2: "#6366f1", icon: "🌐" },
+    { title: "Impact Beyond Classrooms", note: "learning that resonates in real-world challenges and success stories.", g1: "#a7f3d0", g2: "#14b8a6", icon: "🚀" },
   ]
 
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => setActive((a) => (a + 1) % cards.length), 2400)
+    return () => clearInterval(id)
+  }, [paused, cards.length])
+
+  const onMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - r.left
+    const y = e.clientY - r.top
+    const rx = ((y / r.height) - 0.5) * -10
+    const ry = ((x / r.width) - 0.5) * 10
+    e.currentTarget.style.setProperty("--rx", `${rx}deg`)
+    e.currentTarget.style.setProperty("--ry", `${ry}deg`)
+    e.currentTarget.style.setProperty("--mx", `${x}px`)
+    e.currentTarget.style.setProperty("--my", `${y}px`)
+  }
+  const onLeave = (e) => {
+    e.currentTarget.style.setProperty("--rx", `0deg`)
+    e.currentTarget.style.setProperty("--ry", `0deg`)
+  }
+
   return (
-    <section className="relative py-24 overflow-hidden bg-[#fcf6f1]">
-      {/* Animated soft gradient background */}
-      <div
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onMouseMove={onMove}
+      onMouseOut={onLeave}
+      className="group relative rounded-3xl overflow-hidden shadow-xl bg-white tilt-3d p-4"
+      style={{ transform: "rotateX(var(--rx, 0)) rotateY(var(--ry, 0))" }}
+    >
+      <span className="shine pointer-events-none" aria-hidden />
+      <span
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: "radial-gradient(220px 160px at var(--mx) var(--my), rgba(255,255,255,0.35), transparent 60%)" }}
         aria-hidden
-        className="absolute inset-0 opacity-80"
-        style={{
-          background:
-            "radial-gradient(1400px 500px at 12% 0%, rgba(245,158,11,0.18), transparent 55%), radial-gradient(1200px 440px at 85% 25%, rgba(99,102,241,0.18), transparent 60%), radial-gradient(900px 380px at 60% 100%, rgba(20,184,166,0.16), transparent 58%)",
-          filter: "saturate(110%)",
-          animation: "gradientShift 12s ease-in-out infinite"
-        }}
       />
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-14 items-start">
-          {/* Left content */}
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-              BridgeLabs for Universities
-            </div>
+      <span className="magic-sparkles" aria-hidden />
 
-            <h1 className="text-5xl lg:text-[56px] leading-[1.05] font-black text-gray-900 tracking-tight">
-              Experience the Future of Campus Collaboration
-            </h1>
-
-            <p className="mt-6 text-lg text-gray-700 max-w-2xl">
-              Bring immersive mentorship, industry connections, and measurable outcomes to your
-              students with a unified platform designed for modern universities.
-            </p>
-
-            <ul className="mt-8 space-y-4">
-              {[
-                "Seamless curriculum integration and program scaffolding",
-                "Real professionals and alumni as on-demand mentors",
-                "Live dashboards to track growth and outcomes"
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 shadow">
-                    ✓
-                  </span>
-                  <span className="text-gray-800">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <button className="btn-gradient text-white px-7 py-3 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                Request a Demo
-              </button>
-              <button className="px-7 py-3 rounded-xl font-semibold bg-white text-gray-800 border border-gray-200 hover:border-yellow-400 hover:shadow-lg transition-all duration-300">
-                Talk to Partnerships
-              </button>
-            </div>
-
-            <div className="mt-8 flex items-center gap-6 text-sm text-gray-600">
-              <div className="flex -space-x-2">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <span key={i} className="inline-block h-8 w-8 rounded-full bg-yellow-200 border border-white shadow-inner" />
-                ))}
-              </div>
-              <span>Trusted by 40+ universities</span>
-            </div>
-          </div>
-
-          {/* Right floating gallery/stats */}
-          <div className="relative">
-            <div className="relative mx-auto max-w-md">
-              {/* glow backdrop */}
+      <div className="grid grid-cols-2 gap-4">
+        {cards.map((c, i) => {
+          const isActive = i === active
+          return (
+            <div
+              key={c.title}
+              className={`relative rounded-2xl p-4 h-40 lg:h-48 text-gray-900 select-none cursor-default transition-all duration-500 ease-out overflow-hidden ${isActive ? "scale-[1.03] shadow-2xl z-10" : "opacity-90 shadow-lg"}`}
+              style={{ background: `linear-gradient(135deg, ${c.g1}, ${c.g2})` }}
+            >
               <div
-                aria-hidden
-                className="absolute -inset-12 rounded-[36px] blur-3xl opacity-70"
+                className={`absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
                 style={{
-                  background:
-                    "conic-gradient(from 180deg at 50% 50%, rgba(250,204,21,0.25), rgba(236,72,153,0.22), rgba(99,102,241,0.25), rgba(20,184,166,0.22), rgba(250,204,21,0.25))",
-                  animation: "gradientShift 10s ease infinite"
+                  padding: 2,
+                  background: "linear-gradient(120deg, rgba(255,255,255,.4), rgba(255,255,255,.15), rgba(255,255,255,0))",
+                  mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                  WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                  WebkitMaskComposite: "xor",
+                  maskComposite: "exclude",
                 }}
               />
-              <div className="relative grid grid-cols-3 gap-4">
-                {/* Column 1 */}
-                <div className="space-y-4 pt-8">
-                  <GalleryCard url="/images/university1.jpg" alt="Career launch event" badge="Career Fair" floatClass="card-float-slow" rotate="-rotate-2" />
-                  <MiniStat label="Positive Outcomes" value="96%" />
-                </div>
-                {/* Column 2 */}
-                <div className="space-y-4">
-                  <MiniStat label="Mentor Sessions" value="900+" />
-                  <GalleryCard url="/images/university2.jpg" alt="Faculty collaboration" badge="Faculty Summit" floatClass="card-float-med" rotate="rotate-1" />
-                </div>
-                {/* Column 3 */}
-                <div className="space-y-4 pb-8">
-                  <GalleryCard url="/images/university3.jpg" alt="Mentorship in action" badge="Mentor Pods" floatClass="card-float-fast" rotate="-rotate-1" />
-                  <MiniStat label="Careers Launched" value="2500+" />
-                </div>
+              <div className="text-3xl drop-shadow-sm">{c.icon}</div>
+              <div className="mt-2 font-extrabold text-lg leading-tight drop-shadow-sm">{c.title}</div>
+              <div className="text-sm opacity-90">{c.note}</div>
+
+              <div className="absolute left-4 right-4 bottom-4 h-1.5 rounded-full overflow-hidden bg-white/40">
+                <div
+                  className={`h-full rounded-full transition-all duration-[900ms] ease-out ${isActive ? "translate-x-0" : "-translate-x-full"}`}
+                  style={{ background: "linear-gradient(90deg, rgba(255,255,255,.9), rgba(17,24,39,.25))" }}
+                />
               </div>
             </div>
-          </div>
+          )
+        })}
+      </div>
+
+      <div className="mt-4 flex items-center justify-center gap-2">
+        {cards.map((_, i) => (
+          <span key={i} className={`h-1.5 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-gray-900/70" : "w-2.5 bg-gray-400/60"}`} />
+        ))}
+      </div>
+
+      <div className="absolute top-3 right-3 text-[11px] font-semibold px-2 py-1 rounded-full bg-white/80 text-gray-700 shadow">
+        {paused ? "Paused" : "Auto"}
+      </div>
+    </div>
+  )
+}
+
+/* -----------------------------------------------------------------------------
+   HERO: Career Academy section
+----------------------------------------------------------------------------- */
+function ShowcaseCTASection({ onOpenForm }) {
+  const cardRef = useRef(null)
+  const scrollToHowItWorks = () =>
+    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+
+  return (
+    <section id="career-academy" className="relative bg-[#fcf6f1]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <Reveal className="order-1 lg:order-none">
+            <ColorCardsGrid />
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <div ref={cardRef}>
+              <h1 className="text-4xl lg:text-5xl font-black leading-[1.1] text-gray-900">
+                Equip your students with skills for the careers of tomorrow
+              </h1>
+              <p className="mt-6 text-lg text-gray-700">
+                Prepare students for the future with training built with industry giants.
+              </p>
+
+              <ul className="mt-6 space-y-4">
+                {[
+                  "Secure a certificate that turns skills into opportunities.",
+                  "Develop the essential skills today's employers seek.",
+                  "Demonstrate your expertise through a professional portfolio.",
+                  "Unlock opportunities in top roles across diverse sectors.",
+                ].map((line, i) => (
+                  <li key={line} className="flex items-start gap-3 rise-in" style={{ animationDelay: `${150 + i * 90}ms` }}>
+                    <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-sm">✓</span>
+                    <span className="text-gray-800">{line}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={onOpenForm}
+                  className="btn-gradient text-white px-7 py-3 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                >
+                  Get Started Now
+                </button>
+                <button
+                  onClick={scrollToHowItWorks}
+                  className="px-7 py-3 rounded-xl font-semibold shadow border border-gray-200 bg-white hover:border-yellow-400 transition"
+                >
+                  How it works
+                </button>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
   )
 }
 
-function GalleryCard({ url, alt, badge, floatClass, rotate }) {
-  return (
-    <figure
-      className={`relative rounded-2xl overflow-hidden bg-white ${rotate} transition-transform duration-300 hover:scale-[1.02] ${floatClass}`}
-      style={{ boxShadow: "0 20px 40px rgba(2,8,23,0.12)" }}
-    >
-      <img src={url} alt={alt} className="w-full h-40 object-cover" draggable="false" style={{ background: "#f6f6f6" }} />
-      <figcaption className="absolute left-3 top-3">
-        <span className="text-xs px-3 py-1 rounded-full bg-white/90 text-gray-800 shadow">{badge}</span>
-      </figcaption>
-      <div className="pointer-events-none absolute inset-0" style={{ boxShadow: "inset 0 0 120px rgba(0,0,0,0.06)" }} />
-    </figure>
-  )
-}
-
-function MiniStat({ label, value }) {
-  return (
-    <div className="rounded-2xl bg-white/90 backdrop-blur shadow-lg px-4 py-3 border border-white/60 animate-pulse-glow">
-      <div className="text-xs text-gray-500">{label}</div>
-      <div className="text-lg font-bold text-gray-900">{value}</div>
-    </div>
-  )
-}
-
-/* ---------- ENHANCED KPI STATS (DATA INSIDE CIRCLE + BIGGER GRAPH + ANIM/HOVER) ---------- */
-
-// CountUp with subtle pop animation
-function CountUp({ value, suffix = "", start = false, duration = 1600 }) {
-  const [count, setCount] = useState(0)
-  const rafRef = useRef(0)
-  useEffect(() => {
-    if (!start) return
-    const startTs = performance.now()
-    const step = (ts) => {
-      const p = Math.min(1, (ts - startTs) / duration)
-      const eased = 1 - Math.pow(1 - p, 3)
-      setCount(Math.round(value * eased))
-      if (p < 1) rafRef.current = requestAnimationFrame(step)
-    }
-    rafRef.current = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [start, value, duration])
-  return <span className={`num-pop ${start ? "num-pop-start" : ""}`}>{count.toLocaleString()}{suffix}</span>
-}
-
-function KPIStatsSection({ stats }) {
-  const sectionRef = useRef(null)
-  const [start, setStart] = useState(false)
-
-  useEffect(() => {
-    const node = sectionRef.current
-    if (!node) return
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setStart(true)),
-      { threshold: 0.35 }
-    )
-    io.observe(node)
-    return () => io.disconnect()
-  }, [])
-
-  const colors = ["#f59e0b", "#ec4899", "#6366f1", "#14b8a6"]
-  const progresses = [0.9, 0.82, 0.78, 0.96] // visual
-
-  // Lens hover effect helper
-  const handleLensMove = (e) => {
-    const r = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - r.left
-    const y = e.clientY - r.top
-    e.currentTarget.style.setProperty("--mx", `${x}px`)
-    e.currentTarget.style.setProperty("--my", `${y}px`)
-  }
+/* -----------------------------------------------------------------------------
+   University Partnership Benefits
+----------------------------------------------------------------------------- */
+function UniversityBenefitsSection() {
+  const features = [
+    {
+      icon: "🎓",
+      title: "Career Bootcamps",
+      desc: "Intensive, job-focused bootcamps designed to equip students with practical, industry-relevant skills and prepare them for placement success.",
+      border: "#A78BFA",
+      bubbleFrom: "#FFF7ED",
+      bubbleTo: "#EEF2FF",
+    },
+    {
+      icon: "🤝",
+      title: "Industry Mentors",
+      desc: "Connect students with real professionals and alumni for career insights and practical advice.",
+      border: "#C084FC",
+      bubbleFrom: "#FFF1F2",
+      bubbleTo: "#F5F3FF",
+    },
+    {
+      icon: "🌐",
+      title: "Faculty Empowerment",
+      desc: "We provide experienced faculty and trainers who guide students not only in academics but also in career preparation and interview readiness.",
+      border: "#93C5FD",
+      bubbleFrom: "#ECFEFF",
+      bubbleTo: "#ECFDF5",
+    },
+    {
+      icon: "📈",
+      title: "End-to-End Career Support",
+      desc: "From skill-building to certifications, mentorship, and job connections, we provide complete support to improve student employability outcomes.",
+      border: "#A5B4FC",
+      bubbleFrom: "#EEF2FF",
+      bubbleTo: "#DBEAFE",
+    },
+  ]
 
   return (
-    <section ref={sectionRef} className="py-18 lg:py-20 bg-[#fcf6f1]">
+    <section className="py-20 bg-[#fcf6f1]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <Reveal>
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-gray-700 text-xs font-medium shadow">
-              Impact at a glance
-              <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-            </div>
-            <h2 className="mt-4 text-3xl lg:text-4xl font-extrabold text-gray-900">
-              Outcomes that scale with your campus
-            </h2>
+          <div className="text-center mb-16">
+            <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              University Partnership Benefits
+            </h3>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              BridgeLabs amplifies your curriculum and career support for every student.
+            </p>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {stats.map((s, i) => {
-            const accent = colors[i % colors.length]
-            const progress = start ? progresses[i % progresses.length] : 0
-            return (
-              <Reveal key={s.label} delay={i * 0.06}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={i * 0.06}>
+              <div
+                className="rounded-[28px] bg-white p-8 text-center shadow-[0_18px_55px_rgba(2,8,23,0.08)] h-full"
+                style={{ border: `3px solid ${f.border}` }}
+              >
                 <div
-                  onMouseMove={handleLensMove}
-                  className="group relative rounded-3xl bg-white p-6 lg:p-7 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 overflow-hidden"
+                  className="mx-auto mb-6 w-16 h-16 flex items-center justify-center text-3xl rounded-full shadow-inner"
+                  style={{ background: `radial-gradient(circle at 30% 30%, ${f.bubbleFrom}, ${f.bubbleTo})` }}
                 >
-                  {/* animated gradient rim */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      padding: 2,
-                      background:
-                        "linear-gradient(120deg, rgba(245,158,11,0.25), rgba(236,72,153,0.25), rgba(99,102,241,0.25), rgba(20,184,166,0.25))",
-                      mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-                      WebkitMask:
-                        "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-                      WebkitMaskComposite: "xor",
-                      maskComposite: "exclude"
-                    }}
-                  />
-                  {/* lens spotlight on hover */}
-                  <span
-                    className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background:
-                        "radial-gradient(220px 140px at var(--mx) var(--my), rgba(255,255,255,0.35), transparent 60%)"
-                    }}
-                  />
+                  {f.icon}
+                </div>
+                <h4 className="font-semibold text-lg text-gray-900 mb-2">{f.title}</h4>
+                <p className="text-gray-600">{f.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
-                  <div className="relative grid grid-cols-[auto,1fr] items-center gap-5">
-                    {/* Bigger circle with the data INSIDE */}
-                    <RadialRing color={accent} progress={progress} size={118} thickness={14}>
-                      <div className="text-[14px] lg:text-[16px] font-extrabold text-gray-900 num-scale">
-                        <CountUp value={s.value} suffix={s.suffix} start={start} />
-                      </div>
-                    </RadialRing>
+/* ===================== Programs we run with Universities ===================== */
+/* Adds selectable circle on each card, and an "Apply with selected tracks" button that opens the form with selections pre-checked */
+function PartnershipTracks({ selectedSubjects, onToggleSubject, onApplySelected }) {
+  const subjects = [
+    { key: "DSA", name: "DSA", icon: "🧮", color: "bg-blue-100 text-blue-700", description: "Data Structures & Algorithms" },
+    { key: "System Design", name: "System Design", icon: "🏗️", color: "bg-purple-100 text-purple-700", description: "Scalable Architecture" },
+    { key: "Data Analytics", name: "Data Analytics", icon: "📊", color: "bg-green-100 text-green-700", description: "Data Science & Analytics" },
+    { key: "Backend/Frontend", name: "Backend/Frontend", icon: "💻", color: "bg-orange-100 text-orange-700", description: "Full Stack Development" },
+    { key: "Real World Projects", name: "Real World Projects", icon: "🚀", color: "bg-red-100 text-red-700", description: "Industry-Level Projects" },
+    { key: "MERN & MEAN", name: "MERN & MEAN", icon: "⚛️", color: "bg-teal-100 text-teal-700", description: "Modern Tech Stacks" },
+  ]
 
-                    {/* Label and bigger sparkline */}
-                    <div className="flex-1">
-                      <div className="text-[11px] uppercase tracking-[0.14em] text-gray-500 font-semibold kinetic-in">
-                        {s.label}
+  return (
+    <section className="py-18 lg:py-20 bg-[#fcf6f1]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <Reveal>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">
+              Expert Mentorship Across Key Technologies
+            </h2>
+            <p className="mt-3 text-gray-700 max-w-3xl mx-auto">
+              Select the tracks you’re interested in, then apply. Your selections will be pre-filled in the application form.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {subjects.map((subject, i) => {
+            const isSelected = selectedSubjects.has(subject.key)
+            return (
+              <Reveal key={subject.key} delay={i * 0.06}>
+                <div className="relative rounded-3xl p-[2px] bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200">
+                  <div className={`${subject.color} rounded-3xl p-1`}>
+                    <div
+                      className={`relative rounded-[22px] bg-white p-8 h-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+                        isSelected ? "ring-2 ring-yellow-400" : ""
+                      }`}
+                      onClick={() => onToggleSubject(subject.key)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onToggleSubject(subject.key)}
+                    >
+                      {/* Select circle (top-right) */}
+                      <button
+                        type="button"
+                        aria-pressed={isSelected}
+                        aria-label={isSelected ? `Unselect ${subject.name}` : `Select ${subject.name}`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onToggleSubject(subject.key)
+                        }}
+                        className={`absolute top-3 right-3 w-7 h-7 rounded-full border-2 ${
+                          isSelected ? "border-yellow-500 bg-yellow-500 text-white" : "border-gray-300 bg-white"
+                        } grid place-items-center shadow-sm hover:scale-105 transition-transform`}
+                      >
+                        {isSelected ? "✓" : ""}
+                      </button>
+
+                      <div className="text-center">
+                        <div className="text-4xl mb-4">{subject.icon}</div>
+                        <h3 className="font-bold text-xl text-gray-900 mb-1">{subject.name}</h3>
+                        <p className="text-gray-600 text-sm mb-6">{subject.description}</p>
+                        <div className="space-y-2 text-left text-gray-700 text-sm max-w-xs mx-auto">
+                          <div className="flex items-center gap-2">
+                            <span className="text-yellow-500">•</span>
+                            <span>Industry expert mentors</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-yellow-500">•</span>
+                            <span>Hands-on project guidance</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-yellow-500">•</span>
+                            <span>Real-world applications</span>
+                          </div>
+                        </div>
                       </div>
-                      <Sparkline accent={accent} big />
                     </div>
                   </div>
-
-                  {/* accent underline grow on hover */}
-                  <div className="mt-3 h-0.5 bg-gradient-to-r from-transparent via-gray-100 to-transparent group-hover:from-white group-hover:via-gray-200 group-hover:to-white transition-all" />
                 </div>
               </Reveal>
             )
           })}
         </div>
+
+        <Reveal delay={0.1}>
+          <div className="flex flex-col items-center gap-3 mt-12">
+            <button
+              onClick={onApplySelected}
+              className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Apply with selected tracks
+            </button>
+            <p className="text-xs text-gray-600">
+              Your marked tracks will be auto-selected in the application form.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
 }
 
-// Ring supports children (content inside)
-function RadialRing({ color = "#f59e0b", progress = 0, size = 110, thickness = 14, children }) {
-  const deg = Math.round(progress * 360)
-  const inner = size - thickness * 2
-  const ringStyle = {
-    width: size,
-    height: size,
-    background: `conic-gradient(${color} ${deg}deg, #eef2f7 0deg)`,
-    WebkitMask: `radial-gradient(farthest-side, #0000 ${100 - (thickness / size) * 100}%, #000 calc(${100 - (thickness / size) * 100}% + 1px))`,
-    mask: `radial-gradient(farthest-side, #0000 ${100 - (thickness / size) * 100}%, #000 calc(${100 - (thickness / size) * 100}% + 1px))`,
-    boxShadow: "inset 0 0 1px rgba(2,8,23,0.12)",
-    transition: "background 900ms cubic-bezier(.5,0,.2,1)"
-  }
+// Testimonials (short)
+function TestimonialsStrip() {
+  const quotes = [
+    {
+      q: "BridgeLabs made it easy to embed employability into our curriculum without adding faculty load.",
+      a: "Dean, School of Engineering",
+    },
+    {
+      q: "Our students now talk to industry mentors weekly—placements improved in one term.",
+      a: "Head, Career Services",
+    },
+  ]
   return (
-    <div className="relative">
-      <div className="spin-slow ring-core rounded-full" style={ringStyle} aria-hidden />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div
-          className="rounded-full bg-white shadow-sm flex items-center justify-center circle-bounce"
-          style={{ width: inner, height: inner }}
-        >
-          {children}
+    <section className="py-16 bg-[#fcf6f1]">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="rounded-3xl bg-white p-8 md:p-10 shadow-lg">
+          <div className="grid md:grid-cols-2 gap-8">
+            {quotes.map((c, i) => (
+              <Reveal key={i}>
+                <blockquote className="text-gray-800">
+                  <p className="text-lg">"{c.q}"</p>
+                  <footer className="mt-3 text-sm text-gray-500">— {c.a}</footer>
+                </blockquote>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ===================== Professional Certificates Section ===================== */
+function ProfessionalCertificatesSection({ onGetReport }) {
+  return (
+    <section className="py-20 bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
+          <Reveal>
+            <div className="space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight">
+                Provide Your Students with Career-Enhancing Certificates
+              </h2>
+
+              <div className="prose prose-lg text-gray-700 space-y-4">
+                <p>
+                  We offer industry-recognized certificates designed to equip your students with the skills employers seek most.
+                  Integrate these certifications to strengthen employability and prepare graduates for immediate success.
+                </p>
+                <p>
+                  These credentials validate expertise and give students a competitive edge in today’s job market.
+                </p>
+                <p className="font-semibold text-yellow-600">
+                  Create a seamless link between classroom achievement and career opportunity through certification.
+                </p>
+              </div>
+
+              <button
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-yellow-600 to-yellow-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 relative overflow-hidden"
+                onClick={onGetReport}
+              >
+                <span className="relative z-10">Get detailed report</span>
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </div>
+          </Reveal>
+
+          {/* Right Visual */}
+          <Reveal delay={0.1}>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80"
+                alt="Students with professional certificates studying"
+                className="w-full h-80 lg:h-96 object-cover"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ===================== APPLICATION FORM (Modal Card) ===================== */
+function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
+  const [submitted, setSubmitted] = useState(false)
+  const firstFieldRef = useRef(null)
+  const bodyRef = useRef(null)
+
+  const [form, setForm] = useState({
+    university: "",
+    name: "",
+    email: "",
+    phone: "",
+    role: "",
+    city: "",
+    cohortSize: "100-250",
+    needs: {
+      mentors: false,
+      trainers: false,
+      teachers: false,
+      faculty: false,
+      preparationMaterials: false
+    },
+    courses: {
+      DSA: false,
+      systemDesign: false,
+      dataAnalytics: false,
+      frontendDev: false,
+      backendDev: false,
+      fullStackDev: false,
+      mernStack: false,
+      meanStack: false,
+      realWorldProjects: false,
+      careerGuidance: false
+    },
+    start: "",
+    message: "",
+    consent: false
+  })
+
+  // Apply preselected courses whenever modal opens with a new list
+  useEffect(() => {
+    if (!open) return
+    setForm((prev) => {
+      const updated = { ...prev, courses: { ...prev.courses } }
+      // reset all to false first
+      Object.keys(updated.courses).forEach((k) => (updated.courses[k] = false))
+      // set provided keys to true
+      preselectedCourses.forEach((k) => {
+        if (k in updated.courses) updated.courses[k] = true
+      })
+      return updated
+    })
+  }, [open, preselectedCourses])
+
+  useEffect(() => {
+    if (!open) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    requestAnimationFrame(() => {
+      if (bodyRef.current) bodyRef.current.scrollTop = 0
+      firstFieldRef.current?.focus()
+    })
+    return () => { document.body.style.overflow = prevOverflow }
+  }, [open])
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (!open) return
+      if (e.key === "Escape") onClose()
+      if (!bodyRef.current) return
+      if (e.key === "Home") bodyRef.current.scrollTo({ top: 0, behavior: "smooth" })
+      if (e.key === "End") bodyRef.current.scrollTo({ top: bodyRef.current.scrollHeight, behavior: "smooth" })
+      if (e.key === "PageDown") bodyRef.current.scrollBy({ top: bodyRef.current.clientHeight * 0.9, behavior: "smooth" })
+      if (e.key === "PageUp") bodyRef.current.scrollBy({ top: -bodyRef.current.clientHeight * 0.9, behavior: "smooth" })
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [open, onClose])
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    if (name.startsWith("needs.")) {
+      const key = name.split(".")[1]
+      setForm((f) => ({ ...f, needs: { ...f.needs, [key]: checked } }))
+    } else if (name.startsWith("courses.")) {
+      const key = name.split(".")[1]
+      setForm((f) => ({ ...f, courses: { ...f.courses, [key]: checked } }))
+    } else if (type === "checkbox") {
+      setForm((f) => ({ ...f, [name]: checked }))
+    } else {
+      setForm((f) => ({ ...f, [name]: value }))
+    }
+  }
+
+  const scrollToField = (fieldName) => {
+    const el = document.querySelector(`[name="${fieldName}"]`)
+    if (el && bodyRef.current) {
+      const container = bodyRef.current
+      const elRect = el.getBoundingClientRect()
+      const containerRect = container.getBoundingClientRect()
+      const offset = elRect.top - containerRect.top + container.scrollTop - 24
+      container.scrollTo({ top: offset, behavior: "smooth" })
+      el.focus()
+    }
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const requiredOrder = ["university", "name", "email", "consent"]
+    const firstMissing = requiredOrder.find((key) =>
+      key === "consent" ? !form.consent : !String(form[key]).trim()
+    )
+    if (firstMissing) {
+      scrollToField(firstMissing)
+      return
+    }
+    setSubmitted(true)
+    setTimeout(() => {
+      onClose()
+      setSubmitted(false)
+      setForm((f) => ({ ...f, message: "" }))
+    }, 1400)
+  }
+
+  const scrollTop = () => bodyRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+  const scrollBottom = () => bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight, behavior: "smooth" })
+
+  const CheckboxPill = ({ name, label, checked, icon = "" }) => (
+    <label
+      className={[
+        "flex items-center gap-3 rounded-xl border px-4 py-3 select-none cursor-pointer transition-all duration-200 hover:shadow-md",
+        checked ? "border-yellow-400 bg-yellow-50 shadow-sm ring-2 ring-yellow-200" : "border-gray-200 bg-white hover:border-yellow-300"
+      ].join(" ")}
+    >
+      <input
+        type="checkbox"
+        name={name}
+        checked={checked}
+        onChange={handleChange}
+        className="accent-yellow-500 h-4 w-4 rounded"
+      />
+      {icon && <span className="text-lg">{icon}</span>}
+      <span className={`text-sm font-medium ${checked ? "text-yellow-800" : "text-gray-700"}`}>{label}</span>
+    </label>
+  )
+
+  if (!open) return null
+
+  return (
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+      />
+
+      {/* Modal */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        className={`relative w-full max-w-4xl max-h-[90vh] transition-all duration-300 ${
+          open ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
+        <div className="relative rounded-3xl bg-white shadow-2xl overflow-hidden">
+          {/* Gradient border effect */}
+          <div className="absolute -inset-1 rounded-[26px] bg-gradient-to-r from-yellow-200 via-pink-200 to-teal-200 blur opacity-60" />
+
+          <div className="relative rounded-3xl flex flex-col bg-white max-h-[90vh]">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 sm:p-8 border-b bg-white">
+              <div>
+                <h3 className="text-2xl font-extrabold text-gray-900">Partner with BridgeLabs</h3>
+                <p className="text-sm text-gray-600 mt-1">Transform your students' career prospects</p>
+              </div>
+              <button
+                onClick={onClose}
+                aria-label="Close"
+                className="rounded-full w-9 h-9 bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Body */}
+            <div ref={bodyRef} className="flex-1 p-4 sm:p-6 overflow-y-auto">
+              <div className="rounded-2xl p-5 sm:p-6 bg-gradient-to-br from-yellow-50 via-pink-50 to-cyan-50 shadow-[0_12px_35px_rgba(2,8,23,0.08)]">
+                {submitted ? (
+                  <div className="py-16 text-center">
+                    <div className="mx-auto mb-4 w-14 h-14 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl animate-bounce">✓</div>
+                    <p className="text-lg font-semibold text-gray-900">Application submitted successfully!</p>
+                    <p className="text-gray-600 mt-2">Our partnerships team will reach out within 1–2 working days to discuss your requirements.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={onSubmit} className="space-y-8">
+                    {/* University & Contact Information */}
+                    <div className="bg-white/70 rounded-xl p-6 border border-gray-100">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span className="text-blue-600">🏛️</span>
+                        University & Contact Information
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="sm:col-span-2">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">University / Institution Name *</label>
+                          <input
+                            ref={firstFieldRef}
+                            name="university"
+                            value={form.university}
+                            onChange={handleChange}
+                            required
+                            placeholder="e.g., Stanford University"
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Contact Person Name *</label>
+                          <input
+                            name="name"
+                            value={form.name}
+                            onChange={handleChange}
+                            required
+                            placeholder="Full name"
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Your Role/Position</label>
+                          <input
+                            name="role"
+                            value={form.role}
+                            onChange={handleChange}
+                            placeholder="e.g., Dean, Program Director"
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="contact@university.edu"
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                          <input
+                            name="phone"
+                            value={form.phone}
+                            onChange={handleChange}
+                            placeholder="+1 (555) 123-4567"
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* What University Needs */}
+                    <div className="bg-white/70 rounded-xl p-6 border border-gray-100">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span className="text-green-600">🤝</span>
+                        What do you need from BridgeLabs?
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <CheckboxPill name="needs.mentors" label="Industry Mentors" checked={form.needs.mentors} icon="👨‍💼" />
+                        <CheckboxPill name="needs.trainers" label="Professional Trainers" checked={form.needs.trainers} icon="🎯" />
+                        <CheckboxPill name="needs.teachers" label="Subject Matter Experts" checked={form.needs.teachers} icon="👩‍🏫" />
+                        <CheckboxPill name="needs.faculty" label="Guest Faculty" checked={form.needs.faculty} icon="🎓" />
+                        <CheckboxPill name="needs.preparationMaterials" label="Study Materials & Resources" checked={form.needs.preparationMaterials} icon="📚" />
+                      </div>
+                    </div>
+
+                    {/* Course Selection */}
+                    <div className="bg-white/70 rounded-xl p-6 border border-gray-100" id="course-selection">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span className="text-purple-600">💻</span>
+                        Courses / Programs (auto-selected from your choices)
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <CheckboxPill name="courses.DSA" label="Data Structures & Algorithms" checked={form.courses.DSA} icon="🧮" />
+                        <CheckboxPill name="courses.systemDesign" label="System Design" checked={form.courses.systemDesign} icon="🏗️" />
+                        <CheckboxPill name="courses.dataAnalytics" label="Data Analytics" checked={form.courses.dataAnalytics} icon="📊" />
+                        <CheckboxPill name="courses.frontendDev" label="Frontend Development" checked={form.courses.frontendDev} icon="🎨" />
+                        <CheckboxPill name="courses.backendDev" label="Backend Development" checked={form.courses.backendDev} icon="⚙️" />
+                        <CheckboxPill name="courses.fullStackDev" label="Full Stack Development" checked={form.courses.fullStackDev} icon="🔄" />
+                        <CheckboxPill name="courses.mernStack" label="MERN Stack" checked={form.courses.mernStack} icon="⚛️" />
+                        <CheckboxPill name="courses.meanStack" label="MEAN Stack" checked={form.courses.meanStack} icon="🅰️" />
+                        <CheckboxPill name="courses.realWorldProjects" label="Real World Projects" checked={form.courses.realWorldProjects} icon="🚀" />
+                        <CheckboxPill name="courses.careerGuidance" label="Career Guidance & Placement" checked={form.courses.careerGuidance} icon="🎯" />
+                      </div>
+                    </div>
+
+                    {/* Program Details */}
+                    <div className="bg-white/70 rounded-xl p-6 border border-gray-100">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span className="text-orange-600">📋</span>
+                        Program Details
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Student Cohort Size</label>
+                          <select
+                            name="cohortSize"
+                            value={form.cohortSize}
+                            onChange={handleChange}
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          >
+                            <option value="<50">Less than 50 students</option>
+                            <option value="50-100">50-100 students</option>
+                            <option value="100-250">100-250 students</option>
+                            <option value="250-500">250-500 students</option>
+                            <option value="500-1000">500-1000 students</option>
+                            <option value="1000+">1000+ students</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Start Date</label>
+                          <input
+                            type="month"
+                            name="start"
+                            value={form.start}
+                            onChange={handleChange}
+                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Additional Requirements & Message</label>
+                        <textarea
+                          name="message"
+                          value={form.message}
+                          onChange={handleChange}
+                          rows={4}
+                          placeholder="Tell us about your specific requirements, program goals, student profiles, timeline constraints, or any other details..."
+                          className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all placeholder:text-gray-400 resize-vertical"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Consent & Submit */}
+                    <div className="bg-white/70 rounded-xl p-6 border border-gray-100">
+                      <label className="inline-flex items-start gap-3 text-sm text-gray-700 mb-6 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="consent"
+                          checked={form.consent}
+                          onChange={handleChange}
+                          className="accent-yellow-500 h-4 w-4 mt-0.5 rounded"
+                        />
+                        <span>
+                          I agree to be contacted by BridgeLabs regarding this partnership inquiry and understand that my information will be used to provide relevant program details and partnership opportunities. *
+                        </span>
+                      </label>
+
+                      <div className="flex flex-col sm:flex-row justify-end gap-3 pt-2">
+                        <button
+                          type="button"
+                          onClick={onClose}
+                          className="px-6 py-3 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 font-medium transition-colors"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-8 py-3 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 hover:from-yellow-600 hover:via-orange-600 hover:to-pink-600 transform hover:scale-105"
+                        >
+                          Submit Partnership Application
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            {/* Scroll buttons */}
+            <div className="absolute right-3 bottom-3 flex flex-col gap-2 z-20">
+              <button
+                onClick={scrollTop}
+                title="Scroll to top"
+                className="w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg border border-gray-200 flex items-center justify-center transition-all hover:bg-yellow-50"
+              >
+                ↑
+              </button>
+              <button
+                onClick={scrollBottom}
+                title="Scroll to bottom"
+                className="w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg border border-gray-200 flex items-center justify-center transition-all hover:bg-yellow-50"
+              >
+                ↓
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-// Bigger sparkline when big prop is true
-function Sparkline({ accent = "#f59e0b", big = false }) {
-  const w = big ? 140 : 100
-  const h = big ? 40 : 28
-  const pathD = big
-    ? "M0 30 C 20 24, 40 20, 60 26 S 100 38, 120 24 140 12, 140 14"
-    : "M0 22 C 10 18, 20 16, 30 20 S 50 26, 60 18 80 8, 100 10"
-  const areaD = big
-    ? "M0 40 L0 30 C 20 24, 40 20, 60 26 S 100 38, 120 24 140 12, 140 14 L140 40 Z"
-    : "M0 28 L0 22 C 10 18, 20 16, 30 20 S 50 26, 60 18 80 8, 100 10 L100 28 Z"
+/* ===================== Certification Report Modal (compact) ===================== */
+function CertificationReportModal({ open, onClose }) {
+  const panelRef = useRef(null)
+  const bodyRef = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    const onKey = (e) => { if (e.key === "Escape") onClose() }
+    window.addEventListener("keydown", onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener("keydown", onKey)
+    }
+  }, [open, onClose])
+
+  if (!open) return null
+
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className={`${big ? "w-40 h-10" : "w-28 h-7"} mt-2`}>
-      <defs>
-        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.5" />
-          <stop offset="100%" stopColor={accent} stopOpacity="0.15" />
-        </linearGradient>
-      </defs>
-      <path d={pathD} fill="none" stroke={accent} strokeWidth="2" className="spark-stroke" strokeLinecap="round" />
-      <path d={areaD} fill="url(#g1)" className="opacity-40" />
-    </svg>
+    <div className="fixed inset-0 z-[11000]">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden
+      />
+
+      {/* Panel */}
+      <div className="absolute left-1/2 top-1/2 w-[92%] max-w-xl -translate-x-1/2 -translate-y-1/2">
+        <div
+          ref={panelRef}
+          className="relative bg-white rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Career-Enhancing Certifications"
+        >
+          {/* Header */}
+          <div className="px-5 py-4 border-b bg-white/90 sticky top-0 z-10">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-extrabold text-gray-900">
+                Career-Enhancing Certifications
+              </h3>
+              <button
+                onClick={onClose}
+                aria-label="Close"
+                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 grid place-items-center"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          {/* Body (scrollable) */}
+          <div ref={bodyRef} className="px-5 pt-4 pb-5 max-h-[70vh] overflow-y-auto">
+            <p className="text-gray-700">
+              Our industry-recognized certifications go beyond just a credential — they are designed to prepare students
+              for real-world success and unlock job opportunities. By earning these certificates, students demonstrate to
+              employers that they have practical, industry-relevant skills and are job-ready from day one.
+            </p>
+
+            <div className="mt-5">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-yellow-700 uppercase">
+                <span className="text-base">🔑</span> Advantages of Our Certifications
+              </div>
+              <ul className="mt-3 space-y-3 text-gray-800">
+                <li className="flex gap-2">
+                  <span className="text-yellow-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Industry Validation</span> – Certificates recognized by top companies, giving students a competitive edge.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-yellow-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Career Readiness</span> – Students gain hands-on skills that directly match employer requirements.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-yellow-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Stronger Portfolios</span> – Certifications strengthen resumes and showcase credibility to hiring managers.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-yellow-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Global Opportunities</span> – Recognized credentials open doors to diverse career paths worldwide.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 uppercase">
+                <span className="text-base">🚀</span> Additional Career Support We Provide
+              </div>
+              <ul className="mt-3 space-y-3 text-gray-800">
+                <li className="flex gap-2">
+                  <span className="text-emerald-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Bootcamps with Mentors</span> – Intensive, job-focused bootcamps conducted by our expert mentors to build practical skills.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Interview Preparation</span> – Personalized training sessions, mock interviews, and guidance to help students perform confidently in job interviews.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Learning Materials</span> – Comprehensive study resources and practice material to reinforce learning and support career goals.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-500 mt-0.5">•</span>
+                  <span>
+                    <span className="font-semibold">Ongoing Mentorship</span> – One-on-one and group mentorship to guide students through career decisions, job applications, and skill growth.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <p className="mt-6 text-gray-700">
+              With this blend of certifications + mentorship + career support, students are empowered not just to earn a
+              certificate, but to transform it into a career breakthrough.
+            </p>
+          </div>
+
+          {/* Footer */}
+          <div className="px-5 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+            <button
+              onClick={onClose}
+              className="px-5 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-100 text-gray-800 transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
+/* ---------------------- Global Styles ---------------------- */
 function GlobalStyles() {
   return (
     <style jsx global>{`
@@ -431,79 +1095,95 @@ function GlobalStyles() {
       @keyframes shineSweep { 0% { transform: translateX(-120%) rotate(20deg); } 100% { transform: translateX(160%) rotate(20deg); } }
       @keyframes kineticIn { 0% { letter-spacing: .08em; transform: translateY(6px); opacity: .0; } 60% { letter-spacing: .18em; } 100% { letter-spacing: .14em; transform: translateY(0); opacity:1; } }
 
-      .card-float-slow { animation: floatY 7s ease-in-out infinite; }
-      .card-float-med { animation: floatY 6s ease-in-out infinite; animation-delay: .4s; }
-      .card-float-fast { animation: floatY 5s ease-in-out infinite; animation-delay: .8s; }
-
-      .animate-pulse-glow { animation: pulseGlow 2.6s ease-in-out infinite; }
-
       .btn-gradient { background: linear-gradient(90deg, #f59e0b, #f97316, #ec4899); background-size: 200% 100%; animation: gradientShift 8s ease infinite; }
 
-      .spin-slow { animation: ringSpin 18s linear infinite; }
-      .group:hover .ring-core { animation-duration: 8s; filter: drop-shadow(0 6px 14px rgba(17,24,39,0.12)); }
+      /* 3D helpers */
+      .perspective-1000 { perspective: 1000px; }
+      .rotate-y-6 { transform: rotateY(6deg); }
+      .rotate-y-12 { transform: rotateY(12deg); }
 
-      .num-pop { display: inline-block; }
-      .num-pop-start { animation: pop .6s ease-out both; }
-
-      .num-scale { transition: transform 250ms ease, color 250ms ease; }
-      .group:hover .num-scale { transform: scale(1.06); color: #111827; }
-
-      .circle-bounce { will-change: transform; }
-      .group:hover .circle-bounce { animation: hoverBounce 700ms cubic-bezier(.2,.8,.2,1); }
-
-      .spark-stroke { stroke-dasharray: 3 6; animation: dashMove 4s linear infinite; }
-
-      /* CTA kinetic + hover */
-      .cta-kinetic { position: relative; }
-      .cta-kinetic::before {
+      /* 3D tilt + sheen (hero) */
+      .tilt-3d { transform-style: preserve-3d; will-change: transform; transition: transform 300ms cubic-bezier(.25,.8,.25,1); }
+      .tilt-3d:hover { transition-duration: 120ms; }
+      .shine::after {
         content: "";
         position: absolute;
-        inset: -2px;
-        border-radius: 24px;
-        background: linear-gradient(120deg, rgba(245,158,11,.28), rgba(236,72,153,.28), rgba(99,102,241,.28), rgba(20,184,166,.28));
-        background-size: 300% 300%;
-        filter: blur(18px);
-        opacity: 0;
-        transition: opacity .35s ease, transform .35s ease;
-        z-index: 0;
+        top: -40%;
+        left: -20%;
+        width: 30%;
+        height: 180%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,.65), transparent);
+        transform: translateX(-150%) rotate(18deg);
+        transition: transform 900ms cubic-bezier(.2,.8,.2,1);
       }
-      .cta-kinetic:hover::before { opacity: 1; transform: scale(1.02); }
+      .group:hover .shine::after { transform: translateX(200%) rotate(18deg); }
+      .rise-in { opacity: 0; transform: translateY(8px); animation: rise .6s ease forwards; }
+      @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
-      .kt-heading { position: relative; z-index: 1; }
-      .kt-heading .kt-word { display: inline-block; will-change: transform, opacity; animation: ktypeUp .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: var(--d, 0ms); margin-right: .28ch; }
-
-      .cta-sheen { pointer-events: none; position: absolute; inset: 0; overflow: hidden; border-radius: 24px; }
-      .cta-sheen::after { content: ""; position: absolute; top: -40%; left: -20%; width: 40%; height: 180%; background: linear-gradient( to right, transparent, rgba(255,255,255,.5), transparent ); transform: translateX(-120%) rotate(20deg); }
-      .cta-kinetic:hover .cta-sheen::after { animation: shineSweep 1200ms ease forwards; }
-
-      /* Shadow & Lift animation for feature cards */
-      .feature-wrap { position: relative; }
-      .feature-shadow { position: absolute; left: 12%; right: 12%; bottom: -6px; height: 18px; background: radial-gradient(ellipse at center, rgba(2,8,23,.18), rgba(2,8,23,0)); filter: blur(10px); opacity: .35; transform: translateY(0) scale(1); transition: transform 350ms cubic-bezier(.2,.8,.2,1), opacity 350ms ease; }
-      .feature-card { transition: transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms ease, background 350ms ease; box-shadow: 0 10px 22px rgba(2,8,23,.06), 0 1px 0 rgba(2,8,23,.02) inset; transform: translateY(0) translateZ(0); }
-      .group:hover .feature-card { transform: translateY(-10px); box-shadow: 0 22px 46px rgba(2,8,23,.12), 0 2px 0 rgba(2,8,23,.03) inset; }
-      .group:hover .feature-shadow { transform: translateY(6px) scale(1.25); opacity: .55; }
-      .feature-icon { transition: transform 300ms ease; }
-      .group:hover .feature-icon { transform: translateY(-3px) scale(1.05); }
+      /* Subtle sparkle */
+      .magic-sparkles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(6px 6px at 20% 30%, rgba(255,255,255,0.7), transparent 60%),
+          radial-gradient(5px 5px at 70% 20%, rgba(255,255,255,0.6), transparent 60%),
+          radial-gradient(4px 4px at 80% 70%, rgba(255,255,255,0.65), transparent 60%),
+          radial-gradient(3px 3px at 35% 75%, rgba(255,255,255,0.5), transparent 60%);
+        opacity: 0;
+        transition: opacity 300ms ease;
+      }
     `}</style>
   )
 }
 
 export default function ForUniversitiesPage() {
-  // Feature cards for universities
-  const features = [
-    { icon: "🎓", title: "Curriculum Integration", desc: "Blend our mentorship platform with your existing academic offerings for a seamless student experience.", color: "bg-yellow-100 text-yellow-600" },
-    { icon: "🤝", title: "Industry Mentors", desc: "Connect students with real professionals and alumni for career insights and practical advice.", color: "bg-pink-100 text-pink-600" },
-    { icon: "🌐", title: "Peer Pods", desc: "Enable cross-campus collaboration and peer-led growth circles for deeper learning.", color: "bg-teal-100 text-teal-600" },
-    { icon: "📈", title: "Impact Tracking", desc: "Real-time dashboards for universities to measure skill growth, engagement, and placement success.", color: "bg-blue-100 text-blue-600" }
-  ]
+  const [openForm, setOpenForm] = useState(false)
+  const [showReportModal, setShowReportModal] = useState(false)
 
-  // Stats content (data will show INSIDE the circle, graph enlarged)
-  const stats = [
-    { value: 40, suffix: "++", label: "Partner Universities" },
-    { value: 2500, suffix: "++", label: "Student Careers Launched" },
-    { value: 900, suffix: "++", label: "Mentor Sessions Hosted" },
-    { value: 96, suffix: "%", label: "Positive Outcomes" }
-  ]
+  // Track selections from PartnershipTracks
+  const [selectedSubjects, setSelectedSubjects] = useState(new Set())
+  const [preselectedCourses, setPreselectedCourses] = useState([])
+
+  const toggleSubject = (key) => {
+    setSelectedSubjects((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }
+
+  // Map selected subject names to course keys in the ApplicationFormModal
+  const buildPreselectedCourses = (subjectSet) => {
+    const out = new Set()
+    subjectSet.forEach((s) => {
+      if (s === "DSA") out.add("DSA")
+      if (s === "System Design") out.add("systemDesign")
+      if (s === "Data Analytics") out.add("dataAnalytics")
+      if (s === "Backend/Frontend") {
+        out.add("frontendDev")
+        out.add("backendDev")
+        out.add("fullStackDev")
+      }
+      if (s === "Real World Projects") out.add("realWorldProjects")
+      if (s === "MERN & MEAN") {
+        out.add("mernStack")
+        out.add("meanStack")
+      }
+    })
+    return Array.from(out)
+  }
+
+  const onApplySelected = () => {
+    const pre = buildPreselectedCourses(selectedSubjects)
+    setPreselectedCourses(pre)
+    setOpenForm(true)
+    // Scroll to ensure modal is visible
+    setTimeout(() => {
+      document.querySelector('[role="dialog"]')?.scrollIntoView({ behavior: "smooth", block: "center" })
+    }, 50)
+  }
 
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900 relative">
@@ -512,64 +1192,34 @@ export default function ForUniversitiesPage() {
       <ScrollToTop />
       <Header />
 
-      {/* New professional hero at very top */}
-      <ShowcaseCTASection />
+      {/* HERO */}
+      <ShowcaseCTASection onOpenForm={() => setOpenForm(true)} />
 
-      {/* Enhanced KPI stats with data inside circle and bigger graph */}
-      <KPIStatsSection stats={stats} />
+      {/* University Partnership Benefits */}
+      <UniversityBenefitsSection />
 
-      {/* FEATURES with Shadow & Lift animation */}
-      <section className="py-20 bg-[#fcf6f1]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="text-center mb-16">
-              <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                University Partnership Benefits
-              </h3>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                BridgeLabs amplifies your curriculum and career support for every student.
-              </p>
-            </div>
-          </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, i) => (
-              <Reveal key={feature.title} delay={i * 0.1}>
-                <div
-                  className="feature-wrap group relative rounded-2xl p-[2px]"
-                  style={{
-                    background:
-                      "linear-gradient(120deg, rgba(245,158,11,0.45), rgba(236,72,153,0.45), rgba(99,102,241,0.45), rgba(20,184,166,0.45))",
-                    backgroundSize: "300% 300%",
-                    animation: "gradientShift 12s ease infinite"
-                  }}
-                >
-                  {/* Floor shadow for lift illusion */}
-                  <span className="feature-shadow" aria-hidden />
-                  <div className="feature-card rounded-2xl bg-white p-8 text-center">
-                    <div className={`feature-icon mx-auto mb-5 w-14 h-14 flex items-center justify-center text-3xl rounded-full ${feature.color} shadow`}>
-                      {feature.icon}
-                    </div>
-                    <h4 className="font-semibold text-lg text-gray-900 mb-2">{feature.title}</h4>
-                    <p className="text-gray-600">{feature.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Anchor target for "How it works" buttons */}
+      <section id="how-it-works" className="py-2" aria-hidden />
 
-      {/* PARTNER LOGOS (replace with actual images) */}
+      {/* Selectable tracks */}
+      <PartnershipTracks
+        selectedSubjects={selectedSubjects}
+        onToggleSubject={toggleSubject}
+        onApplySelected={onApplySelected}
+      />
+
+      <TestimonialsStrip />
+
+      {/* Professional Certificates Section */}
+      <ProfessionalCertificatesSection onGetReport={() => setShowReportModal(true)} />
+
+      {/* PARTNER LOGOS (placeholder) */}
       <section className="py-16 bg-[#fcf6f1]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                Trusted By Leading Universities
-              </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Join a network of institutions advancing student success.
-              </p>
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Trusted By Leading Universities</h3>
+              <p className="text-gray-600 max-w-2xl mx-auto">Join a network of institutions advancing student success.</p>
             </div>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
@@ -584,14 +1234,17 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
-      {/* FINAL CALL TO ACTION with Kinetic Typography + Hover effects */}
+      {/* FINAL CALL TO ACTION */}
       <section className="py-20 bg-[#fcf6f1]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="cta-kinetic relative rounded-3xl p-12 lg:p-16 text-center shadow-xl bg-gradient-to-br from-white/80 to-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group overflow-hidden">
-              {/* Sheen sweep on hover */}
+            <div className="cta-kinetic relative rounded-3xl p-12 lg:p-16 text-center shadow-xl
+              bg-gradient-to-br from-white/80 to-white/40
+              hover:bg-gradient-to-br hover:from-yellow-100 hover:to-pink-200
+              transition-all duration-300
+              hover:shadow-2xl hover:-translate-y-2 hover:scale-100
+              group overflow-hidden">
               <span className="cta-sheen" aria-hidden />
-              {/* Kinetic heading */}
               <h3 className="kt-heading text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
                 <span className="kt-word" style={{ "--d": "0ms" }}>Ready</span>
                 <span className="kt-word" style={{ "--d": "120ms" }}>to</span>
@@ -600,18 +1253,20 @@ export default function ForUniversitiesPage() {
                 <span className="kt-word" style={{ "--d": "480ms" }}>University?</span>
               </h3>
 
-              {/* Sub text with subtle kinetic-in */}
               <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-10 leading-relaxed">
                 <span className="block kinetic-in" style={{ animationDelay: "120ms" }}>
                   Start the conversation with BridgeLabs.
                 </span>
                 <span className="block kinetic-in" style={{ animationDelay: "280ms" }}>
-                  Let’s build future-ready graduates together.
+                  Let's build future-ready graduates together.
                 </span>
               </p>
 
-              <button className="px-10 py-4 btn-gradient text-white rounded-lg font-bold text-lg transition-all duration-200 shadow-xl hover:shadow-2xl relative overflow-hidden">
-                <span className="relative z-10">Contact Us</span>
+              <button
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
+                className="px-10 py-4 btn-gradient text-white rounded-lg font-bold text-lg transition-all duration-200 shadow-xl hover:shadow-2xl relative overflow-hidden"
+              >
+                See How It Works
               </button>
             </div>
           </Reveal>
@@ -619,6 +1274,15 @@ export default function ForUniversitiesPage() {
       </section>
 
       <Footer />
+
+      {openForm && (
+        <ApplicationFormModal
+          open={openForm}
+          onClose={() => setOpenForm(false)}
+          preselectedCourses={preselectedCourses}
+        />
+      )}
+      {showReportModal && <CertificationReportModal open={showReportModal} onClose={() => setShowReportModal(false)} />}
     </div>
   )
 }
