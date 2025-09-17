@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../app/components/footer/page"
 import Header from "../../src/app/components/header/page"
 import ScrollFeatures from "./components/scroll_feature/ScrollFeatures";
+import { MentorSpotlight } from "./mentorship/mentors";
 
 // Scroll Animation Hook
 const useScrollAnimation = () => {
@@ -234,6 +235,8 @@ export default function HomePage() {
   </div>
 </div>
 
+
+          <MentorSpotlight />
 
           {/* TESTIMONIALS */}
           <div 
