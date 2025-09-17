@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-
+import Header from "../components/header/page"
 // Reveal wrapper
 function Reveal({ children, delay = 0, y = 24, className = "" }) {
   const ref = useRef(null)
@@ -304,7 +304,9 @@ export default function TestimonialsPage() {
   const nextSectionTransform = Math.max(0, 100 - (scrollY / 6))
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <>
+    <Header/>
+    <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
       <style jsx global>{`
         @keyframes shine {
           0% { transform: translateX(-150%); }
@@ -319,27 +321,12 @@ export default function TestimonialsPage() {
       `}</style>
 
       <div className="fixed top-6 left-6 z-50">
-        <Link
-          href="/"
-          className="group flex items-center gap-0 hover:gap-2 px-3 hover:px-4 py-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white overflow-hidden"
-        >
-          <svg
-            className="w-5 h-5 text-gray-600 group-hover:text-yellow-500 transition-colors flex-shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 whitespace-nowrap opacity-0 group-hover:opacity-100 max-w-0 group-hover:max-w-xs transition-all duration-300 overflow-hidden">
-            Back to Home
-          </span>
-        </Link>
+       
       </div>
 
       {/* HERO SECTION with scroll animations */}
       <section 
-        className="bg-white relative overflow-hidden min-h-screen flex items-center"
+        className="bg-[#fcf6f1] relative overflow-hidden min-h-screen flex items-center"
         style={{
           opacity: heroOpacity,
           transform: `scale(${heroScale})`,
@@ -480,7 +467,7 @@ export default function TestimonialsPage() {
 
       {/* Video Testimonials Showcase Section with scroll animation */}
       <section 
-        className="py-20 bg-gray-50 relative z-10"
+        className="py-20 bg-gray-50 relative z-10 bg-[#fcf6f1]"
         style={{
           transform: `translateY(${nextSectionTransform}px)`,
           boxShadow: '0 -20px 40px rgba(0,0,0,0.1)',
@@ -757,5 +744,7 @@ export default function TestimonialsPage() {
         </div>
       </section>
     </div>
+  </>
   )
+  
 }
