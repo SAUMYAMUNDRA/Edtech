@@ -39,7 +39,7 @@ export default function HomePage() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const courses = [
+  const offerings = [
     {
       id: 'dsa',
       title: "DSA Mastery",
@@ -112,13 +112,11 @@ export default function HomePage() {
               <div className="text-sm text-gray-500 mb-3 tracking-wide uppercase animate-pulse">
                 Industry • Universities • Curriculum
               </div>
-              <h1 className="text-5xl font-bold leading-snug mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent hover:from-yellow-600 hover:via-yellow-500 hover:to-orange-500 transition-all duration-500">
+              <h1 className="text-5xl font-bold leading-snug mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent transition-all duration-500">
                 Bridging Industry & <br /> Academia
               </h1>
               <p className="text-gray-700 mb-8 text-lg leading-relaxed hover:text-gray-800 transition-colors duration-300">
-                Connect top industrial mentors with universities to deliver
-                practical, rigorous courses in DSA, Competitive Programming and
-                Computer Science fundamentals — built for real-world hiring outcomes.
+                Connect top industrial mentors with universities to deliver practical, rigorous mentorship programs in DSA, Competitive Programming, and Computer Science fundamentals — built for real-world hiring outcomes.
               </p>
 
               <div className="flex gap-4">
@@ -161,61 +159,81 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* COURSES */}
-          <div 
-            id="courses"
-            data-scroll-animate
-            className={`text-center transition-all duration-1000 ease-out ${
-              visibleElements.courses 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
+          {/* offerings */}
+         <div 
+  id="offerings"
+  data-scroll-animate
+  className={`text-center transition-all duration-1000 ease-out ${
+    visibleElements.offerings 
+      ? 'opacity-100 translate-y-0' 
+      : 'opacity-0 translate-y-8'
+  }`}
+>
+  <h2 className="text-3xl font-bold mb-4 transition-colors duration-300">Our Offerings</h2>
+  <p className="text-gray-600 mb-12 hover:text-gray-700 transition-colors duration-300">
+    Empowering students and campuses through mentorship and career guidance.
+  </p>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {[
+      {
+        id: 1,
+        icon: "🎓",
+        title: "Student Mentorship",
+        description: "Personalized guidance to help students excel academically, build projects, and grow confidently.",
+      },
+      {
+        id: 2,
+        icon: "🏫",
+        title: "Campus Mentorship",
+        description: "Workshops, group mentorship, and collaborative sessions tailored for universities and colleges.",
+      },
+      {
+        id: 3,
+        icon: "💼",
+        title: "Career & Industry Readiness",
+        description: "Mock interviews, resume reviews, and soft skill training to prepare you for real-world success.",
+      },
+    ].map((offering, index) => (
+      <div
+        key={offering.id}
+        className={`bg-white p-6 rounded-xl shadow hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 cursor-pointer group relative overflow-hidden ${
+          visibleElements.offerings 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-8'
+        }`}
+        style={{ transitionDelay: `${index * 200 + 600}ms` }}
+        onMouseEnter={() => setHoveredCard(offering.id)}
+        onMouseLeave={() => setHoveredCard(null)}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-orange-50 transform scale-0 group-hover:scale-100 transition-transform duration-500 origin-center rounded-xl"></div>
+        <div className="relative z-10">
+          <div className="text-4xl mb-4 transform transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">
+            {offering.icon}
+          </div>
+          <h3 className="font-semibold text-xl mb-3 group-hover:text-yellow-700 transition-colors duration-300">
+            {offering.title}
+          </h3>
+          <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+            {offering.description}
+          </p>
+          <a 
+            href="#" 
+            className={`text-yellow-600 font-medium transition-all duration-300 hover:text-yellow-700 inline-flex items-center group-hover:translate-x-2 ${
+              hoveredCard === offering.id 
+                ? 'underline underline-offset-4 decoration-2 decoration-yellow-400' 
+                : ''
             }`}
           >
-            <h2 className="text-3xl font-bold mb-4 hover:text-yellow-600 transition-colors duration-300">Popular Courses</h2>
-            <p className="text-gray-600 mb-12 hover:text-gray-700 transition-colors duration-300">
-              Choose from industry-approved learning paths.
-            </p>
+            Explore 
+            <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {courses.map((course, index) => (
-                <div
-                  key={course.id}
-                  className={`bg-white p-6 rounded-xl shadow hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 cursor-pointer group relative overflow-hidden ${
-                    visibleElements.courses 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 200 + 600}ms` }}
-                  onMouseEnter={() => setHoveredCard(course.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-orange-50 transform scale-0 group-hover:scale-100 transition-transform duration-500 origin-center rounded-xl"></div>
-                  <div className="relative z-10">
-                    <div className="text-4xl mb-4 transform transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">
-                      {course.icon}
-                    </div>
-                    <h3 className="font-semibold text-xl mb-3 group-hover:text-yellow-700 transition-colors duration-300">
-                      {course.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                      {course.description}
-                    </p>
-                    <a 
-                      href="#" 
-                      className={`text-yellow-600 font-medium transition-all duration-300 hover:text-yellow-700 inline-flex items-center group-hover:translate-x-2 ${
-                        hoveredCard === course.id 
-                          ? 'underline underline-offset-4 decoration-2 decoration-yellow-400' 
-                          : ''
-                      }`}
-                    >
-                      Explore 
-                      <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* TESTIMONIALS */}
           <div 
@@ -227,7 +245,7 @@ export default function HomePage() {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-3xl font-bold mb-4 hover:text-yellow-600 transition-colors duration-300">What Our Students Say</h2>
+            <h2 className="text-3xl font-bold mb-4  transition-colors duration-300">What Our Students Say</h2>
             <p className="text-gray-600 mb-12 hover:text-gray-700 transition-colors duration-300">
               Hear from learners who transformed their careers.
             </p>
@@ -287,7 +305,7 @@ export default function HomePage() {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent hover:from-yellow-600 hover:to-orange-600 transition-all duration-500">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent  transition-all duration-500">
               Ready to Start Learning?
             </h2>
             <p className="text-gray-700 mb-8 text-lg hover:text-gray-800 transition-colors duration-300">
