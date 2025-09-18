@@ -1,3 +1,6 @@
+import React from 'react';
+import SocialMediaButtons from '../buttons/SocialMediaButtons.jsx';
+
 export default function Footer() {
   return (
     <footer className="bg-[#0a1a2f] text-gray-300 pt-12 pb-8 px-10">
@@ -66,11 +69,10 @@ export default function Footer() {
           © {new Date().getFullYear()} BridgeLabs. All rights reserved.
         </p>
 
-        {/* Social Links */}
-        <div className="flex gap-5 text-gray-400">
-          <a href="#" className="hover:text-yellow-400 transition">LinkedIn</a>
-          <a href="#" className="hover:text-yellow-400 transition">Twitter</a>
-          <a href="#" className="hover:text-yellow-400 transition">YouTube</a>
+        {/* Social Media Buttons */}
+        <div className="flex gap-5">
+          {/* Using SocialMediaButtons component */}
+          <SocialMediaButtons />
         </div>
       </div>
     </footer>

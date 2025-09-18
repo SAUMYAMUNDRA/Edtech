@@ -328,37 +328,9 @@ export default function MentorshipPage() {
           </div>
         
           <div className="relative">
-            {/* Left arrow button */}
-            <button
-              type="button"
-              aria-label="Scroll left"
-              onClick={() => {
-                if (sliderRef.current) sliderRef.current.scrollBy({ left: -320, behavior: "smooth" });
-              }}
-              // className="absolute top-1/2 -translate-y-1/2 left-0 z-20 bg-white shadow-lg rounded-full h-11 w-11 flex items-center justify-center border border-gray-200 hover:bg-yellow-100 transition active:scale-95"
-              // style={{ transform: 'translateY(-50%) translateX(-30%)', opacity: 0.95 }}
-            >
-              {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray-800">
-                <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-              </svg> */}
-            </button>
-            {/* Right arrow button */}
-            <button
-              type="button"
-              aria-label="Scroll right"
-              onClick={() => {
-                if (sliderRef.current) sliderRef.current.scrollBy({ left: 320, behavior: "smooth" });
-              }}
-              // className="absolute top-1/2 -translate-y-1/2 right-0 z-20 bg-white shadow-lg rounded-full h-11 w-11 flex items-center justify-center border border-gray-200 hover:bg-yellow-100 transition active:scale-95"
-              // style={{ transform: 'translateY(-50%) translateX(30%)', opacity: 0.95 }}
-            >
-              {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray-800">
-                <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-              </svg> */}
-            </button>
-            <div
+                        <div
               ref={sliderRef}
-              className="overflow-hidden cursor-grab select-none"
+              className="overflow-x-auto cursor-grab select-none"
               onMouseEnter={() => setPaused(true)}
               onMouseLeave={() => { handleMouseUp(); setPaused(false); }}
               onMouseDown={handleMouseDown}
