@@ -3,37 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Header from "../components/header/page"
 import Footer from "../components/footer/page"
-
-// Top scroll progress bar
-function ScrollProgressBar() {
-  const [progress, setProgress] = useState(0)
-  useEffect(() => {
-    let rafId = null
-    const onScroll = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        const total = document.documentElement.scrollHeight - window.innerHeight
-        setProgress(total > 0 ? Math.min(1, window.scrollY / total) : 0)
-        rafId = null
-      })
-    }
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll)
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
-    }
-  }, [])
-  return (
-    <div
-      style={{ transform: `scaleX(${progress})` }}
-      className="fixed left-0 top-0 h-1 w-full origin-left bg-yellow-500 z-[9999] transition-transform duration-150 ease-out"
-      aria-hidden
-    />
-  )
-}
+import ScrollFeatures from "../components/scroll_feature/ScrollFeatures"
 
 // Reveal-on-scroll animation
 function Reveal({ children, delay = 0, y = 32, className = "" }) {
@@ -77,28 +47,6 @@ function Reveal({ children, delay = 0, y = 32, className = "" }) {
     >
       {children}
     </div>
-  )
-}
-
-// Floating Scroll-to-Top button
-function ScrollToTop() {
-  const [show, setShow] = useState(false)
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 400)
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-  return (
-    <button
-      aria-label="Scroll to top"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-6 right-6 z-50 rounded-full shadow-xl bg-yellow-500 text-white w-12 h-12 flex items-center justify-center transition-all duration-300 ${
-        show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      } hover:bg-yellow-400`}
-    >
-      ↑
-    </button>
   )
 }
 
@@ -242,18 +190,12 @@ function ShowcaseCTASection({ onOpenForm }) {
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row gap-7">
                 <button
                   onClick={onOpenForm}
                   className="btn-gradient text-white px-7 py-3 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-shadow duration-300"
                 >
                   Get Started Now
-                </button>
-                <button
-                  onClick={scrollToHowItWorks}
-                  className="px-7 py-3 rounded-xl font-semibold shadow border border-gray-200 bg-white hover:border-yellow-400 transition"
-                >
-                  How it works
                 </button>
               </div>
             </div>
@@ -345,12 +287,78 @@ function UniversityBenefitsSection() {
 /* Adds selectable circle on each card, and an "Apply with selected tracks" button that opens the form with selections pre-checked */
 function PartnershipTracks({ selectedSubjects, onToggleSubject, onApplySelected }) {
   const subjects = [
-    { key: "DSA", name: "DSA", icon: "🧮", color: "bg-blue-100 text-blue-700", description: "Data Structures & Algorithms" },
-    { key: "System Design", name: "System Design", icon: "🏗️", color: "bg-purple-100 text-purple-700", description: "Scalable Architecture" },
-    { key: "Data Analytics", name: "Data Analytics", icon: "📊", color: "bg-green-100 text-green-700", description: "Data Science & Analytics" },
-    { key: "Backend/Frontend", name: "Backend/Frontend", icon: "💻", color: "bg-orange-100 text-orange-700", description: "Full Stack Development" },
-    { key: "Real World Projects", name: "Real World Projects", icon: "🚀", color: "bg-red-100 text-red-700", description: "Industry-Level Projects" },
-    { key: "MERN & MEAN", name: "MERN & MEAN", icon: "⚛️", color: "bg-teal-100 text-teal-700", description: "Modern Tech Stacks" },
+    {
+      key: "DSA",
+      name: "DSA",
+      icon: "🧮",
+      color: "bg-blue-100 text-blue-700",
+      description: "Data Structures & Algorithms",
+      highlights: [
+        "Crack coding interviews",
+        "Master problem-solving",
+        "Build strong CS fundamentals"
+      ]
+    },
+    {
+      key: "System Design",
+      name: "System Design",
+      icon: "🏗️",
+      color: "bg-purple-100 text-purple-700",
+      description: "Scalable Architecture",
+      highlights: [
+        "Design real-world systems",
+        "Learn patterns & scalability",
+        "Prepare for tech interviews"
+      ]
+    },
+    {
+      key: "Data Analytics",
+      name: "Data Analytics",
+      icon: "📊",
+      color: "bg-green-100 text-green-700",
+      description: "Data Science & Analytics",
+      highlights: [
+        "Analyze real datasets",
+        "Build predictive models",
+        "Create data-driven insights"
+      ]
+    },
+    {
+      key: "Backend/Frontend",
+      name: "Backend/Frontend",
+      icon: "💻",
+      color: "bg-orange-100 text-orange-700",
+      description: "Full Stack Development",
+      highlights: [
+        "Build complete applications",
+        "Work with APIs & databases",
+        "Deploy production projects"
+      ]
+    },
+    {
+      key: "Real World Projects",
+      name: "Real World Projects",
+      icon: "🚀",
+      color: "bg-red-100 text-red-700",
+      description: "Industry-Level Projects",
+      highlights: [
+        "Hands-on capstone projects",
+        "Solve industry challenges",
+        "Showcase portfolio work"
+      ]
+    },
+    {
+      key: "MERN & MEAN",
+      name: "MERN & MEAN",
+      icon: "⚛️",
+      color: "bg-teal-100 text-teal-700",
+      description: "Modern Tech Stacks",
+      highlights: [
+        "Learn React, Angular & Node",
+        "Master MongoDB & Express",
+        "Build scalable web apps"
+      ]
+    }
   ]
 
   return (
@@ -366,7 +374,6 @@ function PartnershipTracks({ selectedSubjects, onToggleSubject, onApplySelected 
             </p>
           </div>
         </Reveal>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {subjects.map((subject, i) => {
             const isSelected = selectedSubjects.has(subject.key)
@@ -404,18 +411,12 @@ function PartnershipTracks({ selectedSubjects, onToggleSubject, onApplySelected 
                         <h3 className="font-bold text-xl text-gray-900 mb-1">{subject.name}</h3>
                         <p className="text-gray-600 text-sm mb-6">{subject.description}</p>
                         <div className="space-y-2 text-left text-gray-700 text-sm max-w-xs mx-auto">
-                          <div className="flex items-center gap-2">
-                            <span className="text-yellow-500">•</span>
-                            <span>Industry expert mentors</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-yellow-500">•</span>
-                            <span>Hands-on project guidance</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-yellow-500">•</span>
-                            <span>Real-world applications</span>
-                          </div>
+                          {subject.highlights.map((line, idx) => (
+                            <div key={idx} className="flex items-center gap-2">
+                              <span className="text-yellow-500">•</span>
+                              <span>{line}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -536,7 +537,8 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
   const firstFieldRef = useRef(null)
   const bodyRef = useRef(null)
 
-  const [form, setForm] = useState({
+  // Helper to get initial form state
+  const getInitialForm = () => ({
     university: "",
     name: "",
     email: "",
@@ -567,6 +569,8 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
     message: "",
     consent: false
   })
+
+  const [form, setForm] = useState(getInitialForm())
 
   // Apply preselected courses whenever modal opens with a new list
   useEffect(() => {
@@ -635,22 +639,33 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
     }
   }
 
+  // Phone validation helper
+  function isValidPhone(phone) {
+    // Basic validation: starts with +, 10-15 digits
+    return /^\+\d{1,3}\s?\(?\d{1,4}\)?[\d\s-]{7,}$/.test(phone);
+  }
+
   const onSubmit = (e) => {
-    e.preventDefault()
-    const requiredOrder = ["university", "name", "email", "consent"]
+    e.preventDefault();
+    const requiredOrder = ["university", "name", "email", "consent"];
     const firstMissing = requiredOrder.find((key) =>
       key === "consent" ? !form.consent : !String(form[key]).trim()
-    )
+    );
     if (firstMissing) {
-      scrollToField(firstMissing)
-      return
+      scrollToField(firstMissing);
+      return;
     }
-    setSubmitted(true)
-    setTimeout(() => {
-      onClose()
-      setSubmitted(false)
-      setForm((f) => ({ ...f, message: "" }))
-    }, 1400)
+    if (!isValidPhone(form.phone)) {
+      scrollToField("phone");
+      alert("Please enter a valid phone number (e.g., +1 (555) 123-4567)");
+      return;
+    }
+    setSubmitted(true);
+    // setTimeout(() => {
+    //   onClose();
+    //   setSubmitted(false);
+    //   setForm(getInitialForm());
+    // }, 1400);
   }
 
   const scrollTop = () => bodyRef.current?.scrollTo({ top: 0, behavior: "smooth" })
@@ -777,11 +792,13 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
                           <input
+                          type="tel"
                             name="phone"
                             value={form.phone}
                             onChange={handleChange}
+                            required
                             placeholder="+1 (555) 123-4567"
                             className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
                           />
@@ -826,27 +843,9 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
 
                     {/* Program Details */}
                     <div className="bg-white/70 rounded-xl p-6 border border-gray-100">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <span className="text-orange-600">📋</span>
-                        Program Details
-                      </h4>
+                      
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Student Cohort Size</label>
-                          <select
-                            name="cohortSize"
-                            value={form.cohortSize}
-                            onChange={handleChange}
-                            className="w-full rounded-lg border border-gray-300 bg-white p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
-                          >
-                            <option value="<50">Less than 50 students</option>
-                            <option value="50-100">50-100 students</option>
-                            <option value="100-250">100-250 students</option>
-                            <option value="250-500">250-500 students</option>
-                            <option value="500-1000">500-1000 students</option>
-                            <option value="1000+">1000+ students</option>
-                          </select>
-                        </div>
+                        
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Start Date</label>
                           <input
@@ -889,7 +888,11 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
                       <div className="flex flex-col sm:flex-row justify-end gap-3 pt-2">
                         <button
                           type="button"
-                          onClick={onClose}
+                          onClick={() => {
+                            setForm(getInitialForm());
+                            setSubmitted(false);
+                            onClose();
+                          }}
                           className="px-6 py-3 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 font-medium transition-colors"
                         >
                           Cancel
@@ -1188,8 +1191,6 @@ export default function ForUniversitiesPage() {
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900 relative">
       <GlobalStyles />
-      <ScrollProgressBar />
-      <ScrollToTop />
       <Header />
 
       {/* HERO */}
@@ -1274,7 +1275,7 @@ export default function ForUniversitiesPage() {
       </section>
 
       <Footer />
-
+      <ScrollFeatures/>
       {openForm && (
         <ApplicationFormModal
           open={openForm}
