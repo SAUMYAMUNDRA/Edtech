@@ -207,7 +207,7 @@ const MENTORS = [
     topSkills: ["Business Intelligence", "Analytical Solutions","Web Analytics"],
     rating: 4.9,
     sessions: 360,
-    expYears: 1,
+    expYears: 4,
     linkedin: "https://www.linkedin.com/in/mohammad-inamul-haq-741901192/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       photo: "https://media.licdn.com/dms/image/v2/D5603AQHBSAtxyEi3yw/profile-displayphoto-shrink_400_400/B56ZgnBkweG4As-/0/1753001382636?e=1761177600&v=beta&t=MCU85en6hdAXwaLuWCkCh0eBRQ7ZbOuzo5GD-pcgneY",
     bio: "",
@@ -246,13 +246,14 @@ export default function ApplyMentorshipPage() {
   const [showTimePicker, setShowTimePicker] = useState(false);
 
   const goalDomains = [
-  "Software Engineering",
+  "Frontend Engineer",
+  "Backend Engineer",
   "Full‑Stack Development",
   "Data Science / ML",
-  "System Design",
   "DevOps / Cloud",
-  "Product Management",
   "UI/UX Design",
+   "Database Administrator",
+   "Network Security",
   "Other"
 ];
 // Step 4: Agenda for session
@@ -389,7 +390,7 @@ const agendaOptions = [
                   <h2 className="text-2xl font-semibold">Select a mentor for your 1:1 session</h2>
                   <p className="text-gray-700 mt-2">Work directly with industry engineers for focused growth. Get clarity on what to learn, how to practice, and how to prepare for interviews with a personalized plan.</p>
                   <ul className="mt-5 space-y-3 text-gray-800">
-                    {["Personalized learning roadmap", "Weekly 1:1 sessions with action items", "Mock interviews and detailed feedback", "Resume & LinkedIn review", "Project and code reviews"].map((t, i) => (
+                    {["Personalized learning roadmap", " 1:1 sessions with action items", "Mock interviews and detailed feedback", "Resume & LinkedIn review", "Project and code reviews"].map((t, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="mt-1 w-2.5 h-2.5 bg-yellow-400 rounded-full" /> <span>{t}</span>
                       </li>
@@ -402,14 +403,13 @@ const agendaOptions = [
                 <div className="p-5 bg-[#fcf6f1] border border-yellow-400/30 rounded-xl">
                   <div className="font-semibold">What to expect</div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
-                    {[{ k: "Avg Mentor Exp.", v: "7.5 yrs" }, { k: "Mentors", v: "150+" }, { k: "Sessions", v: "25k+" }, { k: "Student Offers", v: "3k+" }].map((x, i) => (
+                    {[{ k: "Avg Mentor Exp.", v: "7.5 yrs" }, { k: "Mentors", v: "150+" }, { k: "Sessions", v: "1k+" }].map((x, i) => (
                       <div key={i} className="bg-white rounded-lg border border-gray-200 p-4">
                         <div className="text-sm text-gray-600">{x.k}</div>
                         <div className="text-xl font-semibold">{x.v}</div>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 text-sm text-gray-700">You can change mentors anytime before your first session is completed.</div>
                 </div>
               </div>
             )}
@@ -422,16 +422,28 @@ const agendaOptions = [
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                   <div>
                     <label className="block text-sm font-medium mb-1">Work experience (Years)</label>
-                    <select value={prefs.years} onChange={e => setPrefs(p => ({ ...p, years: e.target.value }))} className={`w-full px-4 py-2 rounded-md border ${prefErrors.years ? "border-red-400" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-yellow-400`}>
-                      {Array.from({ length: 41 }).map((_, i) => (<option key={i} value={String(i)}>{i}</option>))}
-                    </select>
+                    <input
+                      type="number"
+                      min="0"
+                      max="40"
+                      value={prefs.years}
+                      onChange={e => setPrefs(p => ({ ...p, years: e.target.value }))}
+                      placeholder="Enter years"
+                      className={`w-full px-4 py-2 rounded-md border ${prefErrors.years ? "border-red-400" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-yellow-400`}
+                    />
                     {prefErrors.years && <p className="text-sm text-red-600 mt-1">{prefErrors.years}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1">Work experience (Months)</label>
-                    <select value={prefs.months} onChange={e => setPrefs(p => ({ ...p, months: e.target.value }))} className={`w-full px-4 py-2 rounded-md border ${prefErrors.months ? "border-red-400" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-yellow-400`}>
-                      {Array.from({ length: 12 }).map((_, i) => (<option key={i} value={String(i)}>{i}</option>))}
-                    </select>
+                    <input
+                      type="number"
+                      min="0"
+                      max="11"
+                      value={prefs.months}
+                      onChange={e => setPrefs(p => ({ ...p, months: e.target.value }))}
+                      placeholder="Enter months"
+                      className={`w-full px-4 py-2 rounded-md border ${prefErrors.months ? "border-red-400" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-yellow-400`}
+                    />
                     {prefErrors.months && <p className="text-sm text-red-600 mt-1">{prefErrors.months}</p>}
                   </div>
                   <div className="md:col-span-1">
@@ -469,8 +481,6 @@ const agendaOptions = [
                             <div className="font-semibold text-lg">{m.name}</div>
                             <div className="text-sm text-gray-600">{m.role}, {m.company}</div>
                             <div className="mt-1 flex items-center gap-3 text-xs text-gray-600">
-                              <span className="inline-flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> {m.rating}</span>
-                              <span className="inline-flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14l4-4h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg> {m.sessions} sessions</span>
                               <span className="inline-flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M6 2h12v2H6zM6 20h12v2H6zM4 6h16v12H4z"/></svg> {m.expYears} yrs</span>
                             </div>
                           </div>
