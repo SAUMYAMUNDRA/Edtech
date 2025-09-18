@@ -5,6 +5,52 @@ import Footer from "../../components/footer/page";
 import LinkedInButton from "../../components/buttons/LinkedInButton";
 import SpotlightCard from "../../components/card/SpotlightCard";
 
+// CompanyFilter component
+function CompanyFilter({mentors, value, onFilterCompany}) {
+  // Extract companies from main field and experiences
+  // Add extra dummy companies for filter (these will show No results)
+  const companies = React.useMemo(() => {
+    const set = new Set();
+    for (const mentor of mentors) {
+      if (mentor.company) set.add(mentor.company);
+      if (mentor.experiences && Array.isArray(mentor.experiences)) {
+        for (const exp of mentor.experiences) {
+          if (exp.org) set.add(exp.org);
+        }
+      }
+    }
+    [
+      "Globex Corp",
+      "Soylent Technologies",
+      "Umbrella Inc",
+      "Hooli",
+      "Acme Widgets",
+      "Monarch Solutions",
+      "Vandelay Industries",
+      "Adobe",
+      "Cisco",
+      "Apple"
+    ].forEach(dummy => set.add(dummy));
+    return Array.from(set).sort();
+  }, [mentors]);
+  return (
+    <div className="flex flex-col sm:flex-row gap-3 py-2">
+      <label htmlFor="filter-company" className="text-sm font-medium text-gray-700">Filter by Company/Organization:</label>
+      <select
+        id="filter-company"
+        value={value}
+        onChange={e => onFilterCompany(e.target.value)}
+        className="w-full sm:w-auto px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+      >
+        <option value="">All Companies</option>
+        {companies.map(c => (
+          <option key={c} value={c}>{c}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 const MENTORS = [
   {
     id: 1,
@@ -223,6 +269,17 @@ const MENTORS = [
 
 export default function ApplyMentorshipPage() {
   const mentors = useMemo(() => MENTORS, []);
+
+  // Company filter state/logic
+  const [filterCompany, setFilterCompany] = useState("");
+  // Filter mentors based on the selected company
+  const filteredMentors = useMemo(() => {
+    if (!filterCompany) return mentors;
+    return mentors.filter(mentor =>
+      mentor.company === filterCompany ||
+      (mentor.experiences && mentor.experiences.some(e => e.org === filterCompany))
+    );
+  }, [mentors, filterCompany]);
 
   const [step, setStep] = useState(1);
   const [prefs, setPrefs] = useState({ years: "0", months: "0", goal: "" });
@@ -471,10 +528,15 @@ const agendaOptions = [
                   </div>
                   <button onClick={() => setStep(2)} className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100">Edit Preferences</button>
                 </div>
+
+                {/* COMPANY FILTER DROPDOWN */}
+                <CompanyFilter mentors={mentors} onFilterCompany={(company) => setFilterCompany(company)} value={filterCompany} />
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {mentors.map(m => (
-                    <SpotlightCard key={m.id} spotlightColor="rgba(0, 229, 255, 0.10)" className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition overflow-hidden !p-0">
-                      <div className="p-5">
+                  {filteredMentors.length === 0 ? (<div className="col-span-full text-center text-gray-500 py-12">No results found</div>) :
+                  filteredMentors.map(m => (
+                    <SpotlightCard key={m.id} spotlightColor="rgba(0, 229, 255, 0.10)" className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition overflow-hidden !p-0 flex flex-col h-full">
+                    <div className="p-5 flex flex-col h-full">
                         <div className="flex items-center gap-4">
                           <img src={m.photo} alt={m.name} className="h-16 w-16 rounded-lg object-cover" />
                           <div className="flex-1">
@@ -491,7 +553,7 @@ const agendaOptions = [
                             <span key={idx} className="px-2 py-0.5 text-xs bg-yellow-400/30 text-gray-900 rounded">{t}</span>
                           ))}
                         </div>
-                        <div className="mt-5 flex items-center justify-between">
+                        <div className="mt-auto flex items-center justify-between gap-3 pt-4">
                           <LinkedInButton href={m.linkedin} ariaLabel={`View ${m.name}'s LinkedIn`} />
                           <button onClick={() => openConfirmMentor(m)} className="px-4 py-2 rounded-md bg-gray-900 text-white hover:bg-black transition-all duration-200 transform hover:scale-105">Book Session</button>
                         </div>

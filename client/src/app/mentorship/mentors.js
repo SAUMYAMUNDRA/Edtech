@@ -308,30 +308,17 @@ export function MentorSpotlight() {
         <p className="text-gray-600 mt-2">Top engineers guiding you at every step.</p>
       </div>
 
-      <div className="relative">
-        {/* Left arrow button */}
-        <button
-          type="button"
-          aria-label="Scroll left"
-          onClick={() => sliderRef.current?.scrollBy({ left: -320, behavior: "smooth" })}
-        />
-
-        {/* Right arrow button */}
-        <button
-          type="button"
-          aria-label="Scroll right"
-          onClick={() => sliderRef.current?.scrollBy({ left: 320, behavior: "smooth" })}
-        />
-
+      <div className="relative" style={{ minHeight: 380 }}>
+        
         <div
           ref={sliderRef}
-          className="overflow-hidden cursor-grab select-none"
+          className="overflow-x-auto scrollbar-hide cursor-grab select-none"
+          style={{ maxWidth: '1200px', margin: '0 auto', scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => { handleMouseUp(); setPaused(false); }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
-          style={{ maxWidth: '1200px', margin: '0 auto' }}
         >
           <div
             ref={trackRef}
