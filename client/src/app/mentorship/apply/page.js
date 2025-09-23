@@ -265,6 +265,28 @@ const MENTORS = [
     ],
     domains: ["Data Scientist","Data Analyst"],
   },
+  {
+    id: 11,
+    name: "Jayant Pranjal",
+    role: "Program Associate",
+    company: "Wells Fargo",
+    studied: "IIT(BHU), Varanasi",
+    skills: ["Django REST Framework", "Javascript", "Java","Algorithms"],
+    topSkills: ["Mern Stack", "Django","Python"],
+    rating: 4.9,
+    sessions: 320,
+    expYears: 1,
+    linkedin: "https://www.linkedin.com/in/jayant-pranjal/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      photo: "null",
+    bio: "",
+    experiences: [
+      { org: "Wells Fargo", role: "Program Associate", year: "Aug 2025-now" },
+      { org: "Forge Code", role: "Software Engineer Intern", year: "Jul 2025-Aug 2025" },
+      { org: "The Linux foundation", role: "Software Engineer Intern", year: "Aug 2024-Oct 2024" },
+       { org: "Wells Fargo", role: "Software Engineer Intern", year: "May 2024-Jul 2024" }
+    ],
+    domains: ["Software Engineering", "Program Associate"],
+  },
 ];
 
 export default function ApplyMentorshipPage() {
