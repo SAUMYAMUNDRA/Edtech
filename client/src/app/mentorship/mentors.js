@@ -182,6 +182,24 @@ export const mentors = [
         "Interview and career guidance"
       ]
     },
+    {
+      name: "Jayant Pranjal",
+      role: "Program Associate, Wells Fargo",
+      tags: ["Mern Stack", "Django","Python"],
+      photo: "",
+      linkedin: "https://www.linkedin.com/in/jayant-pranjal/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      description: "",
+      expertise: [
+        "Algorithms",
+        "Django REST Framework",
+        "Competitive Programming"
+      ],
+      whatYouGet: [
+        "Career mentorship",
+        "backend walkthroughs",
+        "Resume & code reviews"
+      ]
+    },
   ];
 
 export function MentorSpotlight() {
