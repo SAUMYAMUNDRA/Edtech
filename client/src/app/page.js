@@ -64,7 +64,7 @@ export default function HomePage() {
   const testimonials = [
     {
       id: 'amit',
-      text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to BridgeLabs.",
+      text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to.",
       name: "Amit Kumar",
       role: "Software Engineer, Google",
       avatar: "👨‍💻"
@@ -78,7 +78,7 @@ export default function HomePage() {
     },
     {
       id: 'ravi',
-      text: "BridgeLabs bridges the gap between theory and practice. Truly a career accelerator!",
+      text: "We bridges the gap between theory and practice. Truly a career accelerator!",
       name: "Ravi Singh", 
       role: "Full Stack Dev, Microsoft",
       avatar: "👨‍🎓"
