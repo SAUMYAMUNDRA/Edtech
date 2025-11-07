@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="w-10 h-10 bg-gray-100 flex justify-center items-center rounded">
               <span className="text-[#0a1a2f] font-bold text-lg">B</span>
             </div>
-            <span className="font-bold text-2xl text-white">BridgeLabs</span>
+            <span className="font-bold text-2xl text-white"></span>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Empowering learners with cutting-edge EdTech solutions.  
@@ -66,7 +66,7 @@ export default function Footer() {
       {/* Divider */}
       <div className="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-gray-500 text-sm">
-          © {new Date().getFullYear()} BridgeLabs. All rights reserved.
+          © {new Date().getFullYear()}  All rights reserved.
         </p>
 
         {/* Social Media Buttons */}

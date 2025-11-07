@@ -665,7 +665,7 @@ const agendaOptions = [
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div className="p-4 bg-white rounded-lg border border-gray-200">
                         <div className="text-sm text-gray-600">Platform</div>
-                        <div className="text-lg font-semibold">Your BridgeLabs Dashboard</div>
+                        <div className="text-lg font-semibold">Your Dashboard</div>
                       </div>
                       <div className="p-4 bg-white rounded-lg border border-gray-200">
                         <div className="text-sm text-gray-600">Duration</div>

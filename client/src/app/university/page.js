@@ -254,7 +254,7 @@ function UniversityBenefitsSection() {
               University Partnership Benefits
             </h3>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              BridgeLabs amplifies your curriculum and career support for every student.
+               amplifies your curriculum and career support for every student.
             </p>
           </div>
         </Reveal>
@@ -449,7 +449,7 @@ function PartnershipTracks({ selectedSubjects, onToggleSubject, onApplySelected 
 function TestimonialsStrip() {
   const quotes = [
     {
-      q: "BridgeLabs made it easy to embed employability into our curriculum without adding faculty load.",
+      q: "made it easy to embed employability into our curriculum without adding faculty load.",
       a: "Dean, School of Engineering",
     },
     {
@@ -716,7 +716,7 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
             {/* Header */}
             <div className="flex items-center justify-between p-6 sm:p-8 border-b bg-white">
               <div>
-                <h3 className="text-2xl font-extrabold text-gray-900">Partner with BridgeLabs</h3>
+                <h3 className="text-2xl font-extrabold text-gray-900">Partner with Us</h3>
                 <p className="text-sm text-gray-600 mt-1">Transform your students' career prospects</p>
               </div>
               <button
@@ -810,7 +810,7 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
                     <div className="bg-white/70 rounded-xl p-6 border border-gray-100">
                       <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                         <span className="text-green-600">🤝</span>
-                        What do you need from BridgeLabs?
+                        What do you need from Us?
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         <CheckboxPill name="needs.mentors" label="Industry Mentors" checked={form.needs.mentors} icon="👨‍💼" />
@@ -881,7 +881,7 @@ function ApplicationFormModal({ open, onClose, preselectedCourses = [] }) {
                           className="accent-yellow-500 h-4 w-4 mt-0.5 rounded"
                         />
                         <span>
-                          I agree to be contacted by BridgeLabs regarding this partnership inquiry and understand that my information will be used to provide relevant program details and partnership opportunities. *
+                          I agree to be contacted by Us regarding this partnership inquiry and understand that my information will be used to provide relevant program details and partnership opportunities. *
                         </span>
                       </label>
 
@@ -1256,7 +1256,7 @@ export default function ForUniversitiesPage() {
 
               <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-10 leading-relaxed">
                 <span className="block kinetic-in" style={{ animationDelay: "120ms" }}>
-                  Start the conversation with BridgeLabs.
+                  Start the conversation with .
                 </span>
                 <span className="block kinetic-in" style={{ animationDelay: "280ms" }}>
                   Let's build future-ready graduates together.
