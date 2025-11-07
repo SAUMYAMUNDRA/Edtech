@@ -9,7 +9,7 @@ export default function Header() {
         <div className="w-8 h-8 bg-gray-900 flex justify-center items-center rounded">
           <span className="text-yellow-400 font-bold">-</span>
         </div>
-        <span className="font-bold text-xl">BridgeLabs</span>
+        <span className="font-bold text-xl"></span>
       </div>
 
       {/* Nav Links */}
