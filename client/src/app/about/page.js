@@ -5,9 +5,9 @@ import Header from "../components/header/page"
 import Footer from "../components/footer/page"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRouter } from "next/navigation"
-// Inline scroll progress bar (no extra file)
+
+// Inline scroll progress bar
 function ScrollProgress() {
-  const router = useRouter()
   const { scrollYProgress } = useScroll()
   return (
     <motion.div
@@ -33,9 +33,33 @@ const fade = (delay = 0) => ({
 })
 
 export default function AboutPage() {
-const router = useRouter()
+  const router = useRouter()
   const { scrollYProgress } = useScroll()
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, -40])
+
+  const testimonials = [
+    {
+      id: 'amit',
+      text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to the LearnComet mentors.",
+      name: "Amit Kumar",
+      role: "Software Engineer, Google",
+      avatar: "👨‍💻"
+    },
+    {
+      id: 'sneha', 
+      text: "Hands-on projects gave me real confidence in coding. The mentors are very supportive!",
+      name: "Sneha Verma",
+      role: "Backend Developer, Amazon",
+      avatar: "👩‍💻"
+    },
+    {
+      id: 'ravi',
+      text: "LearnComet bridges the gap between theory and practice. Truly a career accelerator!",
+      name: "Ravi Singh", 
+      role: "Full Stack Dev, Microsoft",
+      avatar: "👨‍🎓"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-[#fcf6f1] text-gray-900">
@@ -55,7 +79,6 @@ const router = useRouter()
             animate="show"
             variants={fade()}
           >
-            {/* Background gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-white/35 rounded-3xl pointer-events-none"></div>
             <div className="relative z-10">
               <motion.h1
@@ -65,10 +88,6 @@ const router = useRouter()
                 Helping{" "}
                 <span className="text-yellow-500 relative inline-block group transform-gpu transition-transform duration-300 hover:scale-[1.02]">
                   Ambitious Students
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-0 bottom-2 w-full h-3  group-hover:scale-x-[1.08]"
-                  />
                 </span>{" "}
                 Thrive Beyond the Classroom
               </motion.h1>
@@ -84,99 +103,92 @@ const router = useRouter()
         </div>
       </section>
 
-      {/* JOURNEY CARDS */}
-     {/* FOUNDER SECTION */}
-{/* OUR FOUNDER SECTION */}
-<section className="py-24 bg-[#fcf6f1]">
-  <div className="max-w-7xl mx-auto px-6 lg:px-8">
-    <motion.div
-      className="grid md:grid-cols-2 gap-16 items-start"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp(0.05)}
-    >
-      {/* LEFT: FOUNDER IMAGE */}
-      <div className="relative w-full aspect-[4/4] sm:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl group">
-        <Image
-          src="/about/founder.jpg"
-          alt="Founder of LearnComet"
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-700"
-        />
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/50 via-transparent to-transparent p-6">
-          <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg w-fit">
-            <h3 className="text-lg font-bold text-gray-900">Harshit Verma</h3>
-            <p className="text-sm text-gray-600">Founder & CEO, LearnComet</p>
-          </div>
+      {/* FOUNDER SECTION */}
+      <section className="py-24 bg-[#fcf6f1]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div
+            className="grid md:grid-cols-2 gap-16 items-start"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp(0.05)}
+          >
+            {/* LEFT: FOUNDER IMAGE */}
+            <div className="relative w-full aspect-[4/4] sm:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl group">
+              <Image
+                src="/about/founder.jpg"
+                alt="Founder of LearnComet"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/50 via-transparent to-transparent p-6">
+                <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg w-fit">
+                  <h3 className="text-lg font-bold text-gray-900">Harshit Verma</h3>
+                  <p className="text-sm text-gray-600">Founder & CEO, LearnComet</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: STORY CONTENT */}
+            <div>
+              <motion.h2
+                className="text-4xl font-bold text-gray-900 mb-6"
+                variants={fadeUp(0.1)}
+              >
+                Our Founder
+              </motion.h2>
+
+              <motion.div
+                className="space-y-6 text-lg text-gray-700 leading-relaxed"
+                variants={fadeUp(0.15)}
+              >
+                <p>
+                  <span className="font-semibold text-gray-900">Harshit Verma</span> is the engine behind
+                  our mission to reinvent how India learns technology. With a BCA from IP University and
+                  an MCA from JNU, he blends solid tech fundamentals with a passion for building scalable,
+                  future-ready learning experiences.
+                </p>
+
+                <p>
+                  With over <span className="font-semibold text-gray-900">10 years of experience</span> in
+                  operations, delivery, and high-impact projects across top MNCs, Harshit has seen
+                  firsthand how rapidly the tech landscape evolves—while traditional education often
+                  struggles to keep up.
+                </p>
+
+                <p>
+                  Before starting LearnComet, he led as <span className="font-semibold text-gray-900">
+                    Academic Head at SkyTech Academy
+                  </span>, shaping industry-aligned programs that trained IT professionals in today’s most
+                  in-demand skills:
+                </p>
+
+                <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-800 list-disc pl-5">
+                  <li>Azure & AWS</li>
+                  <li>Cyber Security</li>
+                  <li>DevOps</li>
+                  <li>CCNA & CCNP</li>
+                  <li>PMP</li>
+                  <li>AI, ML & AIML</li>
+                  <li>Agile & Scrum</li>
+                  <li>Data Warehousing</li>
+                </ul>
+
+                <p className="italic border-l-4 border-yellow-400 pl-4 text-gray-800">
+                  “Fast, practical, industry-aligned. No fluff. No outdated curriculum. Just the skills
+                  that matter.”
+                </p>
+
+                <p>
+                  Harshit founded this EdTech venture with one clear goal — to build a learning ecosystem
+                  that makes people <span className="font-semibold text-gray-900">career-ready</span>, not
+                  someday, but now. And under his leadership, that’s exactly what we’re delivering.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
-      </div>
-
-      {/* RIGHT: STORY CONTENT */}
-      <div>
-        <motion.h2
-          className="text-4xl font-bold text-gray-900 mb-6"
-          variants={fadeUp(0.1)}
-        >
-          Our Founder
-        </motion.h2>
-
-        <motion.div
-          className="space-y-6 text-lg text-gray-700 leading-relaxed"
-          variants={fadeUp(0.15)}
-        >
-          <p>
-            <span className="font-semibold text-gray-900">Harshit Verma</span> is the engine behind
-            our mission to reinvent how India learns technology. With a BCA from IP University and
-            an MCA from JNU, he blends solid tech fundamentals with a passion for building scalable,
-            future-ready learning experiences.
-          </p>
-
-          <p>
-            With over <span className="font-semibold text-gray-900">10 years of experience</span> in
-            operations, delivery, and high-impact projects across top MNCs, Harshit has seen
-            firsthand how rapidly the tech landscape evolves—while traditional education often
-            struggles to keep up.
-          </p>
-
-          <p>
-            Before starting LearnComet, he led as <span className="font-semibold text-gray-900">
-              Academic Head at SkyTech Academy
-            </span>, shaping industry-aligned programs that trained IT professionals in today’s most
-            in-demand skills:
-          </p>
-
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-800 list-disc pl-5">
-            <li>Azure & AWS</li>
-            <li>Cyber Security</li>
-            <li>DevOps</li>
-            <li>CCNA & CCNP</li>
-            <li>PMP</li>
-            <li>AI, ML & AIML</li>
-            <li>Agile & Scrum</li>
-            <li>Data Warehousing</li>
-          </ul>
-
-          
-
-          <p className="italic border-l-4 border-yellow-400 pl-4 text-gray-800">
-            “Fast, practical, industry-aligned. No fluff. No outdated curriculum. Just the skills
-            that matter.”
-          </p>
-
-          <p>
-            Harshit founded this EdTech venture with one clear goal — to build a learning ecosystem
-            that makes people <span className="font-semibold text-gray-900">career-ready</span>, not
-            someday, but now. And under his leadership, that’s exactly what we’re delivering.
-          </p>
-        </motion.div>
-      </div>
-    </motion.div>
-  </div>
-</section>
-
-
-
+      </section>
 
       {/* IMPACT SECTION */}
       <section className="py-20 bg-[#fcf6f1]">
@@ -198,13 +210,6 @@ const router = useRouter()
                 From career exploration and portfolio reviews to tech development and peer accountability groups,
                 we help students move from learning to doing with confidence.
               </p>
-              <a
-                href="/impact"
-                className="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-semibold text-lg group transition-colors duration-200"
-              >
-               
-                <span className="sr-only">Go to impact page</span>
-              </a>
             </motion.div>
             <motion.div
               className="relative"
@@ -214,174 +219,123 @@ const router = useRouter()
               variants={fadeUp(0.15)}
             >
               <div className="aspect-[16/11] rounded-2xl overflow-hidden shadow-xl group relative">
-               <Image
-  src="https://media.istockphoto.com/id/533241382/vector/mentoring-chart-with-keywords-and-icons-sketch.jpg?s=612x612&w=0&k=20&c=jrmrfgr8bVFD54ORCkgzt5GpldwHVxvQiwl8g1tOUGA="
-  alt="Mentorship concept illustration"
-  fill
-  className="object-cover group-hover:scale-105 transition-transform duration-700"
-/>
+                <Image
+                  src="https://media.istockphoto.com/id/533241382/vector/mentoring-chart-with-keywords-and-icons-sketch.jpg?s=612x612&w=0&k=20&c=jrmrfgr8bVFD54ORCkgzt5GpldwHVxvQiwl8g1tOUGA="
+                  alt="Mentorship concept illustration"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
                 <div className="absolute inset-0 bg-gradient-to-tr from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="pointer-events-none absolute inset-0 ring-0 group-hover:ring-1 ring-yellow-200/60 rounded-2xl transition-all duration-300"></div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* STORIES SECTION */}
+      {/* TESTIMONIALS SECTION */}
       <section className="py-20 bg-[#fcf6f1]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <header className="text-center mb-16">
-            <motion.h2
-              className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp(0.05)}
-            >
-              Mentorship Moments & Stories
-            </motion.h2>
-            <motion.p
-              className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp(0.12)}
-            >
-              Discover how guidance, peer support, and honest conversations are reshaping student journeys
-              and unlocking long‑term success.
-            </motion.p>
-          </header>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-14">
+          <motion.h2
+            className="text-4xl font-bold text-gray-900 mb-4"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp(0.05)}
+          >
+            What Our Students Say
+          </motion.h2>
+          <motion.p
+            className="text-lg text-gray-700 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp(0.12)}
+          >
+            Real stories from learners who’ve grown their skills and confidence through LearnComet.
+          </motion.p>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Peer Mentorship Is Redefining Student Success",
-                description:
-                  "Collaborative learning accelerates confidence. Students retain more when they teach, share, and challenge ideas together.",
-                date: "June 09, 2025",
-                image: "/about/peermentorship.jpg",
-                link: "/stories/peer-mentorship",
-              },
-              {
-                title: "Turning Feedback Into Real Career Momentum",
-                description:
-                  "Structured review cycles translate theory into portfolio‑ready outcomes while building professional communication skills.",
-                date: "June 24, 2025",
-                image: "/about/feedbackmomentum.jpg",
-                link: "/stories/feedback-momentum",
-              },
-              {
-                title: "Workshops That Bridge Education and Industry",
-                description:
-                  "Interactive sessions demystify tools, roles, and expectations—helping students build industry fluency early.",
-                date: "June 06, 2025",
-                image: "/about/workshps.jpg",
-                link: "/stories/workshops",
-              },
-            ].map((story, idx) => (
-              <motion.article
-                key={idx}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group transform-gpu hover:-translate-y-2 ring-1 ring-transparent hover:ring-yellow-200/70"
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={fadeUp(idx * 0.08)}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={story.image}
-                    alt={story.title}
-                    fill
-                    className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-6 lg:px-8">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={testimonial.id}
+              className="p-6 rounded-xl bg-white shadow hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group cursor-pointer relative overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-white transform scale-0 group-hover:scale-100 transition-transform duration-500 origin-center rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="text-3xl mb-4 transform transition-all duration-300 group-hover:scale-110">
+                  {testimonial.avatar}
                 </div>
-                <div className="p-6">
-                  <time className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2 block">
-                    {story.date}
-                  </time>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight group-hover:text-yellow-600 transition-colors duration-200">
-                    {story.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{story.description}</p>
-                  <a
-                    href={story.link}
-                    className="inline-flex items-center gap-1 text-yellow-600 hover:text-yellow-700 font-semibold text-sm uppercase tracking-wider relative group/link"
-                  >
-                    Read More
-                    <svg
-                      className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-600 group-hover/link:w-full transition-all duration-300"></span>
-                  </a>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                <p className="text-gray-600 mb-4 italic relative group-hover:text-gray-700 transition-colors duration-300">
+                  <span className="text-4xl text-yellow-400 absolute -top-2 -left-2 opacity-50">"</span>
+                  {testimonial.text}
+                  <span className="text-4xl text-yellow-400 absolute -bottom-2 -right-2 opacity-50">"</span>
+                </p>
+                <h4 className="font-semibold group-hover:text-yellow-700 transition-colors duration-300">
+                  {testimonial.name}
+                </h4>
+                <span className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300">
+                  {testimonial.role}
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* STATS SECTION */}
-     
-
       {/* CALL TO ACTION */}
-     <section className="py-20 bg-gradient-to-br from-white to-white">
-  <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-    <motion.h2
-      className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp(0.05)}
-    >
-      Join Our Mentorship Community
-    </motion.h2>
+      <section className="py-20 bg-gradient-to-br from-white to-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp(0.05)}
+          >
+            Join Our Mentorship Community
+          </motion.h2>
 
-    <motion.p
-      className="text-xl text-gray-700 max-w-3xl mx-auto mb-10"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp(0.12)}
-    >
-      Whether you're seeking guidance or ready to mentor others, become part of a community
-      that's transforming education through meaningful connections.
-    </motion.p>
+          <motion.p
+            className="text-xl text-gray-700 max-w-3xl mx-auto mb-10"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp(0.12)}
+          >
+            Whether you're seeking guidance or ready to mentor others, become part of a community
+            that's transforming education through meaningful connections.
+          </motion.p>
 
-    <motion.div
-      className="flex flex-col sm:flex-row gap-6 justify-center"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp(0.18)}
-    >
-      {/* ✅ Updated Button with Navigation */}
-      <button
-        onClick={() => router.push("/mentorship/apply")}
-        className="relative overflow-hidden group px-10 py-4 bg-yellow-400 text-black rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all duration-200 shadow-xl hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2"
-      >
-        <span className="relative z-10">Find a Mentor</span>
-        <span className="pointer-events-none absolute inset-0 rounded-lg ring-0 group-hover:ring-2 ring-yellow-200/70 transition-all duration-300"></span>
-        <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-white/40 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700"></span>
-      </button>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp(0.18)}
+          >
+            <button
+              onClick={() => router.push("/mentorship/apply")}
+              className="relative overflow-hidden group px-10 py-4 bg-yellow-400 text-black rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all duration-200 shadow-xl hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2"
+            >
+              <span className="relative z-10">Find a Mentor</span>
+              <span className="pointer-events-none absolute inset-0 rounded-lg ring-0 group-hover:ring-2 ring-yellow-200/70 transition-all duration-300"></span>
+            </button>
 
-      <button onClick={() => router.push("/mentorship")} className="relative overflow-hidden group px-10 py-4 bg-white text-gray-700 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200 border-2 border-gray-200 shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2">
-        <span className="relative z-10">Become a Mentor</span>
-        <span className="pointer-events-none absolute inset-0 rounded-lg ring-0 group-hover:ring-2 ring-yellow-200/70 transition-all duration-300"></span>
-        <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-yellow-200/30 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700"></span>
-      </button>
-    </motion.div>
-  </div>
-</section>
+            <button
+              onClick={() => router.push("/mentorship")}
+              className="relative overflow-hidden group px-10 py-4 bg-white text-gray-700 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200 border-2 border-gray-200 shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2"
+            >
+              <span className="relative z-10">Become a Mentor</span>
+              <span className="pointer-events-none absolute inset-0 rounded-lg ring-0 group-hover:ring-2 ring-yellow-200/70 transition-all duration-300"></span>
+            </button>
+          </motion.div>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <Footer />

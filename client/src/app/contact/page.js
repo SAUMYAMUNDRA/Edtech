@@ -26,7 +26,7 @@ export default function ContactUs() {
               <h2 className="text-xl font-bold flex items-center gap-2">
                 <span className="text-yellow-500 text-2xl">📞</span> Call 
               </h2>
-              <p className="mt-2">+91 9024047419, +91 9024047412</p>
+              <p className="mt-2">+91 96509 00492</p>
             </div>
 
             {/* Location */}

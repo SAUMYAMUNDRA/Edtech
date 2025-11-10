@@ -11,9 +11,7 @@ export default function Footer() {
         {/* Logo + About */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 bg-gray-100 flex justify-center items-center rounded">
-              <span className="text-[#0a1a2f] font-bold text-lg">B</span>
-            </div>
+            
             <span className="font-bold text-2xl text-white"></span>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
