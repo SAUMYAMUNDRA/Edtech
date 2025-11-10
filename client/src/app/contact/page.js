@@ -24,7 +24,7 @@ export default function ContactUs() {
             {/* Call Us */}
             <div>
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <span className="text-yellow-500 text-2xl">📞</span> Call Us
+                <span className="text-yellow-500 text-2xl">📞</span> Call 
               </h2>
               <p className="mt-2">+91 9024047419, +91 9024047412</p>
             </div>
@@ -34,7 +34,7 @@ export default function ContactUs() {
               <h2 className="text-xl font-bold flex items-center gap-2">
                 <span className="text-yellow-500 text-2xl">📍</span> Location
               </h2>
-              <p className="mt-2">Aajao ghar pe mere</p>
+              <p className="mt-2">Delhi</p>
             </div>
 
             {/* Business Hours */}
