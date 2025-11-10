@@ -63,24 +63,24 @@ export default function HomePage() {
 
   const testimonials = [
     {
-      id: 'amit',
+      id: 'Mohd',
       text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to.",
-      name: "Amit Kumar",
-      role: "Software Engineer, Google",
+      name: "Mohd Mujassim",
+      role: "Salesforce Developer, Accenture",
       avatar: "👨‍💻"
     },
     {
-      id: 'sneha', 
+      id: 'Masharib', 
       text: "Hands-on projects gave me real confidence in coding. The mentors are very supportive!",
-      name: "Sneha Verma",
-      role: "Backend Developer, Amazon",
+      name: "Masharib Yazdani",
+      role: "Associate Software Engineer, Accenture",
       avatar: "👩‍💻"
     },
     {
       id: 'ravi',
       text: "We bridges the gap between theory and practice. Truly a career accelerator!",
-      name: "Ravi Singh", 
-      role: "Full Stack Dev, Microsoft",
+      name: "Mohd Ehtesham", 
+      role: "ServiceNow Developer Intern, Bangmetric",
       avatar: "👨‍🎓"
     }
   ];
