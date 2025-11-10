@@ -1,7 +1,10 @@
 import React from 'react';
 import SocialMediaButtons from '../buttons/SocialMediaButtons.jsx';
-
+import Link from "next/link";
+// import { useRouter } from "next/navigation"
 export default function Footer() {
+  // const router = useRouter();
+
   return (
     <footer className="bg-[#0a1a2f] text-gray-300 pt-12 pb-8 px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -23,26 +26,27 @@ export default function Footer() {
         {/* Quick Links */}
         <div>
           <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:text-yellow-400 transition">About Us</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">How It Works</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Courses</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Partners</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Careers</a></li>
-          </ul>
+         <ul className="space-y-2">
+  <li>
+    <Link href="/about" className="hover:text-yellow-400 transition">
+      About Us
+    </Link>
+  </li>
+  <li>
+    <Link href="/mentorship" className="hover:text-yellow-400 transition">
+      Mentorship
+    </Link>
+  </li>
+  <li>
+    <Link href="/" className="hover:text-yellow-400 transition">
+      Home
+    </Link>
+  </li>
+</ul>
+
         </div>
 
-        {/* Resources */}
-        <div>
-          <h3 className="text-white font-semibold text-lg mb-4">Resources</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:text-yellow-400 transition">Blog</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Case Studies</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Community</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Help Center</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Support</a></li>
-          </ul>
-        </div>
+       
 
         {/* Newsletter */}
         <div>
