@@ -3,13 +3,24 @@ import React from "react";
 
 export default function Header() {
   return (
-    <header className="w-full flex justify-between items-center px-10 py-5 shadow bg-white font-bold text-xl">
+    <header className="w-full flex justify-between items-center px-8 py-2 shadow bg-white font-bold text-xl">
       {/* Logo */}
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-gray-900 flex justify-center items-center rounded">
-          <span className="text-yellow-400 font-bold">-</span>
-        </div>
-        <span className="font-bold text-xl"></span>
+      <div className="flex items-center gap-1">
+        {/* Replace '/logo.png' with your image placed in the public folder, e.g., /my-logo.jpg */}
+        <a href="/" className="flex items-center gap-1">
+          <img
+            src="/logo.png"
+            alt="Site logo"
+            className="ml-3 w-30 h-14 object-contain rounded"
+          />
+          {/* Brand image next to the logo. Place brand.png in client/public or change the path. */}
+          <img
+  src="/name.png"
+  alt="Brand text"
+  className=" align-left w-44 max-h-30  align-middle"
+/>  
+
+        </a>
       </div>
 
       {/* Nav Links */}
