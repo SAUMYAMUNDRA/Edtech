@@ -447,31 +447,11 @@ function PartnershipTracks({ selectedSubjects, onToggleSubject, onApplySelected 
 
 // Testimonials (short)
 function TestimonialsStrip() {
-  const quotes = [
-    {
-      q: "made it easy to embed employability into our curriculum without adding faculty load.",
-      a: "Dean, School of Engineering",
-    },
-    {
-      q: "Our students now talk to industry mentors weekly—placements improved in one term.",
-      a: "Head, Career Services",
-    },
-  ]
+  
   return (
     <section className="py-16 bg-[#fcf6f1]">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="rounded-3xl bg-white p-8 md:p-10 shadow-lg">
-          <div className="grid md:grid-cols-2 gap-8">
-            {quotes.map((c, i) => (
-              <Reveal key={i}>
-                <blockquote className="text-gray-800">
-                  <p className="text-lg">"{c.q}"</p>
-                  <footer className="mt-3 text-sm text-gray-500">— {c.a}</footer>
-                </blockquote>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+      
       </div>
     </section>
   )

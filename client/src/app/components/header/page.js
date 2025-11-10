@@ -9,16 +9,10 @@ export default function Header() {
         {/* Replace '/logo.png' with your image placed in the public folder, e.g., /my-logo.jpg */}
         <a href="/" className="flex items-center gap-1">
           <img
-            src="/logo.png"
+            src="/learncomet.jpg"
             alt="Site logo"
-            className="ml-10 h-14 object-contain rounded"
+            className=" w-80 h-30 object-contain rounded"
           />
-          {/* Brand image next to the logo. Place brand.png in client/public or change the path. */}
-          <img
-  src="/name.png"
-  alt="Brand text"
-  className="mr-10 max-h-30  align-middle"
-/>  
 
         </a>
       </div>

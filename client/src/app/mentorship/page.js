@@ -294,7 +294,7 @@ export default function MentorshipPage() {
                     <span className="text-gray-900 font-bold">B</span>
                   </div>
                   <div>
-                    <div className="font-semibold">BridgeLabs Mentorship</div>
+                    <div className="font-semibold">Learn Comet Mentorship</div>
                     <div className="text-sm text-gray-600">Personalized Learning Plan</div>
                   </div>
                 </div>
@@ -465,7 +465,7 @@ export default function MentorshipPage() {
         <section id="mentor_benefits" data-scroll-animate className={`max-w-7xl mx-auto px-8 py-6 transition-all duration-1000 ease-out ${visibleElements.mentor_benefits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="mb-8">
             <h2 className="text-3xl font-bold">Mentor Benefits</h2>
-            <p className="text-gray-600 mt-2">What you get with BridgeLabs mentorship.</p>
+            <p className="text-gray-600 mt-2">What you get with Learn Comet mentorship.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
