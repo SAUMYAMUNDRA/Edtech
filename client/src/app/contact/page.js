@@ -14,7 +14,6 @@ export default function ContactUs() {
           {/* Left Section */}
           <motion.div
             className="flex-1 space-y-10"
-            
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -27,6 +26,13 @@ export default function ContactUs() {
                 <span className="text-yellow-500 text-2xl">📞</span> Call 
               </h2>
               <p className="mt-2">+91 96509 00492</p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <span className="text-yellow-500 text-2xl"></span> Email 
+              </h2>
+              <p className="mt-2">h.verma0288@gmail.com</p>
             </div>
 
             {/* Location */}

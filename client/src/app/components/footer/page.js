@@ -11,15 +11,6 @@ export default function Footer() {
         {/* Logo + About */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-<<<<<<< HEAD
-            
-            <span className="font-bold text-2xl text-white"></span>
-=======
-            <a href="/" className="flex items-center gap-1">
-              <img src="/logo.png" alt="Site logo" className="h-9 w-auto object-contain rounded" />
-              {/* <img src="/name.png" alt="Brand text" className="h-9 w-auto md:h-10 object-contain align-middle" /> */}
-            </a>
->>>>>>> fe36519a2916975f8f9b35ea5839836a0281a231
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Empowering learners with cutting-edge EdTech solutions.  
