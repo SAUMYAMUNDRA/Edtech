@@ -63,24 +63,24 @@ export default function HomePage() {
 
   const testimonials = [
     {
-      id: 'amit',
+      id: 'Mohd',
       text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to.",
-      name: "Amit Kumar",
-      role: "Software Engineer, Google",
+      name: "Mohd Mujassim",
+      role: "Salesforce Developer, Accenture",
       avatar: "👨‍💻"
     },
     {
-      id: 'sneha', 
+      id: 'Masharib', 
       text: "Hands-on projects gave me real confidence in coding. The mentors are very supportive!",
-      name: "Sneha Verma",
-      role: "Backend Developer, Amazon",
+      name: "Masharib Yazdani",
+      role: "Associate Software Engineer, Accenture",
       avatar: "👩‍💻"
     },
     {
       id: 'ravi',
       text: "We bridges the gap between theory and practice. Truly a career accelerator!",
-      name: "Ravi Singh", 
-      role: "Full Stack Dev, Microsoft",
+      name: "Mohd Ehtesham", 
+      role: "ServiceNow Developer Intern, Bangmetric",
       avatar: "👨‍🎓"
     }
   ];
@@ -122,7 +122,7 @@ export default function HomePage() {
 
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="/mentorship"
                   className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-gray-900/25 active:scale-95"
                 >
                   Get Started

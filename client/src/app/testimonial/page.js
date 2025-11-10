@@ -219,25 +219,25 @@ but the main filter compares slug(tag) to activeFilter.
 const testimonialsData = [
   {
     id: 1,
-    name: "Neha Singh",
+    name: "Mohammad Hamza",
     tag: "Mentorship",
     categories: ["mentorship", "career"],
     quote:
       "The one‑on‑one cadence helped me refine goals and eliminate distractions blocking momentum.",
-    rating: 5
+    rating: 3
   },
   {
     id: 2,
-    name: "Iqbal Hussain",
+    name: "Mohd Mujassim",
     tag: "Workshops",
     categories: ["workshops", "soft-skills"],
     quote:
       "Live workshops demystified technical roles and taught concise impact articulation.",
-    rating: 5
+    rating: 4
   },
   {
     id: 3,
-    name: "Simran Kaur",
+    name: "Mohd Ehtesham",
     tag: "Career",
     categories: ["career", "mentorship"],
     quote:
@@ -246,29 +246,29 @@ const testimonialsData = [
   },
   {
     id: 4,
-    name: "Arjun Patel",
+    name: "Masharib Yazdani ",
     tag: "Soft Skills",
     categories: ["soft-skills", "mentorship"],
     quote:
       "Learning to articulate trade‑offs improved collaboration in projects and hackathons.",
     rating: 5
   },
-  {
-    id: 5,
-    name: "Divya Rao",
-    tag: "Workshops",
-    categories: ["workshops", "career"],
-    quote: "Portfolio narrative shifts finally unlocked recruiter responses.",
-    rating: 5
-  },
-  {
-    id: 6,
-    name: "Krish Malhotra",
-    tag: "Career",
-    categories: ["career", "mentorship"],
-    quote: "Goal tracking and micro‑wins stacked into an offer result.",
-    rating: 5
-  }
+  // {
+  //   id: 5,
+  //   name: "Divya Rao",
+  //   tag: "Workshops",
+  //   categories: ["workshops", "career"],
+  //   quote: "Portfolio narrative shifts finally unlocked recruiter responses.",
+  //   rating: 5
+  // },
+  // {
+  //   id: 6,
+  //   name: "Krish Malhotra",
+  //   tag: "Career",
+  //   categories: ["career", "mentorship"],
+  //   quote: "Goal tracking and micro‑wins stacked into an offer result.",
+  //   rating: 5
+  // }
 ]
 
 /* --------------------------------- Page ------------------------------------- */
@@ -460,7 +460,7 @@ export default function TestimonialsPage() {
                             <p className="text-white text-lg font-semibold">
                               Featured Story
                             </p>
-                            <p className="text-white/80 text-sm">Sarah's Journey</p>
+                            <p className="text-white/80 text-sm">Mohammad Hamza's Journey</p>
                           </div>
                         </div>
                         <div className="absolute top-4 right-4">
@@ -475,7 +475,7 @@ export default function TestimonialsPage() {
                             SK
                           </div>
                           <div>
-                            <h3 className="font-bold text-gray-900">Sarah Kumar</h3>
+                            <h3 className="font-bold text-gray-900">Mohammad Hamza</h3>
                             <p className="text-sm text-gray-500">
                               Software Engineering
                             </p>
@@ -551,7 +551,7 @@ export default function TestimonialsPage() {
                         <p className="text-white text-sm font-medium">
                           From Confused to Confident
                         </p>
-                        <p className="text-white/80 text-xs">Sarah's Journey - 3:24</p>
+                        <p className="text-white/80 text-xs">Mohammad Hamza's Journey - 3:24</p>
                       </div>
                     </div>
                   </div>
@@ -561,9 +561,9 @@ export default function TestimonialsPage() {
                         SK
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Sarah Kumar</h3>
+                        <h3 className="font-semibold text-gray-900">Mohammad Hamza</h3>
                         <p className="text-xs text-gray-500">
-                          Software Engineering Track
+                          Lead Data Engineer @HCLTech
                         </p>
                       </div>
                     </div>
@@ -594,7 +594,7 @@ export default function TestimonialsPage() {
                         <p className="text-white text-sm font-medium">
                           Breaking Into Product
                         </p>
-                        <p className="text-white/80 text-xs">Alex's Story - 4:12</p>
+                        <p className="text-white/80 text-xs">Mohd Mujassim's Story - 4:12</p>
                       </div>
                     </div>
                   </div>
@@ -604,9 +604,9 @@ export default function TestimonialsPage() {
                         AC
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Alex Chen</h3>
+                        <h3 className="font-semibold text-gray-900">Mohd Mujassim</h3>
                         <p className="text-xs text-gray-500">
-                          Product Management Track
+                          Salesforce Developer @Accenture
                         </p>
                       </div>
                     </div>
@@ -638,7 +638,7 @@ export default function TestimonialsPage() {
                           Design Career Pivot
                         </p>
                         <p className="text-white/80 text-xs">
-                          Maya's Transformation - 2:58
+                          Masharib Yazdani 's Transformation - 2:58
                         </p>
                       </div>
                     </div>
@@ -650,9 +650,9 @@ export default function TestimonialsPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">
-                          Maya Rodriguez
+                          Masharib Yazdani 
                         </h3>
-                        <p className="text-xs text-gray-500">UX Design Track</p>
+                        <p className="text-xs text-gray-500">Associate Software Engineer @ Accenture</p>
                       </div>
                     </div>
                     <p className="text-gray-600 text-sm leading-relaxed">
@@ -795,11 +795,8 @@ export default function TestimonialsPage() {
                     structure we provide simply keeps the momentum consistent.
                   </p>
                   <div className="flex gap-4">
-                    <ShinyButton className="px-10 py-4 bg-yellow-500 text-white rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-200 shadow-xl hover:shadow-2xl">
+                    <ShinyButton onClick={() => (window.location.href = '/')} className="px-10 py-4 bg-yellow-500 text-white rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-200 shadow-xl hover:shadow-2xl">
                       Start Your Journey
-                    </ShinyButton>
-                    <ShinyButton className="px-10 py-4 border-2 border-gray-300 text-gray-700 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200">
-                      Learn More
                     </ShinyButton>
                   </div>
                 </div>
@@ -832,10 +829,10 @@ export default function TestimonialsPage() {
                   step starts here.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                  <ShinyButton className="px-10 py-4 bg-yellow-500 text-white rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-200 shadow-xl hover:shadow-2xl">
+                  <ShinyButton onClick={() => (window.location.href = '/mentorship/apply')} className="px-10 py-4 bg-yellow-500 text-white rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-200 shadow-xl hover:shadow-2xl">
                     Apply Now
                   </ShinyButton>
-                  <ShinyButton className="px-10 py-4 border-2 border-gray-300 text-gray-700 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200">
+                  <ShinyButton onClick={() => (window.location.href = '/mentorship#mentors')} className="px-10 py-4 border-2 border-gray-300 text-gray-700 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200">
                     Meet Mentors
                   </ShinyButton>
                 </div>
