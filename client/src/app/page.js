@@ -122,7 +122,7 @@ export default function HomePage() {
 
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="/mentorship"
                   className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-gray-900/25 active:scale-95"
                 >
                   Get Started

@@ -15,7 +15,7 @@ export default function Footer() {
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Empowering learners with cutting-edge EdTech solutions.  
-            From interactive courses to AI-powered career guidance,  
+            From interactive sessions to AI-powered career guidance,  
             we bridge the gap between knowledge and opportunity.
           </p>
         </div>
