@@ -11,14 +11,8 @@ export default function Header() {
           <img
             src="/finallogo.png"
             alt="Site logo"
-            className="ml-3 w-30 h-14 object-contain rounded"
+            className=" w-80 h-30 object-contain rounded"
           />
-          {/* Brand image next to the logo. Place brand.png in client/public or change the path. */}
-          <img
-  src="/name.png"
-  alt="Brand text"
-  className=" align-left w-44 max-h-30  align-middle"
-/>  
 
         </a>
       </div>
