@@ -1,17 +1,16 @@
 import React from 'react';
 import SocialMediaButtons from '../buttons/SocialMediaButtons.jsx';
-
+import Link from "next/link";
+// import { useRouter } from "next/navigation"
 export default function Footer() {
+  // const router = useRouter();
+
   return (
     <footer className="bg-[#0a1a2f] text-gray-300 pt-10 pb-6 px-8 text-base">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Logo + About */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <a href="/" className="flex items-center gap-1">
-              <img src="/logo.png" alt="Site logo" className="h-9 w-auto object-contain rounded" />
-              {/* <img src="/name.png" alt="Brand text" className="h-9 w-auto md:h-10 object-contain align-middle" /> */}
-            </a>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Empowering learners with cutting-edge EdTech solutions.  
@@ -23,26 +22,27 @@ export default function Footer() {
         {/* Quick Links */}
         <div>
           <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:text-yellow-400 transition">About Us</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">How It Works</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Courses</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Partners</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Careers</a></li>
-          </ul>
+         <ul className="space-y-2">
+  <li>
+    <Link href="/about" className="hover:text-yellow-400 transition">
+      About Us
+    </Link>
+  </li>
+  <li>
+    <Link href="/mentorship" className="hover:text-yellow-400 transition">
+      Mentorship
+    </Link>
+  </li>
+  <li>
+    <Link href="/" className="hover:text-yellow-400 transition">
+      Home
+    </Link>
+  </li>
+</ul>
+
         </div>
 
-        {/* Resources */}
-        <div>
-          <h3 className="text-white font-semibold text-lg mb-4">Resources</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:text-yellow-400 transition">Blog</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Case Studies</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Community</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Help Center</a></li>
-            <li><a href="#" className="hover:text-yellow-400 transition">Support</a></li>
-          </ul>
-        </div>
+       
 
         {/* Newsletter */}
         <div>

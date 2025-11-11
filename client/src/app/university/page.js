@@ -1215,25 +1215,7 @@ export default function ForUniversitiesPage() {
       <ProfessionalCertificatesSection onGetReport={() => setShowReportModal(true)} />
 
       {/* PARTNER LOGOS (placeholder) */}
-      <section className="py-16 bg-[#fcf6f1]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Trusted By Leading Universities</h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">Join a network of institutions advancing student success.</p>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="bg-white rounded-xl shadow p-4 flex items-center justify-center h-24 transition-transform duration-300 hover:-translate-y-1">
-                  <span className="text-2xl font-bold text-yellow-500">Logo {i}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+   
 
       {/* FINAL CALL TO ACTION */}
       <section className="py-20 bg-[#fcf6f1]">
