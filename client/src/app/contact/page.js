@@ -32,7 +32,7 @@ export default function ContactUs() {
               <h2 className="text-xl font-bold flex items-center gap-2">
                 <span className="text-yellow-500 text-2xl"></span> Email 
               </h2>
-              <p className="mt-2">h.verma0288@gmail.com</p>
+              <p className="mt-2">info@learncometedu.com</p>
             </div>
 
             {/* Location */}

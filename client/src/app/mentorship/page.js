@@ -269,7 +269,7 @@ export default function MentorshipPage() {
               {/* Trust badges */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
-                  <div className="text-2xl font-bold">150+</div>
+                  <div className="text-2xl font-bold">30+</div>
                   <div className="text-gray-600 text-sm">Industry Mentors</div>
                 </div>
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
@@ -280,21 +280,19 @@ export default function MentorshipPage() {
                   <div className="text-2xl font-bold">40+</div>
                   <div className="text-gray-600 text-sm">Partner Universities</div>
                 </div> */}
-                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
+                {/* <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">3k+</div>
                   <div className="text-gray-600 text-sm">Student Sessions</div>
-                </div>
+                </div> */}
               </div>
             </div>
 
             <div className={`md:pl-6 transition-all duration-1000 delay-500 ease-out ${visibleElements.mentor_hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <div className="relative bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-yellow-400/30 flex items-center justify-center">
-                    <span className="text-gray-900 font-bold">B</span>
-                  </div>
+                 
                   <div>
-                    <div className="font-semibold">BridgeLabs Mentorship</div>
+                    <div className="font-semibold">Learn Comet Mentorship</div>
                     <div className="text-sm text-gray-600">Personalized Learning Plan</div>
                   </div>
                 </div>
@@ -313,8 +311,7 @@ export default function MentorshipPage() {
                   ))}
                 </ul>
 
-                <div className="mt-6 p-4 bg-[#fcf6f1] border border-yellow-400/40 rounded-lg">
-                </div>
+               
               </div>
             </div>
           </div>
@@ -465,7 +462,7 @@ export default function MentorshipPage() {
         <section id="mentor_benefits" data-scroll-animate className={`max-w-7xl mx-auto px-8 py-6 transition-all duration-1000 ease-out ${visibleElements.mentor_benefits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="mb-8">
             <h2 className="text-3xl font-bold">Mentor Benefits</h2>
-            <p className="text-gray-600 mt-2">What you get with BridgeLabs mentorship.</p>
+            <p className="text-gray-600 mt-2">What you get with Learn Comet mentorship.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
