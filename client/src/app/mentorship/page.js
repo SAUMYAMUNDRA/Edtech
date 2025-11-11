@@ -269,30 +269,28 @@ export default function MentorshipPage() {
               {/* Trust badges */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
-                  <div className="text-2xl font-bold">150+</div>
+                  <div className="text-2xl font-bold">15+</div>
                   <div className="text-gray-600 text-sm">Industry Mentors</div>
                 </div>
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
-                  <div className="text-2xl font-bold">7.5 yrs</div>
+                  <div className="text-2xl font-bold">2.5 yrs</div>
                   <div className="text-gray-600 text-sm">Avg Mentor Experience</div>
                 </div>
                 {/* <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">40+</div>
                   <div className="text-gray-600 text-sm">Partner Universities</div>
                 </div> */}
-                <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
+                {/* <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
                   <div className="text-2xl font-bold">3k+</div>
                   <div className="text-gray-600 text-sm">Student Sessions</div>
-                </div>
+                </div> */}
               </div>
             </div>
 
             <div className={`md:pl-6 transition-all duration-1000 delay-500 ease-out ${visibleElements.mentor_hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <div className="relative bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-yellow-400/30 flex items-center justify-center">
-                    <span className="text-gray-900 font-bold">B</span>
-                  </div>
+                 
                   <div>
                     <div className="font-semibold">Learn Comet Mentorship</div>
                     <div className="text-sm text-gray-600">Personalized Learning Plan</div>
@@ -313,8 +311,7 @@ export default function MentorshipPage() {
                   ))}
                 </ul>
 
-                <div className="mt-6 p-4 bg-[#fcf6f1] border border-yellow-400/40 rounded-lg">
-                </div>
+               
               </div>
             </div>
           </div>
