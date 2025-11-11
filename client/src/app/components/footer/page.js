@@ -13,9 +13,9 @@ export default function Footer() {
           <div className="flex items-center gap-2 mb-4">
           </div>
            <img
-            src="/learncomet.jpg"
+            src="/finallogo.png"
             alt="Site logo"
-            className="w-36 sm:w-44 md:w-52 object-contain rounded"
+            className="w-10 sm:w-44 md:w-32 object-contain rounded"
           />
           <p className="text-gray-400 text-sm leading-relaxed">
             Empowering learners with cutting-edge EdTech solutions.  

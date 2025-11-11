@@ -21,18 +21,12 @@ export default function Header() {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2">
           <img
-<<<<<<< HEAD
-            src="/finallogo.png"
+                      src="/finallogo.png"
             alt="Site logo"
-            className=" w-80 h-30 object-contain rounded"
+            className=" w-52 h-25 object-contain rounded"
           />
 
-=======
-            src="/learncomet.jpg"
-            alt="Site logo"
-            className="w-36 sm:w-44 md:w-52 object-contain rounded"
-          />
->>>>>>> c470ea23f16fb35d38ba36469f93d5e9c5fc0f0d
+
         </a>
 
         {/* Desktop Nav */}
