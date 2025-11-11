@@ -1,5 +1,5 @@
 "use client"
-
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image"
 import Header from "../components/header/page"
 import Footer from "../components/footer/page"
@@ -37,26 +37,50 @@ export default function AboutPage() {
   const { scrollYProgress } = useScroll()
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, -40])
 
-  const testimonials = [
+  // Become a mentor modal state (copied from mentorship page)
+  const [mentorModalOpen, setMentorModalOpen] = React.useState(false)
+  const [mentorStage, setMentorStage] = React.useState(0) // 0: welcome, 1: info1, 2: info2, 3: submitted
+  const [mentorForm, setMentorForm] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    designation: "",
+    linkedin: "",
+    resume: null,
+  })
+  const [mentorSubmitting, setMentorSubmitting] = React.useState(false)
+  const [companyOpen, setCompanyOpen] = React.useState(false)
+  const [designationOpen, setDesignationOpen] = React.useState(false)
+  const [resumeInputKey, setResumeInputKey] = React.useState(0)
+
+  const mentorCompanies = [
+    "Google",
+  ]
+  const mentorDesignations = [
+    "Software Engineer",
+  ]
+
+ const testimonials = [
     {
-      id: 'amit',
-      text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to the LearnComet mentors.",
-      name: "Amit Kumar",
-      role: "Software Engineer, Google",
+      id: 'Mohd',
+      text: "The mentorship program was a game-changer. I cracked my dream job interview thanks to.",
+      name: "Mohd Mujassim",
+      role: "Salesforce Developer, Accenture",
       avatar: "👨‍💻"
     },
     {
-      id: 'sneha', 
+      id: 'Masharib', 
       text: "Hands-on projects gave me real confidence in coding. The mentors are very supportive!",
-      name: "Sneha Verma",
-      role: "Backend Developer, Amazon",
+      name: "Masharib Yazdani",
+      role: "Associate Software Engineer, Accenture",
       avatar: "👩‍💻"
     },
     {
       id: 'ravi',
-      text: "LearnComet bridges the gap between theory and practice. Truly a career accelerator!",
-      name: "Ravi Singh", 
-      role: "Full Stack Dev, Microsoft",
+      text: "We bridges the gap between theory and practice. Truly a career accelerator!",
+      name: "Mohd Ehtesham", 
+      role: "ServiceNow Developer Intern, Bangmetric",
       avatar: "👨‍🎓"
     }
   ];
@@ -327,7 +351,7 @@ export default function AboutPage() {
             </button>
 
             <button
-              onClick={() => router.push("/mentorship")}
+              onClick={() => setMentorModalOpen(true)}
               className="relative overflow-hidden group px-10 py-4 bg-white text-gray-700 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200 border-2 border-gray-200 shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2"
             >
               <span className="relative z-10">Become a Mentor</span>
@@ -336,6 +360,125 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      {mentorModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 backdrop-blur-lg" onClick={() => { setMentorModalOpen(false); setMentorStage(0); }} />
+          <style jsx global>{`
+            @keyframes modalMentorPopIn { 0%{ opacity:0; transform: scale(.87) translateY(30px);} 60%{ opacity:.99; transform: scale(1.04) translateY(-12px);} 100%{ opacity:1; transform: scale(1) translateY(0);} }
+            .mentor-modal-anim { animation: modalMentorPopIn 0.45s cubic-bezier(.4,1.5,.52,1) both; }
+            @keyframes mentorButtonPop {0%{opacity:.3;transform: scale(.8);} 50%{opacity:.95;transform: scale(1.10);} 100%{opacity:1;transform:scale(1);} }
+            .mentor-animated-pop { animation: mentorButtonPop .5s cubic-bezier(.35,1.56,.64,1) .04s both; }
+          `}</style>
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl p-0 flex relative overflow-hidden z-10 mentor-modal-anim">
+            <div className="flex-1 p-6">
+              {mentorStage === 0 && (
+                <div>
+                  <h2 className="text-2xl font-bold mb-6">Ready to inspire and support others?</h2>
+                  <p className="mb-8 text-gray-700">Join our mentor community. Motivate, guide, and grow with us!</p>
+                  <button
+                    className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl mentor-animated-pop"
+                    onClick={() => setMentorStage(1)}
+                  >Apply Now</button>
+                </div>
+              )}
+
+              {mentorStage === 1 && (
+                <form onSubmit={e => { e.preventDefault(); setMentorStage(2); }} className="space-y-6">
+                  <h3 className="text-xl font-bold mb-2">Personal Information</h3>
+                  <div>
+                    <label className="block font-medium mb-1">First Name</label>
+                    <input type="text" name="firstName" required autoFocus value={mentorForm.firstName} onChange={e => setMentorForm(f => ({ ...f, firstName: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">Last Name</label>
+                    <input type="text" name="lastName" required value={mentorForm.lastName} onChange={e => setMentorForm(f => ({ ...f, lastName: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
+                  </div>
+                  <div>
+                    <label className="block font-medium mb-1">Email</label>
+                    <input type="email" name="email" required value={mentorForm.email} onChange={e => setMentorForm(f => ({ ...f, email: e.target.value }))} className="border px-4 py-2 rounded w-full focus:outline-blue-400"/>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <button type="button" className="px-4 py-2 bg-gray-100 text-gray-800 rounded shadow hover:bg-gray-200 border border-gray-300" onClick={() => setMentorStage(0)}>Back</button>
+                    <button type="submit" className="bg-gray-900 text-white px-6 py-2 rounded shadow">Next</button>
+                  </div>
+                </form>
+              )}
+
+              {mentorStage === 2 && (
+                <form onSubmit={e => { e.preventDefault(); setMentorSubmitting(true); setTimeout(() => { setMentorSubmitting(false); setMentorStage(3); }, 1200); }} className="space-y-6">
+                  <h3 className="text-xl font-bold mb-2">Professional Details</h3>
+                  <div className="relative">
+                    <label className="block font-medium mb-1">Company</label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      value={mentorForm.company}
+                      onChange={e => { const v = e.target.value; setMentorForm(f => ({ ...f, company: v })); setCompanyOpen(true); }}
+                      onBlur={() => setTimeout(() => setCompanyOpen(false), 120)}
+                      className="border px-4 py-2 rounded w-full"
+                    />
+                    {companyOpen && mentorForm.company.trim().length >= 1 && (
+                      <ul className="absolute z-20 mt-1 w-full bg-white border border-gray-200 rounded shadow max-h-48 overflow-auto">
+                        {mentorCompanies.filter(co => co.toLowerCase().startsWith(mentorForm.company.toLowerCase())).slice(0, 20).map((co, idx) => (
+                          <li key={idx} className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onMouseDown={() => { setMentorForm(f => ({ ...f, company: co })); setCompanyOpen(false); }}>{co}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    <label className="block font-medium mb-1">Designation</label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      value={mentorForm.designation}
+                      onChange={e => { const v = e.target.value; setMentorForm(f => ({ ...f, designation: v })); setDesignationOpen(true); }}
+                      onBlur={() => setTimeout(() => setDesignationOpen(false), 120)}
+                      className="border px-4 py-2 rounded w-full"
+                    />
+                    {designationOpen && mentorForm.designation.trim().length >= 1 && (
+                      <ul className="absolute z-20 mt-1 w-full bg-white border border-gray-200 rounded shadow max-h-48 overflow-auto">
+                        {mentorDesignations.filter(des => des.toLowerCase().startsWith(mentorForm.designation.toLowerCase())).slice(0, 20).map((des, idx) => (
+                          <li key={idx} className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onMouseDown={() => { setMentorForm(f => ({ ...f, designation: des })); setDesignationOpen(false); }}>{des}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block font-medium mb-1">LinkedIn URL</label>
+                    <input type="url" name="linkedin" required value={mentorForm.linkedin} onChange={e => setMentorForm(f => ({ ...f, linkedin: e.target.value }))} className="border px-4 py-2 rounded w-full"/>
+                  </div>
+
+                  <div>
+                    <label className="block font-medium mb-1">Resume</label>
+                    <input key={resumeInputKey} type="file" accept=".pdf,.doc,.docx" onChange={e => setMentorForm(f => ({ ...f, resume: e.target.files?.[0] || null }))} className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 hover:file:bg-gray-200" />
+                    {mentorForm.resume && (
+                      <button type="button" className="mt-2 text-sm text-red-600 hover:text-red-700 underline" onClick={() => { setMentorForm(f => ({ ...f, resume: null })); setResumeInputKey(k => k + 1); }}>Remove file</button>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <button type="button" className="px-4 py-2 bg-gray-100 text-gray-800 rounded shadow hover:bg-gray-200 border border-gray-300" onClick={() => setMentorStage(1)} disabled={mentorSubmitting}>Back</button>
+                    <button type="submit" className={`bg-gray-900 hover:scale-105 hover:shadow-2xl text-white shadow-md transition-all py-2 px-6 rounded font-semibold ${mentorSubmitting ? 'opacity-50' : ''}`} disabled={mentorSubmitting}>{mentorSubmitting ? 'Submitting...' : 'Submit'}</button>
+                  </div>
+                </form>
+              )}
+
+              {mentorStage === 3 && (
+                <div className="flex flex-col items-center justify-center h-full text-center py-10">
+                  <h3 className="text-2xl font-semibold mb-2">Thanks for applying!</h3>
+                  <p className="text-gray-700 mb-4">We will review your submission and get back to you via email.</p>
+                  <button className="mt-3 text-blue-700 underline font-medium" onClick={() => { setMentorForm({firstName:'',lastName:'',email:'',company:'',designation:'',linkedin:'',resume:null}); setMentorStage(0); setMentorModalOpen(false); }}>Close</button>
+                </div>
+              )}
+            </div>
+
+            <button className="absolute top-3 right-4 text-gray-400 hover:text-red-500 text-xl font-bold" onClick={() => { setMentorModalOpen(false); setMentorStage(0); }} aria-label="Close">×</button>
+          </div>
+        </div>
+      )}
 
       {/* FOOTER */}
       <Footer />
