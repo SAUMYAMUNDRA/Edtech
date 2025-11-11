@@ -24,3 +24,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.tagcloud {
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-family: "Poppins", sans-serif;
+}
+
+.tagcloud--item {
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.tagcloud--item:hover {
+  color: #facc15; /* Tailwind yellow-400 */
+  transform: scale(1.2);
+}

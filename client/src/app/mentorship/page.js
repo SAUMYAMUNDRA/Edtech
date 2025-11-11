@@ -269,11 +269,11 @@ export default function MentorshipPage() {
               {/* Trust badges */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
-                  <div className="text-2xl font-bold">15+</div>
+                  <div className="text-2xl font-bold">30+</div>
                   <div className="text-gray-600 text-sm">Industry Mentors</div>
                 </div>
                 <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">
-                  <div className="text-2xl font-bold">2.5 yrs</div>
+                  <div className="text-2xl font-bold">7.5 yrs</div>
                   <div className="text-gray-600 text-sm">Avg Mentor Experience</div>
                 </div>
                 {/* <div className="bg-white rounded-lg shadow p-4 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-lg">

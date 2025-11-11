@@ -64,7 +64,7 @@ const MENTORS = [
     sessions: 320,
     expYears: 3,
     linkedin: "https://www.linkedin.com/in/arishrehmankhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1758082537/eoya4vvog1ilshljsyan.jpg",
+    photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1758082537/eoya4vvog1ilshljsyan.jpg",
     bio: "",
     experiences: [
       { org: "Ciena", role: "Software Engineer Systems", year: "2022–now" },
@@ -85,7 +85,7 @@ const MENTORS = [
     sessions: 280,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/dheeraj-yadav-8b6917276/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      photo: "https://media.licdn.com/dms/image/v2/D4D03AQHvg1N8dbPPUg/profile-displayphoto-shrink_400_400/B4DZdA9ODIHkAk-/0/1749141482198?e=1761177600&v=beta&t=QGcuuPxzu6K88uGzBnnf9d6B4xrUuhfORuUH5Rh7D84",
+    photo: "https://media.licdn.com/dms/image/v2/D4D03AQHvg1N8dbPPUg/profile-displayphoto-shrink_400_400/B4DZdA9ODIHkAk-/0/1749141482198?e=1764201600&v=beta&t=wA3WhbgQYehSv9RhNdybK2ubcmUNWy8u5BEn8IvSc7E",
     bio: "",
     experiences: [
       { org: "Cohesity", role: "Software Engineer", year: "Jul 2025-now" },
@@ -105,7 +105,7 @@ const MENTORS = [
     sessions: 245,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/ruchira-naskar-18b86522a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      photo: "https://media.licdn.com/dms/image/v2/D5603AQHvgU3u33Li5g/profile-displayphoto-scale_400_400/B56Zkwqrw9I8Ag-/0/1757458121313?e=1761177600&v=beta&t=MFnEg7FPalyA415D1wRD1HOBOTiAZZTgs3irvz_V7B4",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQHvgU3u33Li5g/profile-displayphoto-scale_400_400/B56Zkwqrw9I8Ag-/0/1757458121313?e=1764201600&v=beta&t=FBkjG5BW9osaCaSZkGSS9oQYeOEiuDpXq2KkL1tWV4k",
     bio: "",
     experiences: [
       { org: "Microsoft", role: "SWE", year: "Jun 2025–now" },
@@ -125,7 +125,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/sachin-k-gupta/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      photo: "https://media.licdn.com/dms/image/v2/D5603AQHNdG66BHt4GA/profile-displayphoto-scale_400_400/B56Zh2GhmcHMAk-/0/1754328082991?e=1761177600&v=beta&t=8O-BmqHKw201RNS3lz9HC81eNEqg7IlGophEDL74sF4",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQHNdG66BHt4GA/profile-displayphoto-scale_400_400/B56Zh2GhmcHMAk-/0/1754328082991?e=1764201600&v=beta&t=o05EfakYRMs1g8bzqZz4WFU4LNQSlbHEfgh2SShHZ00",
     bio: "",
     experiences: [
       { org: "Uber", role: "Software Engineer", year: "Aug 2025–now" },
@@ -145,7 +145,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 12,
     linkedin: "https://www.linkedin.com/in/ekta-dhusia/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      photo: "https://media.licdn.com/dms/image/v2/C4E03AQE-LEU3g5F9tg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1609785350202?e=1761177600&v=beta&t=0V1ImoF4S4yGoEIhKXxx-lt66bYIBhOh0THFLjJQ1z8",
+    photo: "https://media.licdn.com/dms/image/v2/C4E03AQE-LEU3g5F9tg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1609785350202?e=1764201600&v=beta&t=6YbyF4ynVoKzuOj-nGthUQn2YUQ9lYY2em13j3RbIOY",
     bio: "",
     experiences: [
       { org: "Amdocs", role: "Software Architect", year: "May 2025–now" },
@@ -166,7 +166,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 19,
     linkedin: "https://www.linkedin.com/in/manmeetchauhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      photo: "https://media.licdn.com/dms/image/v2/C4D03AQGBTSRZb_1BAA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516626173865?e=1761177600&v=beta&t=t_cjmDmUXvbtQAfzSNPvhNO0GrAWX5oBMIYbYMxUFwA",
+    photo: "https://media.licdn.com/dms/image/v2/C4D03AQGBTSRZb_1BAA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516626173865?e=1764201600&v=beta&t=8TID-dXmGbsEBdDMYxAYId4fC3-IKfCx6SdmwVH5Gt4",
     bio: "",
     experiences: [
       { org: "SitusAMC", role: "AVP Software Development", year: "Apr 2025–now" },
@@ -187,7 +187,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 7,
     linkedin: "https://www.linkedin.com/in/kartar-r-89b50546/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      photo: "https://media.licdn.com/dms/image/v2/C5603AQEj6CmSlJ754Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1517431664746?e=1761177600&v=beta&t=xGVb5p0hTAcOmhYblTc9kcu6CsTHxqK2l6dri4XaBlE",
+    photo: "https://media.licdn.com/dms/image/v2/C5603AQEj6CmSlJ754Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1517431664746?e=1764201600&v=beta&t=sT6JjnfcK_th-4necmQS-7xe1b2loDJBdCOEmpCd5Uw",
     bio: "",
     experiences: [
       { org: "Rackspace Technology", role: "Database Services Manager", year: "Apr 2025–now" },
@@ -210,7 +210,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 9,
     linkedin: "https://www.linkedin.com/in/lov-vashist-8901811b/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      photo: "https://media.licdn.com/dms/image/v2/D5603AQEAKt7f6woxAw/profile-displayphoto-scale_400_400/B56ZhQlgThHUAo-/0/1753698667456?e=1761177600&v=beta&t=p2EQxEk-RVC1NqHwHdf9PuYfOTDpipI5kP8p-aoJtuo",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQHNaJtJ420FNA/profile-displayphoto-scale_400_400/B56ZnhiO4FJQAg-/0/1760425472525?e=1764201600&v=beta&t=CX_mdBo3zT4NJhgvt4Hk2L_EAstTjveGChbUmDvEs5I",
     bio: "",
     experiences: [
       { org: "ColorTokens", role: "Senior Sales Engineer", year: "Jun 2024–now" },
@@ -221,7 +221,7 @@ const MENTORS = [
     ],
     domains: ["Systems Engineer","Sales Engineer"],
   },
-    {
+  {
     id: 9,
     name: "Harmanjot Singh",
     role: "Software Engineer",
@@ -233,7 +233,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/harmanjot-singh-53aa38229/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      photo: "https://media.licdn.com/dms/image/v2/D5603AQFHBbV5hzydLg/profile-displayphoto-scale_400_400/B56ZjCcE_5HcAk-/0/1755608804267?e=1761177600&v=beta&t=d6FsibMZKHE8zgcqChWXEDjMR1hRLZyC5sOIk8_GRcY",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQFHBbV5hzydLg/profile-displayphoto-scale_400_400/B56ZjCcE_5HcAk-/0/1755608804267?e=1764201600&v=beta&t=ec4C_Q23bbcbu0elxaAi-MTB4-tzRygmozoRQMtqnyw",
     bio: "",
     experiences: [
       { org: "Uber", role: "Software Engineer", year: "Aug 2025–now" },
@@ -247,15 +247,13 @@ const MENTORS = [
     role: "Senior Data Analyst",
     company: "GrowthJockey",
     studied: "Jamia Millia Islamia",
-    skills: [ "Decision Making",
-        "Soft Skills",
-        "Business Analysis"],
+    skills: [ "Decision Making", "Soft Skills", "Business Analysis"],
     topSkills: ["Business Intelligence", "Analytical Solutions","Web Analytics"],
     rating: 4.9,
     sessions: 360,
     expYears: 4,
     linkedin: "https://www.linkedin.com/in/mohammad-inamul-haq-741901192/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      photo: "https://media.licdn.com/dms/image/v2/D5603AQHBSAtxyEi3yw/profile-displayphoto-shrink_400_400/B56ZgnBkweG4As-/0/1753001382636?e=1761177600&v=beta&t=MCU85en6hdAXwaLuWCkCh0eBRQ7ZbOuzo5GD-pcgneY",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQHBSAtxyEi3yw/profile-displayphoto-shrink_400_400/B56ZgnBkweG4As-/0/1753001382636?e=1764201600&v=beta&t=54aLznp6pXFHQf49Qg3_LYnRcl1ClB-aqrMtWd8ISv4",
     bio: "",
     experiences: [
       { org: "GrowthJockey", role: "Senior Data Analyst", year: "Mar 2023–Now" },
@@ -277,17 +275,18 @@ const MENTORS = [
     sessions: 320,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/jayant-pranjal/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      photo: "null",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQHyAhAn170UVQ/profile-displayphoto-shrink_400_400/B56ZZEM5wIGQAg-/0/1744900957381?e=1764201600&v=beta&t=Xu00QbQi1iN8n-SPa1fxI_6JMLoz8w9Q2ai9_nNSbZM",
     bio: "",
     experiences: [
       { org: "Wells Fargo", role: "Program Associate", year: "Aug 2025-now" },
       { org: "Forge Code", role: "Software Engineer Intern", year: "Jul 2025-Aug 2025" },
       { org: "The Linux foundation", role: "Software Engineer Intern", year: "Aug 2024-Oct 2024" },
-       { org: "Wells Fargo", role: "Software Engineer Intern", year: "May 2024-Jul 2024" }
+      { org: "Wells Fargo", role: "Software Engineer Intern", year: "May 2024-Jul 2024" }
     ],
     domains: ["Software Engineering", "Program Associate"],
   },
 ];
+
 
 export default function ApplyMentorshipPage() {
   const mentors = useMemo(() => MENTORS, []);
@@ -482,7 +481,7 @@ const agendaOptions = [
                 <div className="p-5 bg-[#fcf6f1] border border-yellow-400/30 rounded-xl">
                   <div className="font-semibold">What to expect</div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
-                    {[{ k: "Avg Mentor Exp.", v: "7.5 yrs" }, { k: "Mentors", v: "150+" }, { k: "Sessions", v: "1k+" }].map((x, i) => (
+                    {[{ k: "Avg Mentor Exp.", v: "7.5 yrs" }, { k: "Mentors", v: "30+" }].map((x, i) => (
                       <div key={i} className="bg-white rounded-lg border border-gray-200 p-4">
                         <div className="text-sm text-gray-600">{x.k}</div>
                         <div className="text-xl font-semibold">{x.v}</div>
