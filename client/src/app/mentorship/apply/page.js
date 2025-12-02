@@ -105,7 +105,7 @@ const MENTORS = [
     sessions: 245,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/ruchira-naskar-18b86522a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://media.licdn.com/dms/image/v2/D5603AQHvgU3u33Li5g/profile-displayphoto-scale_400_400/B56Zkwqrw9I8Ag-/0/1757458121313?e=1764201600&v=beta&t=FBkjG5BW9osaCaSZkGSS9oQYeOEiuDpXq2KkL1tWV4k",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764690802/omndnx0axhbaqgfvpgip.jpg",
     bio: "",
     experiences: [
       { org: "Microsoft", role: "SWE", year: "Jun 2025–now" },
@@ -125,7 +125,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/sachin-k-gupta/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://media.licdn.com/dms/image/v2/D5603AQHNdG66BHt4GA/profile-displayphoto-scale_400_400/B56Zh2GhmcHMAk-/0/1754328082991?e=1764201600&v=beta&t=o05EfakYRMs1g8bzqZz4WFU4LNQSlbHEfgh2SShHZ00",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764690860/hclfb6swyshziiz0ssgq.jpg",
     bio: "",
     experiences: [
       { org: "Uber", role: "Software Engineer", year: "Aug 2025–now" },
@@ -145,7 +145,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 12,
     linkedin: "https://www.linkedin.com/in/ekta-dhusia/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://media.licdn.com/dms/image/v2/C4E03AQE-LEU3g5F9tg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1609785350202?e=1764201600&v=beta&t=6YbyF4ynVoKzuOj-nGthUQn2YUQ9lYY2em13j3RbIOY",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764690965/xomgklmioocr8ey4mzxj.jpg",
     bio: "",
     experiences: [
       { org: "Amdocs", role: "Software Architect", year: "May 2025–now" },
@@ -166,7 +166,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 19,
     linkedin: "https://www.linkedin.com/in/manmeetchauhan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://media.licdn.com/dms/image/v2/C4D03AQGBTSRZb_1BAA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516626173865?e=1764201600&v=beta&t=8TID-dXmGbsEBdDMYxAYId4fC3-IKfCx6SdmwVH5Gt4",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764690942/dgyhmoxrkmgchypxlegd.jpg",
     bio: "",
     experiences: [
       { org: "SitusAMC", role: "AVP Software Development", year: "Apr 2025–now" },
@@ -187,7 +187,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 7,
     linkedin: "https://www.linkedin.com/in/kartar-r-89b50546/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://media.licdn.com/dms/image/v2/C5603AQEj6CmSlJ754Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1517431664746?e=1764201600&v=beta&t=sT6JjnfcK_th-4necmQS-7xe1b2loDJBdCOEmpCd5Uw",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764690906/pyuhj0cidegvryz9nc7m.jpg",
     bio: "",
     experiences: [
       { org: "Rackspace Technology", role: "Database Services Manager", year: "Apr 2025–now" },
@@ -210,7 +210,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 9,
     linkedin: "https://www.linkedin.com/in/lov-vashist-8901811b/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://media.licdn.com/dms/image/v2/D5603AQHNaJtJ420FNA/profile-displayphoto-scale_400_400/B56ZnhiO4FJQAg-/0/1760425472525?e=1764201600&v=beta&t=CX_mdBo3zT4NJhgvt4Hk2L_EAstTjveGChbUmDvEs5I",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764691058/slopskpwgmile7sukaoa.jpg",
     bio: "",
     experiences: [
       { org: "ColorTokens", role: "Senior Sales Engineer", year: "Jun 2024–now" },
@@ -233,7 +233,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/harmanjot-singh-53aa38229/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://media.licdn.com/dms/image/v2/D5603AQFHBbV5hzydLg/profile-displayphoto-scale_400_400/B56ZjCcE_5HcAk-/0/1755608804267?e=1764201600&v=beta&t=ec4C_Q23bbcbu0elxaAi-MTB4-tzRygmozoRQMtqnyw",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764690998/yvtahuxz8kkujrhk4fwe.jpg",
     bio: "",
     experiences: [
       { org: "Uber", role: "Software Engineer", year: "Aug 2025–now" },
@@ -253,7 +253,7 @@ const MENTORS = [
     sessions: 360,
     expYears: 4,
     linkedin: "https://www.linkedin.com/in/mohammad-inamul-haq-741901192/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    photo: "https://media.licdn.com/dms/image/v2/D5603AQHBSAtxyEi3yw/profile-displayphoto-shrink_400_400/B56ZgnBkweG4As-/0/1753001382636?e=1764201600&v=beta&t=54aLznp6pXFHQf49Qg3_LYnRcl1ClB-aqrMtWd8ISv4",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764691023/dahgshvllbwhtljkfrdc.jpg",
     bio: "",
     experiences: [
       { org: "GrowthJockey", role: "Senior Data Analyst", year: "Mar 2023–Now" },
@@ -275,7 +275,7 @@ const MENTORS = [
     sessions: 320,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/jayant-pranjal/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://media.licdn.com/dms/image/v2/D5603AQHyAhAn170UVQ/profile-displayphoto-shrink_400_400/B56ZZEM5wIGQAg-/0/1744900957381?e=1764201600&v=beta&t=Xu00QbQi1iN8n-SPa1fxI_6JMLoz8w9Q2ai9_nNSbZM",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764691096/d8pbwa9k1cqdc5vq2b6c.jpg",
     bio: "",
     experiences: [
       { org: "Wells Fargo", role: "Program Associate", year: "Aug 2025-now" },
