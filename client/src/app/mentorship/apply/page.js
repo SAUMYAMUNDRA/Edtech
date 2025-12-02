@@ -85,7 +85,7 @@ const MENTORS = [
     sessions: 280,
     expYears: 1,
     linkedin: "https://www.linkedin.com/in/dheeraj-yadav-8b6917276/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    photo: "https://media.licdn.com/dms/image/v2/D4D03AQHvg1N8dbPPUg/profile-displayphoto-shrink_400_400/B4DZdA9ODIHkAk-/0/1749141482198?e=1764201600&v=beta&t=wA3WhbgQYehSv9RhNdybK2ubcmUNWy8u5BEn8IvSc7E",
+      photo: "https://res.cloudinary.com/dsfssl5zk/image/upload/v1764686794/suumuwdczjyel2aaylxk.jpg",
     bio: "",
     experiences: [
       { org: "Cohesity", role: "Software Engineer", year: "Jul 2025-now" },
